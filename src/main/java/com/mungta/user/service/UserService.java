@@ -140,10 +140,10 @@ public class UserService {
 		if(matchesPassword(userPassword,results.getUserPassword())){
 			UserLoginDto user = new UserLoginDto(results);
 			UserLoginDto responseUserDTO = UserLoginDto.builder()
-																								 .userMailAddress(user.getUserMailAddress())
-																								 .userId(user.getUserId())
-																								 .token(tokenProvider.create(user))
-																								 .build();
+																								.userMailAddress(user.getUserMailAddress())
+																								.userId(user.getUserId())
+																								.token(tokenProvider.create(user))
+																								.build();
 			return responseUserDTO ;
 		}else{
 			return null;
