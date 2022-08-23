@@ -131,24 +131,24 @@ public class UserService {
 		return null;
 	}
 
-	//사용자 정상 로그인시 인증정보 GET
-	@Transactional
-	public UserLoginDto getByCredentials(final String userId, final String userPassword) {
-		UserEntity results = userRepository.findByUserId(userId)
-		                    .orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+		//사용자 정상 로그인시 인증정보 GET
+		@Transactional
+		public UserLoginDto getByCredentials(final String userId, final String userPassword) {
+			UserEntity results = userRepository.findByUserId(userId)
+			.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
 
-		if(matchesPassword(userPassword,results.getUserPassword())){
-			UserLoginDto user = new UserLoginDto(results);
-			UserLoginDto responseUserDTO = UserLoginDto.builder()
-																								.userMailAddress(user.getUserMailAddress())
-																								.userId(user.getUserId())
-																								.token(tokenProvider.create(user))
-																								.build();
-			return responseUserDTO ;
-		}else{
-			return null;
+			if(matchesPassword(userPassword,results.getUserPassword())){
+				UserLoginDto user = new UserLoginDto(results);
+				UserLoginDto responseUserDTO = UserLoginDto.builder()
+				.userMailAddress(user.getUserMailAddress())
+				.userId(user.getUserId())
+				.token(tokenProvider.create(user))
+				.build();
+				return responseUserDTO ;
+			}else{
+				return null;
+			}
 		}
-	}
 
 	//사용자정보 전체조회 (ADMIN)
 	@Transactional
