@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {// filterCh
 	protected void configure(HttpSecurity http) throws Exception {
 
 		// http 시큐리티 빌더
-		http.cors().disable()      // WebMvcConfig에서 이미 설정했으므로 기본 cors 설정.
+		http.cors().and()          // WebMvcConfig에서 이미 설정했으므로 기본 cors 설정.
 				.csrf().disable()      // csrf는 현재 사용하지 않으므로 disable
 				.formLogin().disable() // 기본로그인 페이지 없애기
 				.httpBasic().disable() // token을 사용하므로 basic 인증 disable
