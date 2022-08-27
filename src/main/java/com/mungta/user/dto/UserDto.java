@@ -42,7 +42,7 @@ public class UserDto extends AbstractEvent{
     this.userTeamName = user.getUserTeamName();
     this.userGender = user.getUserGender();
     this.driverYn = user.getDriverYn();
-    this.settlementUrl = user.getUserName();
+    this.settlementUrl = user.getSettlementUrl();
     this.carType = user.getCarType();
     this.carNumber = user.getCarNumber();
     this.penaltyCount = user.getPenaltyCount();
