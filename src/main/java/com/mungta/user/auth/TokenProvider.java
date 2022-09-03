@@ -1,45 +1,68 @@
 package com.mungta.user.auth;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Service;
-
 import com.mungta.user.dto.UserLoginDto;
-
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import org.springframework.stereotype.Service;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
+import java.util.Base64;
 import java.util.Date;
 
+@Slf4j
 @Service
 public class TokenProvider {
-	private static final String SECRET_KEY = "NMA8JPctFuna59f5";
+
+	private static final long ACCESS_TOKEN_EXPIRE_TIME  = 1000 * 60 * 30;            // 0.5 hr
+	private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;   // 7 days
+
+	private static final String secretKey = "MungTa03Service";
+	String encodedKey  = Base64.getEncoder().encodeToString(secretKey.getBytes());
+
+	//byte[] decodedBytes   = Base64.getDecoder().decode(encodedKey);
+	//String decodedString  = new String(decodedBytes);
 
 	public String create(UserLoginDto user) {
-		// 기한 지금으로부터 1일로 설정
-		Date expiryDate = Date.from(
-						Instant.now()
-						.plus(1, ChronoUnit.DAYS));
 
-		// JWT Token 생성
-		return Jwts.builder()
-							 // header에 들어갈 내용 및 서명을 하기 위한 SECRET_KEY
-							 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
-							 // payload에 들어갈 내용
-							 .setSubject(user.getUserId()) // sub
-							 .setIssuer("mungta carpool") // iss
-							 .setIssuedAt(new Date()) // iat
-							 .setExpiration(expiryDate) // exp
-							 .compact();
+		log.debug("secretKey",secretKey);
+		log.debug("encodeToString",secretKey.getBytes());
+		log.debug("encodedString",encodedKey);
+
+		Date now = new Date();
+
+		Claims claims = Jwts.claims()
+		                    .setIssuer("mungtacarpool.com")
+												.setSubject(user.getUserId())
+												.setAudience(user.getUserId());
+
+		////ID, 이름, 고객유형 ,아이디, 드라이버여부 ->서브젝트
+		claims.put("userId"  ,user.getUserId());
+	  //claims.put("name","testkimmy");
+		//claims.put("custType","ADMIN");
+
+		String accessToken  =  Jwts.builder()
+															 .signWith(SignatureAlgorithm.HS256,encodedKey)
+															 .setHeaderParam("typ", "JWT")
+															 .setClaims(claims)
+															 .setIssuedAt(now)
+															 .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_TIME))
+															 .compact();
+
+		String refreshToken =  Jwts.builder()
+															 .signWith(SignatureAlgorithm.HS256, encodedKey)
+															 .setHeaderParam("typ", "JWT")
+															 .setClaims(claims) // 정보 저장
+															 .setIssuedAt(now) // 토큰 발행 시간 정보
+															 .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_EXPIRE_TIME))
+															 .compact();
+
+		return accessToken;
+	 // return Token.builder().accessToken(accessToken).refreshToken(refreshToken).key(user.getUserId()).build();
 	}
 
 	public String validateAndGetUserId(String token) {
-		// parseClaimsJws메서드가 Base 64로 디코딩 및 파싱.
-		// 즉, 헤더와 페이로드를 setSigningKey로 넘어온 시크릿을 이용 해 서명 후, token의 서명 과 비교.
-		// 위조되지 않았다면 페이로드(Claims) 리턴
-		// 그 중 우리는 userId가 필요하므로 getBody를 부른다.
 		Claims claims = Jwts.parser()
-												.setSigningKey(SECRET_KEY)
+												.setSigningKey(encodedKey)
 												.parseClaimsJws(token)
 												.getBody();
 
