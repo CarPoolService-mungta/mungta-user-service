@@ -3,6 +3,7 @@ package com.mungta.user.api;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import com.mungta.user.dto.UserLoginDto;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.dto.AuthenticationDto;
 import com.mungta.user.dto.ResponseDto;
+import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,9 +24,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-
+import lombok.extern.slf4j.Slf4j;
 // 사진 업로드
-// 로그인 서비스
+@Slf4j
 @Tag(name="사용자관리API", description = "사용자관리서비스")
 @RestController
 @RequiredArgsConstructor
@@ -57,10 +59,10 @@ public class UserController {
     @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PostMapping("/auth/signup")
   public  ResponseEntity<?> registerUser(@RequestBody final UserDto userDto){
+    log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userDto));
     UserEntity user = UserDto.toEntity(userDto);
     userService.createUser(user);
-    //userDto.publishAfterCommit();
-    return ResponseEntity.noContent().build();
+    return ResponseEntity.ok().build();
   }
 
   //수정
@@ -73,7 +75,7 @@ public class UserController {
   public  ResponseEntity<?> updateUser(@RequestBody final UserDto userDto){
     UserEntity user = UserDto.toEntity(userDto);
     userService.updateUser(user);
-    return ResponseEntity.noContent().build();
+    return ResponseEntity.ok().build();
   }
 
   //삭제
@@ -86,7 +88,7 @@ public class UserController {
   public  ResponseEntity<?> deleteUser(@RequestBody final UserDto userDto){
       UserEntity user = UserDto.toEntity(userDto);
       userService.deleteUser(user);
-      return ResponseEntity.noContent().build();
+      return ResponseEntity.ok().build(); //ResponseEntity.noContent().build();
   }
 
   //패널티 부여
@@ -110,11 +112,11 @@ public class UserController {
     @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @PostMapping("/auth/signin")
   public ResponseEntity<?> authenticate(@RequestBody UserLoginDto userLoginDto) {
-    // 아이디& 비밀번호 확인
-    UserLoginDto user = userService.getByCredentials(userLoginDto.getUserId(),
+    Token issuedToken = userService.getByCredentials(userLoginDto.getUserId(),
                                                     userLoginDto.getUserPassword());
-    if(user != null) {
-      return ResponseEntity.ok().body(user);
+    log.debug("################ UserController login결과 : "+ToStringBuilder.reflectionToString(issuedToken));
+    if(issuedToken != null) {
+      return ResponseEntity.ok().body(issuedToken);
     } else {
       return ResponseEntity.badRequest()
                           .body(ResponseDto.builder().error("Login failed.").build());

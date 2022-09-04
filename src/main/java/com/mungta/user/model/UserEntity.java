@@ -40,6 +40,9 @@ public  class UserEntity extends BaseEntity {
     // 사진 저장 끝
     private String userTeamName;
 	private String userGender;
+
+   // private String refreshToken; //gateway 에 저장하는것 같기도..
+
     @NotNull
     private String driverYn;
 	private String settlementUrl;
@@ -51,7 +54,7 @@ public  class UserEntity extends BaseEntity {
 
     @Builder.Default
 	private Status status = Status.ACTIVATED;
-    
+
     @Builder.Default
     private UserType userType = UserType.CUSTOMER;
 

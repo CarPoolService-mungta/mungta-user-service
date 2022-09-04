@@ -1,7 +1,7 @@
 package com.mungta.user.service;
 
+import com.mungta.user.dto.Token;
 import com.mungta.user.dto.UserDto;
-import com.mungta.user.dto.UserLoginDto;
 import com.mungta.user.model.Status;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.UserRepository;
@@ -11,7 +11,6 @@ import com.mungta.user.api.ApiStatus;
 import com.mungta.user.auth.TokenProvider;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -49,24 +48,29 @@ public class UserService {
 
 	//사용자정보 등록
 	@Transactional
-  public UserEntity createUser (@Valid final UserEntity user) {
+  //public Token createUser (@Valid final UserEntity user) {
+	public UserEntity  createUser (@Valid final UserEntity user) {
+		//토큰 변수 생성
+		//Token issuedToken = new Token();
 		//Email 중복 체크
-		final String email = user.getUserMailAddress();
-		if(userRepository.existsByUserMailAddress(email)) {
-			log.warn("Email already exists {}", email);
+		if(userRepository.existsByUserMailAddress(user.getUserMailAddress())) {
+			log.warn("Email already exists {}", user.getUserMailAddress());
 			throw new ApiException(ApiStatus.DUPLICATED_INFORMATION);
 		}
 		try{
 			//비밀번호 암호화
-			String enPw = encodePassword(user.getUserPassword());
-			user.setUserPassword(enPw);
+			user.setUserPassword(encodePassword(user.getUserPassword()));
+			//토큰 생성
+			//issuedToken=tokenProvider.createToken(user);
+			//user.setRefreshToken(issuedToken.getRefreshToken());
+			//사용자정보 저장
 			userRepository.save(user);
 
 		} catch(Exception e){
 			log.error("error created user",user.getUserId(),e);
 			new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
-    return null;
+    return null; //issuedToken;
 	}
 
 	//사용자정보 변경
@@ -133,18 +137,21 @@ public class UserService {
 
 		//사용자 정상 로그인시 인증정보 GET
 		@Transactional
-		public UserLoginDto getByCredentials(final String userId, final String userPassword) {
+		public Token getByCredentials(final String userId, final String userPassword) {
 			UserEntity results = userRepository.findByUserId(userId)
 			.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
 
 			if(matchesPassword(userPassword,results.getUserPassword())){
-				UserLoginDto user = new UserLoginDto(results);
-				UserLoginDto responseUserDTO = UserLoginDto.builder()
-				.userMailAddress(user.getUserMailAddress())
-				.userId(user.getUserId())
-				.token(tokenProvider.create(user))
-				.build();
-				return responseUserDTO ;
+				//토큰 생성
+				Token issuedToken = tokenProvider.createToken(results);
+				//String accessToken = issuedToken.getAccessToken();
+			  // UserLoginDto user = new UserLoginDto(results);
+				// UserLoginDto responseUserDTO = UserLoginDto.builder()
+				// .userMailAddress(user.getUserMailAddress())
+				// .userId(user.getUserId())
+				// .token(accessToken)
+				// .build();
+				return issuedToken ; //responseUserDTO ;
 			}else{
 				return null;
 			}

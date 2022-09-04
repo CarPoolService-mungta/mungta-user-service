@@ -32,7 +32,7 @@ logging:
     root: warn
     com.mungta.user: debug
     com.mungta.user.api: debug
-    com.mungta.user.auth: info
+    com.mungta.user.auth: debug
     com.mungta.user.config: info
     com.mungta.user.domain: info
     com.mungta.user.dto: info
