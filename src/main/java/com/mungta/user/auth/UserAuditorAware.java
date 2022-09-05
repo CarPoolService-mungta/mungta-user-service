@@ -28,8 +28,8 @@ public class UserAuditorAware  implements AuditorAware<String> {
       */
       log.debug("################ authentication INPUT : "+ToStringBuilder.reflectionToString(authentication));
       log.debug("################ principal : "+ToStringBuilder.reflectionToString(authentication.getPrincipal()));
-      log.debug("ID",String.valueOf(authentication.getPrincipal()));
-      log.debug("ID111",authentication.getPrincipal());
+      // log.debug("ID",String.valueOf(authentication.getPrincipal()));
+      // log.debug("ID111",authentication.getPrincipal());
 
       UserEntity user = new UserEntity();
       //if(authentication.getPrincipal() != null){

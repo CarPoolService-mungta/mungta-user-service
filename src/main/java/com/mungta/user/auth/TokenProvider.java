@@ -27,12 +27,22 @@ public class TokenProvider {
 
 		Claims claims = Jwts.claims()
 		                    .setIssuer("mungtacarpool.com")
-												.setSubject(user.getUserId())
-												.setAudience(user.getUserId());
+												.setSubject(user.getUserId());
+												//.setAudience(user.getUserId());
 
-		////ID, 이름, 고객유형 , 드라이버여부 ->서브젝트??
+		//claims for refresh
 		claims.put("userId"  ,user.getUserId());
-	  claims.put("name"    ,user.getUserName());
+
+		String refreshToken =  Jwts.builder()
+															 .signWith(SignatureAlgorithm.HS256, encodedKey)
+															 .setHeaderParam("typ", "JWT")
+															 .setClaims(claims)
+															 .setIssuedAt(now)
+															 .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_EXPIRE_TIME))
+															 .compact();
+
+		//claims extra for access
+		claims.put("name"    ,user.getUserName());
 		claims.put("userType",user.getUserType());
 		claims.put("driverYn",user.getDriverYn());
 
@@ -43,24 +53,7 @@ public class TokenProvider {
 															 .setIssuedAt(now)
 															 .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_TIME))
 															 .compact();
-
-		String refreshToken =  Jwts.builder()
-															 .signWith(SignatureAlgorithm.HS256, encodedKey)
-															 .setHeaderParam("typ", "JWT")
-															 .setClaims(claims)
-															 .setIssuedAt(now)
-															 .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_EXPIRE_TIME))
-															 .compact();
-
 	 return Token.builder().accessToken(accessToken).refreshToken(refreshToken).key(user.getUserId()).build();
-	}
-
-	public String validateAndGetUserId(String token) {
-		Claims claims = Jwts.parser()
-												.setSigningKey(encodedKey)
-												.parseClaimsJws(token)
-												.getBody();
-		return claims.getSubject();
 	}
 }
 

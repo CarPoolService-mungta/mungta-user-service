@@ -19,9 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 // 이부분 gateway 로 이동??
+	/*
 @Slf4j
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+	// protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+	// 	;
+	// }
+
 
 
 	@Autowired
@@ -67,6 +73,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	}
 
 }
-
+ */
 
 
