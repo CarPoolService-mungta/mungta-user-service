@@ -8,7 +8,7 @@ import com.mungta.user.model.UserRepository;
 import com.mungta.user.model.UserType;
 import com.mungta.user.api.ApiException;
 import com.mungta.user.api.ApiStatus;
-import com.mungta.user.auth.TokenProvider;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;

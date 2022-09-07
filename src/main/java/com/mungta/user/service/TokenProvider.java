@@ -1,4 +1,4 @@
-package com.mungta.user.auth;
+package com.mungta.user.service;
 
 import com.mungta.user.dto.Token;
 import com.mungta.user.model.UserEntity;
@@ -28,7 +28,6 @@ public class TokenProvider {
 		Claims claims = Jwts.claims()
 		                    .setIssuer("mungtacarpool.com")
 												.setSubject(user.getUserId());
-												//.setAudience(user.getUserId());
 
 		//claims for refresh
 		claims.put("userId"  ,user.getUserId());

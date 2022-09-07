@@ -1,15 +1,15 @@
 package com.mungta.user;
 
 //카프카
-// import com.mungta.user.kafka.KafkaProcessor;
-// import com.fasterxml.jackson.core.JsonProcessingException;
-// import com.fasterxml.jackson.databind.ObjectMapper;
-// import org.springframework.messaging.MessageChannel;
-// import org.springframework.messaging.MessageHeaders;
-// import org.springframework.messaging.support.MessageBuilder;
-// import org.springframework.transaction.support.TransactionSynchronizationAdapter;
-// import org.springframework.transaction.support.TransactionSynchronizationManager;
-// import org.springframework.util.MimeTypeUtils;
+import com.mungta.user.kafka.KafkaProcessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.support.MessageBuilder;
+
+import org.springframework.transaction.support.TransactionSynchronizationManager;
+import org.springframework.util.MimeTypeUtils;
 
 public class AbstractEvent {
 /*
@@ -84,7 +84,8 @@ public class AbstractEvent {
     public boolean validate(){
         return getEventType().equals(getClass().getSimpleName());
     }
-     */
+*/
 }
+
 
 

@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Tag(name="사용자관리API", description = "사용자관리서비스")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("users")
+@RequestMapping("api/user")
 public class UserController {
 
   @Autowired
