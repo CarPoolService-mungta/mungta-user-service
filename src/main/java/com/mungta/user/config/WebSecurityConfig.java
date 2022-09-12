@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	AuthenticationManager authenticationManager(AuthenticationManagerBuilder auth) {
 		return auth.getOrBuild();
   }
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();

@@ -1,13 +1,13 @@
 package com.mungta.user.api;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import java.util.List;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 import com.mungta.user.dto.UserDto;
 import com.mungta.user.dto.UserLoginDto;
 import com.mungta.user.model.UserEntity;
@@ -16,6 +16,7 @@ import com.mungta.user.dto.ResponseDto;
 import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
+import com.mungta.user.service.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -24,17 +25,20 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.extern.slf4j.Slf4j;
-// 사진 업로드
+
+
 @Slf4j
 @Tag(name="사용자관리API", description = "사용자관리서비스")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/user")
+@RequestMapping("/api/user")
 public class UserController {
 
   @Autowired
   private final UserService userService;
+
+  @Autowired
+  private final StorageService storageService;
 
   @Autowired
   private final AuthenticationService authenticationService;
@@ -52,7 +56,7 @@ public class UserController {
     return  ResponseEntity.ok(response);
   }
 
-  //등록 - MultipartHttpServletRequest multipartHttpServletRequest; 사진업로드
+  //등록
   @Operation(summary = "사용자 등록", description = "사용자를 등록한다. (Sign up)")
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been created"),
@@ -63,6 +67,20 @@ public class UserController {
     UserEntity user = UserDto.toEntity(userDto);
     userService.createUser(user);
     return ResponseEntity.ok().build();
+  }
+  // 사진 업로드
+  @Operation(summary = "사용자 사진 업로드", description = "사용자 사진을 업로드한다.")
+  @PostMapping(value="/auth/uploadFile/{userId}")
+  public ResponseEntity<String> uploadFile(@PathVariable String userId, @RequestBody final MultipartFile profileImg){
+    String fileName ="";
+    try {
+      //File copyFile = new File("temptestId.jpg");
+      //profileImg.transferTo(copyFile);
+      fileName = storageService.store(userId,profileImg);
+    } catch (Exception e) {
+      throw new RuntimeException("Error");
+    }
+    return ResponseEntity.ok(fileName);
   }
 
   //수정

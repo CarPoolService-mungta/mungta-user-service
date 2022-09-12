@@ -26,6 +26,12 @@ spring:
           auth: true
           starttls:
             enable: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      location: ${user.dir}/img
+      
 logging:
   file:
     name: ${user.dir}/log/test.log
