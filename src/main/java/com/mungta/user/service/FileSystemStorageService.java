@@ -3,15 +3,21 @@ package com.mungta.user.service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Blob;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,19 +43,21 @@ public class FileSystemStorageService implements StorageService {
                 if(!Files.isDirectory(file)) {
                     try {
                         Files.delete(file);
-                    }catch(IOException ex) {
-                        System.out.println("Could not delete file : " + file);
+                    }catch(IOException err) {
+                        log.error("Could not delete file :  ",err);
                     }
                 }
             });
-        }catch(IOException ex2) {
-            System.out.println("Could not list directory : " + uploadPath);
+        }catch(IOException e) {
+            log.error("Could not list directory : ",uploadPath,e);
         }
     }
 
     @Override
     public String store(final String userId, final MultipartFile file) {
         String fileName = "";
+        byte[] bytes;
+
         try {
             if (file.isEmpty()) {
                 throw new Exception("ERROR : File is empty.");
@@ -64,15 +72,30 @@ public class FileSystemStorageService implements StorageService {
                 //filecheck.delete();
                 throw new Exception("ERROR : File already existed.");
             }
-
+            // 파일 업로드
             Path root = Paths.get(uploadPath);
             if (!Files.exists(root)) {
                 initDir();
             }
             try (InputStream inputStream = file.getInputStream()) {
-
                 Files.copy(inputStream, root.resolve(fileName),StandardCopyOption.REPLACE_EXISTING);
             }
+/*
+            try {
+                Map<String, Object> param = new HashMap<String, Object>();
+                bytes =file.getBytes();
+                try {
+                    Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
+                    param.put("userPhoto",blob);
+                    param.put("userFileName",fileName);
+                    param.put("userFileSize",blob.length());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            } catch(IOException e2){
+                e2.printStackTrace();
+            }
+*/
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
@@ -87,20 +110,29 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public Path load(String filename) {
-        log.debug("here 4");
-        return null;
+        return Paths.get(uploadPath).resolve(filename);
     }
 
     @Override
     public Resource loadAsResource(String filename) {
-        log.debug("here 5");
-        return null;
+        try {
+            Path file = load(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            }
+            else {
+                throw new RuntimeException("Could not read file: " + filename);
+            }
+        }
+        catch (MalformedURLException e) {
+            throw new RuntimeException("Could not read file: " + filename, e);
+        }
     }
 
     @Override
     public void deleteAll() {
-        log.debug("here 6");
-
+        FileSystemUtils.deleteRecursively(Paths.get(uploadPath).toFile());
     }
 
 }

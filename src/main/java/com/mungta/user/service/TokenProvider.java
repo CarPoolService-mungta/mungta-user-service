@@ -2,16 +2,15 @@ package com.mungta.user.service;
 
 import com.mungta.user.dto.Token;
 import com.mungta.user.model.UserEntity;
-
+import java.util.Base64;
+import java.util.Date;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.extern.slf4j.Slf4j;
-import java.util.Base64;
-import java.util.Date;
+// import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+// @Slf4j
 @Service
 public class TokenProvider {
 

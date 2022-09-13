@@ -7,9 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class ResponseDto<T>  {
 
   private String error;

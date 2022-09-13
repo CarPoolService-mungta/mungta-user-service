@@ -1,12 +1,10 @@
 package com.mungta.user.dto;
 
-import lombok.NoArgsConstructor;
-
 import com.mungta.user.AbstractEvent;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.Status;
 import com.mungta.user.model.UserType;
-
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,34 +18,41 @@ public class UserDto extends AbstractEvent{
   private String userPassword;
   private String userMailAddress;
   private String userName;
-  private String userPhoto;
+  //photo - think
+  private String userFileName;
+  private String userFileOriName;
+  private String userFileUrl;
+  private long   userFileSize;
   private String userTeamName;
   private String userGender;
   private String driverYn;
   private String settlementUrl;
   private String carType;
   private String carNumber;
-  private Long penaltyCount;
+  private Long   penaltyCount;
   private Status status;
   private UserType userType;
-  private String token;
+
 
   // Entity -> Dto
   public UserDto(final UserEntity user){
-    this.userId = user.getUserId();
-    this.userPassword = user.getUserPassword();
+    this.userId          = user.getUserId();
+    this.userPassword    = user.getUserPassword();
     this.userMailAddress = user.getUserMailAddress();
-    this.userName = user.getUserName();
-    this.userPhoto = user.getUserPhoto();
-    this.userTeamName = user.getUserTeamName();
-    this.userGender = user.getUserGender();
-    this.driverYn = user.getDriverYn();
-    this.settlementUrl = user.getSettlementUrl();
-    this.carType = user.getCarType();
-    this.carNumber = user.getCarNumber();
-    this.penaltyCount = user.getPenaltyCount();
-    this.userType = user.getUserType();
-    this.status = user.getStatus();
+    this.userName        = user.getUserName();
+    this.userFileName    = user.getUserFileName ();
+    this.userFileOriName = user.getUserFileOriName();
+    //this.userFileUrl   = user.getUserFileUrl();
+    this.userFileSize    = user.getUserFileSize();
+    this.userTeamName    = user.getUserTeamName();
+    this.userGender      = user.getUserGender();
+    this.driverYn        = user.getDriverYn();
+    this.settlementUrl   = user.getSettlementUrl();
+    this.carType         = user.getCarType();
+    this.carNumber       = user.getCarNumber();
+    this.penaltyCount    = user.getPenaltyCount();
+    this.userType        = user.getUserType();
+    this.status          = user.getStatus();
   }
   // Dto -> Entity
   public static UserEntity toEntity(final UserDto userDto){
@@ -56,7 +61,10 @@ public class UserDto extends AbstractEvent{
                .userPassword(userDto.getUserPassword())
                .userMailAddress(userDto.getUserMailAddress())
                .userName(userDto.getUserName())
-               .userPhoto(userDto.getUserPhoto())
+               .userFileName(userDto.getUserFileName())
+               .userFileOriName(userDto.getUserFileOriName())
+               //.userFileUrl(userDto.getUserFileUrl())
+               .userFileSize(userDto.getUserFileSize())
                .userTeamName(userDto.getUserTeamName())
                .userGender(userDto.getUserGender())
                .driverYn(userDto.getDriverYn())

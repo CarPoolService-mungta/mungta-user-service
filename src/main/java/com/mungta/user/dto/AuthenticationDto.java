@@ -1,16 +1,12 @@
 package com.mungta.user.dto;
 
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import com.mungta.user.model.AuthenticationEntity;
-
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,8 +26,8 @@ public class AuthenticationDto {
   // Dto -> Entity
   public static AuthenticationEntity toEntity(final AuthenticationDto authDto){
     return AuthenticationEntity.builder()
-                         .userMailAddress(authDto.getUserMailAddress())
-                         .authNumber(authDto.getAuthNumber())
-                         .build();
+                               .userMailAddress(authDto.getUserMailAddress())
+                               .authNumber(authDto.getAuthNumber())
+                               .build();
   }
 }

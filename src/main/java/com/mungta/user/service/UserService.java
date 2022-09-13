@@ -8,7 +8,6 @@ import com.mungta.user.model.UserRepository;
 import com.mungta.user.model.UserType;
 import com.mungta.user.api.ApiException;
 import com.mungta.user.api.ApiStatus;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -17,7 +16,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,10 +46,7 @@ public class UserService {
 
 	//사용자정보 등록
 	@Transactional
-  //public Token createUser (@Valid final UserEntity user) {
 	public UserEntity  createUser (@Valid final UserEntity user) {
-		//토큰 변수 생성
-		//Token issuedToken = new Token();
 		//Email 중복 체크
 		if(userRepository.existsByUserMailAddress(user.getUserMailAddress())) {
 			log.warn("Email already exists {}", user.getUserMailAddress());
@@ -60,9 +55,7 @@ public class UserService {
 		try{
 			//비밀번호 암호화
 			user.setUserPassword(encodePassword(user.getUserPassword()));
-			//토큰 생성
-			//issuedToken=tokenProvider.createToken(user);
-			//user.setRefreshToken(issuedToken.getRefreshToken());
+
 			//사용자정보 저장
 			userRepository.save(user);
 
@@ -70,7 +63,7 @@ public class UserService {
 			log.error("error created user",user.getUserId(),e);
 			new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
-    return null; //issuedToken;
+    return null;
 	}
 
 	//사용자정보 변경
@@ -97,7 +90,7 @@ public class UserService {
 	//사용자정보삭제
 	@Transactional
 	public UserEntity deleteUser (final UserEntity user) {
-		//해당 아이디 조회
+
 		if(!userRepository.existsByUserId(user.getUserId())) {
 			log.warn("No UserId", user.getUserId());
 			throw new ApiException(ApiStatus.NOT_EXIST_INFORMATION);
@@ -114,8 +107,7 @@ public class UserService {
 	//사용자 패널티 부과
 	@Transactional
 	public UserEntity givePenaltyUser (final String userId){
-		//패널티 부과시 추가 정보 입력받을수도 있을것 같아서 INPUT 객체로
-		//해당 아이디 조회
+
 		UserEntity user = userRepository.findByUserId(userId)
 		                  .orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
 		try{
@@ -138,20 +130,14 @@ public class UserService {
 		//사용자 정상 로그인시 인증정보 GET
 		@Transactional
 		public Token getByCredentials(final String userId, final String userPassword) {
-			UserEntity results = userRepository.findByUserId(userId)
+			UserEntity userIdInfo = userRepository.findByUserIdOrUserMailAddress(userId,userId);
+			UserEntity results = userRepository.findByUserId(userIdInfo.getUserId())
 			.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
 
 			if(matchesPassword(userPassword,results.getUserPassword())){
 				//토큰 생성
 				Token issuedToken = tokenProvider.createToken(results);
-				//String accessToken = issuedToken.getAccessToken();
-			  // UserLoginDto user = new UserLoginDto(results);
-				// UserLoginDto responseUserDTO = UserLoginDto.builder()
-				// .userMailAddress(user.getUserMailAddress())
-				// .userId(user.getUserId())
-				// .token(accessToken)
-				// .build();
-				return issuedToken ; //responseUserDTO ;
+				return issuedToken ;
 			}else{
 				return null;
 			}

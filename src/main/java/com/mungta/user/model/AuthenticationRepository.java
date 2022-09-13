@@ -1,7 +1,6 @@
 package com.mungta.user.model;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AuthenticationRepository extends JpaRepository <AuthenticationEntity, String>{

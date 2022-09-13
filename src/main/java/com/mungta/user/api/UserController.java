@@ -1,13 +1,5 @@
 package com.mungta.user.api;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import java.util.List;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import com.mungta.user.dto.UserDto;
 import com.mungta.user.dto.UserLoginDto;
 import com.mungta.user.model.UserEntity;
@@ -17,6 +9,14 @@ import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
 import com.mungta.user.service.StorageService;
+import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -53,7 +53,9 @@ public class UserController {
   @ResponseBody
   public ResponseEntity<?>getUser(@PathVariable String userId) {
     UserDto response = userService.getUser(userId);
-    return  ResponseEntity.ok(response);
+    //Resource file = storageService.loadAsResource(response.get);
+    return  ResponseEntity.ok(response);/* .header(HttpHeaders.CONTENT_DISPOSITION,
+    "attachment; filename=\"" + file.getFilename() + "\"").body(file);*/
   }
 
   //등록
@@ -122,7 +124,7 @@ public class UserController {
     return ResponseEntity.noContent().build();
   }
 
-  //사용자 정보 로그인
+  //로그인
   @Operation(summary = "로그인", description = "로그인 한다.")
   @ApiResponses(value = {
     @ApiResponse(responseCode  = "200", description  = "login OK"),
@@ -131,13 +133,12 @@ public class UserController {
   @PostMapping("/auth/signin")
   public ResponseEntity<?> authenticate(@RequestBody UserLoginDto userLoginDto) {
     Token issuedToken = userService.getByCredentials(userLoginDto.getUserId(),
-                                                    userLoginDto.getUserPassword());
-    log.debug("################ UserController login결과 : "+ToStringBuilder.reflectionToString(issuedToken));
+                                                     userLoginDto.getUserPassword());
     if(issuedToken != null) {
       return ResponseEntity.ok().body(issuedToken);
     } else {
       return ResponseEntity.badRequest()
-                          .body(ResponseDto.builder().error("Login failed.").build());
+                           .body(ResponseDto.builder().error("Login failed.").build());
     }
   }
 

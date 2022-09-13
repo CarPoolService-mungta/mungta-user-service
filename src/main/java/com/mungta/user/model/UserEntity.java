@@ -2,7 +2,6 @@ package com.mungta.user.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-//import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,18 +29,15 @@ public  class UserEntity extends BaseEntity {
     @Column(nullable = false)
 	private String userName;
 
-    // 사진 저장 시작
-	private String userPhoto;
-    // @NotEmpty
-    // private String original_file_name;
-    // @NotEmpty
-    // private String stored_file_path;
-    // private long file_size;
-    // 사진 저장 끝
+    private byte[] userPhoto;
+    //@Column(nullable = false)
+    private String userFileName;
+    //@Column(nullable = false)
+    private String userFileOriName;
+
+    private long   userFileSize;
     private String userTeamName;
 	private String userGender;
-
-   // private String refreshToken; //gateway 에 저장하는것 같기도..
 
     @NotNull
     private String driverYn;
