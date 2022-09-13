@@ -41,6 +41,8 @@ public class TokenProvider {
 
 		//claims extra for access
 		claims.put("name"    ,user.getUserName());
+		claims.put("email"   ,user.getUserMailAddress());
+		claims.put("team"    ,user.getUserTeamName());
 		claims.put("userType",user.getUserType());
 		claims.put("driverYn",user.getDriverYn());
 
