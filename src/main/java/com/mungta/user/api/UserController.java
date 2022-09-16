@@ -9,6 +9,8 @@ import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
 import com.mungta.user.service.StorageService;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,7 +176,7 @@ public class UserController {
     @ApiResponse(responseCode  = "404", description  = "Not found"),
     @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @GetMapping("/admin")
-  public ResponseEntity<?>getUserList(UserDto userDto) {
+  public ResponseEntity<?>getUserListAdmin(UserDto userDto) {
     List<UserDto> response =  userService.findAll();
     return ResponseEntity.ok(response);
   }
@@ -190,4 +192,16 @@ public class UserController {
     userService.chageUserType(userId);
     return ResponseEntity.noContent().build();
   }
+  @Operation(summary = "사용자전체조회", description = "사용자전체조회")
+  @GetMapping
+  @ResponseBody
+  public ResponseEntity<List<UserDto>> getUserList(@RequestParam List<String> userIds){
+    List<UserDto> response = new ArrayList<>();
+    for (String userId : userIds) {
+      response.add(userService.getUser(userId));
+    }
+    return ResponseEntity.ok(response);
+  }
 }
+
+
