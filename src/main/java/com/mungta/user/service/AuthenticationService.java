@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.mungta.user.dto.AuthenticationDto;
@@ -28,9 +29,10 @@ public class AuthenticationService {
 
 
 	//이메일 인증번호 발송
+	@Async
 	@Transactional
   public void sendAuthNumber (final String email) {
-
+		log.debug("################ 발송대상 " + email);
 		//기존 이메일 인증 발송 정보 check
 		if(authenticationRepository.existsByUserMailAddress(email)) {
 			List<AuthenticationEntity> authlist = authenticationRepository.findByUserMailAddress(email);

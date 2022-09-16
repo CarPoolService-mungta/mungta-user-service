@@ -151,6 +151,7 @@ public class UserController {
   @PostMapping("/auth/mail")
   public ResponseEntity<?> sendEmailAuthNumber(@RequestBody AuthenticationDto authDto) {
     authenticationService.sendAuthNumber(authDto.getUserMailAddress());
+    log.debug("################ email send result : "+ToStringBuilder.reflectionToString(ResponseEntity.ok().build()));
     return ResponseEntity.ok().build();
   }
 
@@ -163,6 +164,7 @@ public class UserController {
   @GetMapping(value="/auth/confirm")
   public ResponseEntity<?> checkAuthNumber (AuthenticationDto authDto) {
     AuthenticationDto response = authenticationService.checkAuthNumber(AuthenticationDto.toEntity(authDto));
+    log.debug("################ email check result : "+ToStringBuilder.reflectionToString(ResponseEntity.ok(response)));
     return  ResponseEntity.ok(response);
   }
   //전체 조회 (관리자 용)
