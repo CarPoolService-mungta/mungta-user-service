@@ -12,6 +12,9 @@ import com.mungta.user.service.StorageService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -134,13 +137,16 @@ public class UserController {
     @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @PostMapping("/auth/signin")
   public ResponseEntity<?> authenticate(@RequestBody UserLoginDto userLoginDto) {
+    log.debug("################ UserController authenticate : "+ToStringBuilder.reflectionToString(userLoginDto));
     Token issuedToken = userService.getByCredentials(userLoginDto.getUserId(),
                                                      userLoginDto.getUserPassword());
     if(issuedToken != null) {
       return ResponseEntity.ok().body(issuedToken);
     } else {
       return ResponseEntity.badRequest()
-                           .body(ResponseDto.builder().error("Login failed.").build());
+                           .body(ResponseDto.builder().errorCode(ApiStatus.LOGIN_FAILED.getCode())
+                                                      .message(ApiStatus.LOGIN_FAILED.getMessage())
+                                                      .build());
     }
   }
 
@@ -151,9 +157,8 @@ public class UserController {
     @ApiResponse(responseCode  = "404", description  = "Not found"),
     @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @PostMapping("/auth/mail")
-  public ResponseEntity<?> sendEmailAuthNumber(@RequestBody AuthenticationDto authDto) {
+  public ResponseEntity<?> sendEmailAuthNumber(@RequestBody @Valid AuthenticationDto authDto) {
     authenticationService.sendAuthNumber(authDto.getUserMailAddress());
-    log.debug("################ email send result : "+ToStringBuilder.reflectionToString(ResponseEntity.ok().build()));
     return ResponseEntity.ok().build();
   }
 
@@ -165,8 +170,8 @@ public class UserController {
     @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @GetMapping(value="/auth/confirm")
   public ResponseEntity<?> checkAuthNumber (AuthenticationDto authDto) {
+
     AuthenticationDto response = authenticationService.checkAuthNumber(AuthenticationDto.toEntity(authDto));
-    log.debug("################ email check result : "+ToStringBuilder.reflectionToString(ResponseEntity.ok(response)));
     return  ResponseEntity.ok(response);
   }
   //전체 조회 (관리자 용)

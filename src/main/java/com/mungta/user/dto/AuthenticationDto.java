@@ -1,5 +1,7 @@
 package com.mungta.user.dto;
 
+import javax.validation.constraints.Email;
+
 import com.mungta.user.model.AuthenticationEntity;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class AuthenticationDto {
 
+  @Email
 	private String userMailAddress;
 	private String authNumber;
   private String possibleYn;

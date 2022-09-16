@@ -1,6 +1,8 @@
 package com.mungta.user.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Builder;
@@ -21,6 +23,7 @@ public class AuthenticationEntity  extends BaseEntity {
   @GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
+  @Email
 	private String userMailAddress;
 	private String authNumber;
 	private String limitTime;

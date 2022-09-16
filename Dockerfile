@@ -1,6 +1,7 @@
-FROM adoptopenjdk/openjdk11
+FROM openjdk:12-jdk-alpine
 ARG JAR_FILE_PATH=target/*SNAPSHOT.jar
 COPY ${JAR_FILE_PATH} app.jar
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 # FROM openjdk:15-jdk-alpine
 # COPY target/*SNAPSHOT.jar app.jar

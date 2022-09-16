@@ -127,21 +127,22 @@ public class UserService {
 		return null;
 	}
 
-		//사용자 정상 로그인시 인증정보 GET
-		@Transactional
-		public Token getByCredentials(final String userId, final String userPassword) {
-			UserEntity userIdInfo = userRepository.findByUserIdOrUserMailAddress(userId,userId);
-			UserEntity results = userRepository.findByUserId(userIdInfo.getUserId())
-			.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+	//사용자 정상 로그인시 인증정보 GET
+	@Transactional
+	public Token getByCredentials(final String userId, final String userPassword) {
+		UserEntity userIdInfo = userRepository.findByUserIdOrUserMailAddress(userId,userId);
 
-			if(matchesPassword(userPassword,results.getUserPassword())){
-				//토큰 생성
-				Token issuedToken = tokenProvider.createToken(results);
-				return issuedToken ;
-			}else{
-				return null;
-			}
+		UserEntity results = userRepository.findByUserId(userIdInfo.getUserId())
+		.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+
+		if(matchesPassword(userPassword,results.getUserPassword())){
+			//토큰 생성
+			Token issuedToken = tokenProvider.createToken(results);
+			return issuedToken ;
+		}else{
+			return null;
 		}
+	}
 
 	//사용자정보 전체조회 (ADMIN)
 	@Transactional
