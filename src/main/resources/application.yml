@@ -5,11 +5,38 @@ server:
 
 spring:
   profiles: default
+  # jpa:
+  #   properties:
+  #     hibernate:
+  #       show_sql: true
+  #       format_sql: true
+  datasource:
+    jdbc-url: jdbc:mysql://mungta-user-db.mysql.database.azure.com:3306/user_dev?serverTimezone=Asia/Seoul&validationQuery="select 1"
+    username: mungta
+    password: andxk12#$
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: false
+      connection-test-query: SELECT 1
+      maximum-pool-size: 20
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      pool-name: mungta-user
   jpa:
+#    hibernate:
+#      ddl-auto: update
     properties:
       hibernate:
-        show_sql: true
         format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+#    generate-ddl: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8InnoDBDialect
+#  jpa:
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
   cloud:
     stream:
       kafka:
@@ -31,7 +58,7 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
       location: ${user.dir}/img
-      
+
 logging:
   file:
     name: ${user.dir}/log/test.log
@@ -46,4 +73,3 @@ logging:
     com.mungta.user.domain: info
     com.mungta.user.dto: info
     com.mungta.user.kafka: info
-
