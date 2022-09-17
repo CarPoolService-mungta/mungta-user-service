@@ -10,6 +10,7 @@ public enum  ApiStatus  {
     UNEXPECTED_ERROR      (HttpStatus.INTERNAL_SERVER_ERROR, -11  , "처리중 오류가 발생했습니다."  ),
     DUPLICATED_INFORMATION(HttpStatus.INTERNAL_SERVER_ERROR, -12  , "이미 존재하는 사용자입니다."  ),
     REQUIRED_INFORMATION  (HttpStatus.INTERNAL_SERVER_ERROR, -13  , "비밀번호는 필수 입력값입니다."),
+    UNEXPECTED_PASSWORD  (HttpStatus.INTERNAL_SERVER_ERROR, -20  , "잘못된 비밀번호입니다.."),
     NOT_EXIST_INFORMATION (HttpStatus.INTERNAL_SERVER_ERROR,-101  , "사용자가 존재하지 않습니다."  );
 
     private final HttpStatus httpStatus;

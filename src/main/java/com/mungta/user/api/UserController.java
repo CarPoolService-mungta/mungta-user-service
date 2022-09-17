@@ -75,13 +75,14 @@ public class UserController {
   @PostMapping(value="/auth/uploadFile/{userId}")
   public ResponseEntity<String> uploadFile(@PathVariable String userId, @RequestBody final MultipartFile profileImg){
     String fileName ="";
-    try {
-      //File copyFile = new File("temptestId.jpg");
-      //profileImg.transferTo(copyFile);
-      fileName = storageService.store(userId,profileImg);
-    } catch (Exception e) {
-      throw new RuntimeException("Error");
-    }
+    fileName = storageService.store(userId,profileImg);
+//    try {
+//      //File copyFile = new File("temptestId.jpg");
+//      //profileImg.transferTo(copyFile);
+//      fileName = storageService.store(userId,profileImg);
+//    } catch (Exception e) {
+//      throw new RuntimeException("Error");
+//    }
     return ResponseEntity.ok(fileName);
   }
 
@@ -134,12 +135,13 @@ public class UserController {
   public ResponseEntity<?> authenticate(@RequestBody UserLoginDto userLoginDto) {
     Token issuedToken = userService.getByCredentials(userLoginDto.getUserId(),
                                                      userLoginDto.getUserPassword());
-    if(issuedToken != null) {
-      return ResponseEntity.ok().body(issuedToken);
-    } else {
-      return ResponseEntity.badRequest()
-                           .body(ResponseDto.builder().error("Login failed.").build());
-    }
+    return ResponseEntity.ok().body(issuedToken);
+//    if(issuedToken != null) {
+//      return ResponseEntity.ok().body(issuedToken);
+//    } else {
+//      return ResponseEntity.badRequest()
+//                           .body(ResponseDto.builder().error("Login failed.").build());
+//    }
   }
 
   //이메일 발송

@@ -139,7 +139,7 @@ public class UserService {
 				Token issuedToken = tokenProvider.createToken(results);
 				return issuedToken ;
 			}else{
-				return null;
+				throw new ApiException(ApiStatus.UNEXPECTED_PASSWORD);
 			}
 		}
 

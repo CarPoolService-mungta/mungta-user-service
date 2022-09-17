@@ -49,7 +49,7 @@ public class AuthenticationService {
 		//인증번호 Limit 시간설정(120sec)
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-		cal.add(Calendar.SECOND, 120);
+		cal.add(Calendar.SECOND, 300);
 		String efDate = dateFormat.format(cal.getTime());
 
 		//인증정보 SET
