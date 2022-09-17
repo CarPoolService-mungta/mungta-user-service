@@ -143,6 +143,16 @@ public class UserController {
 //                           .body(ResponseDto.builder().error("Login failed.").build());
 //    }
   }
+  //로그인
+  @Operation(summary = "리프레시", description = "토큰 리프레시")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode  = "200", description  = "login OK"),
+          @ApiResponse(responseCode  = "400", description  = "Bad Request"),
+          @ApiResponse(responseCode  = "500", description  = "Internal server error")})
+  @PutMapping("/token-refresh")
+  public ResponseEntity<String> refreshAccessToken(@RequestHeader("userId") String userId) {
+    return ResponseEntity.ok().body(userService.tokenRefresh(userId));
+  }
 
   //이메일 발송
   @Operation(summary = "메일 인증 발송", description = "메일 인증을 진행한다.")

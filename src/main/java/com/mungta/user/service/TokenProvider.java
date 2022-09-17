@@ -24,36 +24,47 @@ public class TokenProvider {
 
 		Date now = new Date();
 
+	 return Token.builder().accessToken(makeAccessToken(now,user)).refreshToken(makeRefreshToken(now,user)).key(user.getUserId()).build();
+	}
+
+	public String makeRefreshToken(Date now,UserEntity user){
+
 		Claims claims = Jwts.claims()
-		                    .setIssuer("mungtacarpool.com")
-												.setSubject(user.getUserId());
+				.setIssuer("mungtacarpool.com")
+				.setSubject(user.getUserId());
 
 		//claims for refresh
 		claims.put("userId"  ,user.getUserId());
 
-		String refreshToken =  Jwts.builder()
-															 .signWith(SignatureAlgorithm.HS256, encodedKey)
-															 .setHeaderParam("typ", "JWT")
-															 .setClaims(claims)
-															 .setIssuedAt(now)
-															 .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_EXPIRE_TIME))
-															 .compact();
+		return Jwts.builder()
+				.signWith(SignatureAlgorithm.HS256, encodedKey)
+				.setHeaderParam("typ", "JWT")
+				.setClaims(claims)
+				.setIssuedAt(now)
+				.setExpiration(new Date(now.getTime() + REFRESH_TOKEN_EXPIRE_TIME))
+				.compact();
+	}
+	public String makeAccessToken(Date now, UserEntity user){
 
-		//claims extra for access
+		Claims claims = Jwts.claims()
+				.setIssuer("mungtacarpool.com")
+				.setSubject(user.getUserId());
+
+		//claims for refresh
+		claims.put("userId"  ,user.getUserId());
 		claims.put("name"    ,user.getUserName());
 		claims.put("email"   ,user.getUserMailAddress());
 		claims.put("team"    ,user.getUserTeamName());
 		claims.put("userType",user.getUserType());
 		claims.put("driverYn",user.getDriverYn());
 
-		String accessToken  =  Jwts.builder()
-															 .signWith(SignatureAlgorithm.HS256,encodedKey)
-															 .setHeaderParam("typ", "JWT")
-															 .setClaims(claims)
-															 .setIssuedAt(now)
-															 .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_TIME))
-															 .compact();
-	 return Token.builder().accessToken(accessToken).refreshToken(refreshToken).key(user.getUserId()).build();
+		return  Jwts.builder()
+				.signWith(SignatureAlgorithm.HS256,encodedKey)
+				.setHeaderParam("typ", "JWT")
+				.setClaims(claims)
+				.setIssuedAt(now)
+				.setExpiration(new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_TIME))
+				.compact();
 	}
 }
 

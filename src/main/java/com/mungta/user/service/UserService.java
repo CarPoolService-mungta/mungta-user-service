@@ -8,6 +8,8 @@ import com.mungta.user.model.UserRepository;
 import com.mungta.user.model.UserType;
 import com.mungta.user.api.ApiException;
 import com.mungta.user.api.ApiStatus;
+
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -127,21 +129,26 @@ public class UserService {
 		return null;
 	}
 
-		//사용자 정상 로그인시 인증정보 GET
-		@Transactional
-		public Token getByCredentials(final String userId, final String userPassword) {
-			UserEntity userIdInfo = userRepository.findByUserIdOrUserMailAddress(userId,userId);
-			UserEntity results = userRepository.findByUserId(userIdInfo.getUserId())
-			.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+	//사용자 정상 로그인시 인증정보 GET
+	public Token getByCredentials(final String userId, final String userPassword) {
+		UserEntity userIdInfo = userRepository.findByUserIdOrUserMailAddress(userId,userId);
+		UserEntity results = userRepository.findByUserId(userIdInfo.getUserId())
+		.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
 
-			if(matchesPassword(userPassword,results.getUserPassword())){
-				//토큰 생성
-				Token issuedToken = tokenProvider.createToken(results);
-				return issuedToken ;
-			}else{
-				throw new ApiException(ApiStatus.UNEXPECTED_PASSWORD);
-			}
+		if(matchesPassword(userPassword,results.getUserPassword())){
+			//토큰 생성
+			Token issuedToken = tokenProvider.createToken(results);
+			return issuedToken ;
+		}else{
+			throw new ApiException(ApiStatus.UNEXPECTED_PASSWORD);
 		}
+	}
+
+	public String tokenRefresh(String userId) {
+		UserEntity results = userRepository.findByUserId(userId)
+				.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+		return tokenProvider.makeAccessToken(new Date(), results);
+	}
 
 	//사용자정보 전체조회 (ADMIN)
 	@Transactional
