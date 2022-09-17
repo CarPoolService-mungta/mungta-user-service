@@ -2,24 +2,25 @@ package com.mungta.user.api;
 
 import com.mungta.user.dto.UserDto;
 import com.mungta.user.dto.UserLoginDto;
+import com.mungta.user.dto.UserRequestDto;
+import com.mungta.user.dto.UserResponseDto;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.dto.AuthenticationDto;
 import com.mungta.user.dto.ResponseDto;
 import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
-import com.mungta.user.service.StorageService;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import io.swagger.v3.oas.annotations.Operation;
@@ -43,13 +44,9 @@ public class UserController {
   private final UserService userService;
 
   @Autowired
-  private final StorageService storageService;
-
-  @Autowired
   private final AuthenticationService authenticationService;
 
-  //단건 조회
-  @Operation(summary = "사용자 정보 조회", description  = "사용자ID를 통해 사용자 정보를 조회한다.")
+  @Operation(summary = "사용자 상세 정보 조회", description  = "사용자ID를 통해 사용자 정보를 조회한다.")
   @Parameter(name = "userId", description  = "사용자ID",in = ParameterIn.PATH)
   @ApiResponses({
     @ApiResponse(responseCode = "200", description = "User information has been searched",content = @Content(schema = @Schema(implementation = UserDto.class))),
@@ -58,13 +55,20 @@ public class UserController {
   @ResponseBody
   public ResponseEntity<?>getUser(@PathVariable String userId) {
     UserDto response = userService.getUser(userId);
-    //Resource file = storageService.loadAsResource(response.get);
-    return  ResponseEntity.ok(response);/* .header(HttpHeaders.CONTENT_DISPOSITION,
-    "attachment; filename=\"" + file.getFilename() + "\"").body(file);*/
+    return  ResponseEntity.ok(response);
   }
 
-  //등록
-  @Operation(summary = "사용자 등록", description = "사용자를 등록한다. (Sign up)")
+  @Operation(summary = "사용자 사진 조회", description = "사용자 사진을 조회한다.")
+  @GetMapping(value="/auth/downloadFile/{userId}")
+  private  ResponseEntity<Map<String, Object>> preView (@PathVariable String userId)  {
+    UserResponseDto userResponseDto = userService.getUserPhoto(userId);
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("fileExtension", userResponseDto.getFileExtension());
+    params.put("userPhoto"    , (new String(Base64.encodeBase64(userResponseDto.getUserPhoto()))));
+    return ResponseEntity.ok(params);
+  }
+
+  @Operation(summary = "사용자 등록", description = "사용자를 등록한다.(Sign up)")
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been created"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
@@ -75,22 +79,19 @@ public class UserController {
     userService.createUser(user);
     return ResponseEntity.ok().build();
   }
-  // 사진 업로드
-  @Operation(summary = "사용자 사진 업로드", description = "사용자 사진을 업로드한다.")
-  @PostMapping(value="/auth/uploadFile/{userId}")
-  public ResponseEntity<String> uploadFile(@PathVariable String userId, @RequestBody final MultipartFile profileImg){
+
+  @Operation(summary = "사용자 등록한다.(with pic)", description = "사용자를 등록한다.(Sign up)")
+  @ApiResponses({
+    @ApiResponse(responseCode = "204", description = "User information has been created"),
+    @ApiResponse(responseCode = "500", description = "Internal server error")})
+  @PostMapping("/auth/signup/test")
+  public  ResponseEntity<String> registerUserWithPhoto(@ModelAttribute UserRequestDto userRequestDto){
     String fileName ="";
-    try {
-      //File copyFile = new File("temptestId.jpg");
-      //profileImg.transferTo(copyFile);
-      fileName = storageService.store(userId,profileImg);
-    } catch (Exception e) {
-      throw new RuntimeException("Error");
-    }
+    UserEntity user = UserRequestDto.toEntity(userRequestDto);
+    fileName =  userService.createUserWithPhoto(user,userRequestDto.getProfileImg());
     return ResponseEntity.ok(fileName);
   }
 
-  //수정
   @Operation(summary = "사용자 수정", description = "사용자 정보를 수정한다.")
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been updated"),
@@ -103,7 +104,6 @@ public class UserController {
     return ResponseEntity.ok().build();
   }
 
-  //삭제
   @Operation(summary = "사용자 삭제", description = "사용자 정보를 삭제한다.")
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User Deleted OK"),
@@ -116,7 +116,6 @@ public class UserController {
       return ResponseEntity.ok().build(); //ResponseEntity.noContent().build();
   }
 
-  //패널티 부여
   @Operation(summary = "사용자 패널티 부여", description = "사용자 패널티를 부여한다.")
   @Parameter(name = "userId", description  = "사용자ID",in = ParameterIn.PATH)
   @ApiResponses({
@@ -129,7 +128,6 @@ public class UserController {
     return ResponseEntity.noContent().build();
   }
 
-  //로그인
   @Operation(summary = "로그인", description = "로그인 한다.")
   @ApiResponses(value = {
     @ApiResponse(responseCode  = "200", description  = "login OK"),
@@ -150,7 +148,6 @@ public class UserController {
     }
   }
 
-  //이메일 발송
   @Operation(summary = "메일 인증 발송", description = "메일 인증을 진행한다.")
   @ApiResponses(value = {
     @ApiResponse(responseCode  = "200", description  = "send email OK"),
@@ -162,7 +159,6 @@ public class UserController {
     return ResponseEntity.ok().build();
   }
 
-  //이메일 인증 확인
   @Operation(summary = "메일 인증 확인", description = "메일 인증번호를 확인한다.")
   @ApiResponses(value = {
     @ApiResponse(responseCode  = "200", description  = "verification number check OK"),
@@ -174,7 +170,18 @@ public class UserController {
     AuthenticationDto response = authenticationService.checkAuthNumber(AuthenticationDto.toEntity(authDto));
     return  ResponseEntity.ok(response);
   }
-  //전체 조회 (관리자 용)
+
+  @Operation(summary = "사용자를 관리자로 변경", description = "사용자유형을 관리자로 수정한다.")
+  @ApiResponses({
+    @ApiResponse(responseCode = "204", description = "Becoming an administrator is complete."),
+    @ApiResponse(responseCode = "404", description = "Not found"),
+    @ApiResponse(responseCode = "500", description = "Internal server error")})
+  @PutMapping(value="/admin/{userId}")
+  public ResponseEntity<?>updateAdminRole(@PathVariable String userId){
+    userService.chageUserType(userId);
+    return ResponseEntity.noContent().build();
+  }
+
   @Operation(summary = "사용자 정보 전체 조회", description  = "전체 사용자 정보를 조회한다.")
   @ApiResponses(value = {
     @ApiResponse(responseCode  = "200", description  = "User information has been searched"),
@@ -186,18 +193,7 @@ public class UserController {
     return ResponseEntity.ok(response);
   }
 
-  //관리자로 사용자 유형 변경  (관리자 용)
-  @Operation(summary = "관리자로 변경", description = "사용자유형을 관리자로 수정한다.")
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "Becoming an administrator is complete."),
-    @ApiResponse(responseCode = "404", description = "Not found"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
-  @PutMapping(value="/admin/{userId}")
-  public ResponseEntity<?>updateAdminRole(@PathVariable String userId){
-    userService.chageUserType(userId);
-    return ResponseEntity.noContent().build();
-  }
-  @Operation(summary = "사용자전체조회", description = "사용자전체조회")
+  @Operation(summary = "사용자전체조회(사용자선택가능)", description = "사용자전체조회")
   @GetMapping
   @ResponseBody
   public ResponseEntity<List<UserDto>> getUserList(@RequestParam List<String> userIds){
@@ -207,6 +203,8 @@ public class UserController {
     }
     return ResponseEntity.ok(response);
   }
+
+
 }
 
 

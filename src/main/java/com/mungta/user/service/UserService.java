@@ -1,21 +1,29 @@
 package com.mungta.user.service;
 
+import com.mungta.user.dto.FileInfo;
 import com.mungta.user.dto.Token;
 import com.mungta.user.dto.UserDto;
+import com.mungta.user.dto.UserResponseDto;
 import com.mungta.user.model.Status;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.UserRepository;
 import com.mungta.user.model.UserType;
 import com.mungta.user.api.ApiException;
 import com.mungta.user.api.ApiStatus;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,29 +42,34 @@ public class UserService {
 	@Autowired
   private final PasswordEncoder passwordEncoder;
 
+	@Autowired
+  private final StorageService storageService;
+
 
 	//사용자정보 조회
 	@Transactional
 	public UserDto getUser (final String userId) {
 		UserEntity results = userRepository.findByUserId(userId)
 	                     	.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
-		log.debug("################ UserService getUser OUTPUT : "+ToStringBuilder.reflectionToString(results));
 		return new UserDto(results);
+  }
+	//사용자정보 조회(w 사진)
+	@Transactional
+	public UserResponseDto getUserPhoto (final String userId) {
+		UserEntity results = userRepository.findByUserId(userId)
+																.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+		return new UserResponseDto(results);
   }
 
 	//사용자정보 등록
 	@Transactional
 	public UserEntity  createUser (@Valid final UserEntity user) {
-		//Email 중복 체크
 		if(userRepository.existsByUserMailAddress(user.getUserMailAddress())) {
 			log.warn("Email already exists {}", user.getUserMailAddress());
 			throw new ApiException(ApiStatus.DUPLICATED_INFORMATION);
 		}
 		try{
-			//비밀번호 암호화
 			user.setUserPassword(encodePassword(user.getUserPassword()));
-
-			//사용자정보 저장
 			userRepository.save(user);
 
 		} catch(Exception e){
@@ -66,19 +79,47 @@ public class UserService {
     return null;
 	}
 
+	//사용자정보 등록(사진)
+	@Transactional
+	public String createUserWithPhoto (@Valid final UserEntity user, MultipartFile profileImg) {
+		//Email 중복 체크
+		if(userRepository.existsByUserMailAddress(user.getUserMailAddress())) {
+			log.warn("Email already exists {}", user.getUserMailAddress());
+			throw new ApiException(ApiStatus.DUPLICATED_INFORMATION);
+		}
+		String fileName ="";
+		try{
+			user.setUserPassword(encodePassword(user.getUserPassword()));
+
+			FileInfo fileInfo = storageService.store(user.getUserId(),profileImg);
+			user.setUserPhoto(IOUtils.toByteArray(profileImg.getInputStream()));
+			user.setUserFileName(fileInfo.getUserFileName());
+			user.setUserFileOriName(fileInfo.getUserFileOriName());
+			user.setUserFileSize(fileInfo.getUserFileSize());
+			user.setFileExtension(fileInfo.getFileExtension());
+
+			//사용자정보 저장
+			userRepository.save(user);
+			fileName=fileInfo.getUserFileName();
+
+		} catch(Exception e){
+			log.error("error created user",user.getUserId(),e);
+			new ApiException(ApiStatus.UNEXPECTED_ERROR);
+		}
+    return fileName;
+	}
+
 	//사용자정보 변경
 	@Transactional
 	public UserEntity updateUser (@Valid final UserEntity user) {
-		//해당 아이디 조회
+
 		UserEntity userUp = userRepository.findByUserId(user.getUserId())
 		                  .orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
 		try{
-			//비밀번호 변경된 경우 암호화해서 SET
 			if(!matchesPassword(user.getUserPassword(),userUp.getUserPassword())){
 				String enPw = encodePassword(user.getUserPassword());
 				user.setUserPassword(enPw);
 			}
-			//정보변경
 			userRepository.save(user);
 		} catch(Exception e){
 			log.error("error updating user",user.getUserId(),e);

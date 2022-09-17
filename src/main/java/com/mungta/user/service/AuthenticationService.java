@@ -8,15 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.transaction.Transactional;
-import javax.validation.constraints.Email;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.mungta.user.api.ApiException;
-import com.mungta.user.api.ApiStatus;
 import com.mungta.user.dto.AuthenticationDto;
 import com.mungta.user.model.AuthenticationEntity;
 import com.mungta.user.model.AuthenticationRepository;
