@@ -6,7 +6,6 @@ import com.mungta.user.dto.UserRequestDto;
 import com.mungta.user.dto.UserResponseDto;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.dto.AuthenticationDto;
-import com.mungta.user.dto.ResponseDto;
 import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
@@ -72,9 +71,9 @@ public class UserController {
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been created"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
-  @PostMapping("/auth/signup")
+  @PostMapping("/auth/signup/test")
   public  ResponseEntity<?> registerUser(@RequestBody final UserDto userDto){
-    log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userDto));
+
     UserEntity user = UserDto.toEntity(userDto);
     userService.createUser(user);
     return ResponseEntity.ok().build();
@@ -84,8 +83,9 @@ public class UserController {
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been created"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
-  @PostMapping("/auth/signup/test")
+  @PostMapping("/auth/signup")
   public  ResponseEntity<String> registerUserWithPhoto(@ModelAttribute UserRequestDto userRequestDto){
+    log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userRequestDto));
     String fileName ="";
     UserEntity user = UserRequestDto.toEntity(userRequestDto);
     fileName =  userService.createUserWithPhoto(user,userRequestDto.getProfileImg());
@@ -138,14 +138,6 @@ public class UserController {
     log.debug("################ UserController authenticate : "+ToStringBuilder.reflectionToString(userLoginDto));
     Token issuedToken = userService.getByCredentials(userLoginDto.getUserId(),
                                                      userLoginDto.getUserPassword());
-//    if(issuedToken != null) {
-//      return ResponseEntity.ok().body(issuedToken);
-//    } else {
-//      return ResponseEntity.badRequest()
-//                           .body(ResponseDto.builder().errorCode(ApiStatus.LOGIN_FAILED.getCode())
-//                                                      .message(ApiStatus.LOGIN_FAILED.getMessage())
-//                                                      .build());
-//    }
     return ResponseEntity.ok().body(issuedToken);
   }
   //로그인

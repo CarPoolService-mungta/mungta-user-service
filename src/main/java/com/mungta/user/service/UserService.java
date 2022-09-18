@@ -76,7 +76,7 @@ public class UserService {
 
 		} catch(Exception e){
 			log.error("error created user",user.getUserId(),e);
-			new ApiException(ApiStatus.UNEXPECTED_ERROR);
+			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
     return null;
 	}
@@ -106,7 +106,7 @@ public class UserService {
 
 		} catch(Exception e){
 			log.error("error created user",user.getUserId(),e);
-			new ApiException(ApiStatus.UNEXPECTED_ERROR);
+			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
     return fileName;
 	}
@@ -125,7 +125,7 @@ public class UserService {
 			userRepository.save(user);
 		} catch(Exception e){
 			log.error("error updating user",user.getUserId(),e);
-			new ApiException(ApiStatus.UNEXPECTED_ERROR);
+			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
 		return null;
 	}
@@ -142,7 +142,7 @@ public class UserService {
 			userRepository.delete(user);
 		} catch(Exception e){
 			log.error("error deleting user",user.getUserId(),e);
-			new ApiException(ApiStatus.UNEXPECTED_ERROR);
+			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
 		return null;
 	}
@@ -165,7 +165,7 @@ public class UserService {
 			userRepository.save(user);
 		} catch(Exception e){
 			log.error("error accusing user",user.getUserId(),e);
-			new ApiException(ApiStatus.UNEXPECTED_ERROR);
+			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
 		return null;
 	}
@@ -211,7 +211,7 @@ public class UserService {
 			userRepository.save(user);
 		} catch(Exception e){
 			log.error("error changing user type",user.getUserId(),e);
-			new ApiException(ApiStatus.UNEXPECTED_ERROR);
+			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
 		return null;
 	}
