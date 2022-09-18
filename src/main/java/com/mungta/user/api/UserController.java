@@ -207,15 +207,13 @@ public class UserController {
   @Operation(summary = "사용자전체조회(사용자선택가능)", description = "사용자전체조회")
   @GetMapping
   @ResponseBody
-  public ResponseEntity<List<UserDto>> getUserList(@RequestParam List<String> userIds){
-    List<UserDto> response = new ArrayList<>();
+  public ResponseEntity<List<UserResponseDto>> getUserList(@RequestParam List<String> userIds){
+    List<UserResponseDto> response = new ArrayList<>();
     for (String userId : userIds) {
-      response.add(userService.getUser(userId));
+      response.add(userService.getUserPhoto(userId));
     }
     return ResponseEntity.ok(response);
   }
-
-
 }
 
 
