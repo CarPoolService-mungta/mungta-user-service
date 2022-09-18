@@ -237,4 +237,9 @@ public class UserService {
 				.getDriverInfo();
 	}
 
+	public Boolean checkIdDuplicate(String userId){
+		return userRepository.findByUserId(userId)
+				.isPresent();
+	}
+
 }

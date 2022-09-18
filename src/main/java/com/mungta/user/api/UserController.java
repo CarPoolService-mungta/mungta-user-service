@@ -211,7 +211,12 @@ public class UserController {
     return ResponseEntity.ok(userService.getDriverInfo(userId));
   }
 
-
+  @Operation(summary = "중복체크", description = "중복체크 조회")
+  @GetMapping("/auth/check-id-duplicate")
+  @ResponseBody
+  public ResponseEntity<Boolean> checkIdDuplicate(@RequestParam String userId){
+    return ResponseEntity.ok(userService.checkIdDuplicate(userId));
+  }
 }
 
 
