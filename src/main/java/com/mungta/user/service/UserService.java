@@ -1,9 +1,6 @@
 package com.mungta.user.service;
 
-import com.mungta.user.dto.FileInfo;
-import com.mungta.user.dto.Token;
-import com.mungta.user.dto.UserDto;
-import com.mungta.user.dto.UserResponseDto;
+import com.mungta.user.dto.*;
 import com.mungta.user.model.Status;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.UserRepository;
@@ -233,4 +230,11 @@ public class UserService {
 			return false;
 		}
 	}
+
+	public DriverInfoRequest getDriverInfo(String userId){
+		return userRepository.findByUserId(userId)
+				.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION))
+				.getDriverInfo();
+	}
+
 }

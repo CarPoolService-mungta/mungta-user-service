@@ -56,6 +56,7 @@ public class TokenProvider {
 		claims.put("email"   ,user.getUserMailAddress());
 		claims.put("team"    ,user.getUserTeamName());
 		claims.put("userType",user.getUserType());
+		claims.put("userGender", user.getUserGender());
 		claims.put("driverYn",user.getDriverYn());
 
 		return  Jwts.builder()

@@ -1,6 +1,7 @@
 package com.mungta.user.dto;
 
 import com.mungta.user.AbstractEvent;
+import com.mungta.user.model.IsYN;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.Status;
 import com.mungta.user.model.UserType;
@@ -28,7 +29,7 @@ public class UserDto extends AbstractEvent{
   private long   userFileSize;
   private String userTeamName;
   private String userGender;
-  private String driverYn;
+  private IsYN driverYn;
   private String settlementUrl;
   private String carType;
   private String carNumber;

@@ -1,13 +1,7 @@
 package com.mungta.user.api;
 
-import com.mungta.user.dto.UserDto;
-import com.mungta.user.dto.UserLoginDto;
-import com.mungta.user.dto.UserRequestDto;
-import com.mungta.user.dto.UserResponseDto;
+import com.mungta.user.dto.*;
 import com.mungta.user.model.UserEntity;
-import com.mungta.user.dto.AuthenticationDto;
-import com.mungta.user.dto.ResponseDto;
-import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
 import java.util.ArrayList;
@@ -213,6 +207,13 @@ public class UserController {
       response.add(userService.getUser(userId));
     }
     return ResponseEntity.ok(response);
+  }
+
+  @Operation(summary = "운전자 정보 조회(사용자선택가능)", description = "운전자 정보 조회")
+  @GetMapping("/driver-info")
+  @ResponseBody
+  public ResponseEntity<DriverInfoRequest> getDriverInfo(@RequestHeader("userId") String userId){
+    return ResponseEntity.ok(userService.getDriverInfo(userId));
   }
 
 

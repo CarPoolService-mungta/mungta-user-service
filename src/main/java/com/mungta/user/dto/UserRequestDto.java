@@ -2,6 +2,7 @@ package com.mungta.user.dto;
 
 import java.io.Serializable;
 
+import com.mungta.user.model.IsYN;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mungta.user.AbstractEvent;
@@ -29,7 +30,7 @@ public class UserRequestDto extends AbstractEvent implements Serializable {
   private long   userFileSize;
   private String userTeamName;
   private String userGender;
-  private String driverYn;
+  private IsYN driverYn;
   private String settlementUrl;
   private String carType;
   private String carNumber;

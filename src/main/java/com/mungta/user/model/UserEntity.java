@@ -3,6 +3,10 @@ package com.mungta.user.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+
+import com.mungta.user.api.ApiException;
+import com.mungta.user.api.ApiStatus;
+import com.mungta.user.dto.DriverInfoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,7 +46,8 @@ public  class UserEntity extends BaseEntity {
 	private String userGender;
 
     @NotNull
-    private String driverYn;
+    @Enumerated(EnumType.STRING)
+    private IsYN driverYn;
 	private String settlementUrl;
 	private String carType;
 	private String carNumber;
@@ -55,6 +60,13 @@ public  class UserEntity extends BaseEntity {
 
     @Builder.Default
     private UserType userType = UserType.CUSTOMER;
-    
+
+
+    public DriverInfoRequest getDriverInfo(){
+        if(!driverYn.isYes()){
+            new ApiException(ApiStatus.NOT_DRIVER);
+        }
+        return DriverInfoRequest.of(settlementUrl,carType,carNumber);
+    }
 }
 
