@@ -7,11 +7,15 @@ public class ApiException extends RuntimeException {
   private ApiStatus apiStatus;
 
   public ApiException(ApiStatus apiStatus) {
-      super(apiStatus.getHttpStatus()+":"+apiStatus.getMessage()+"("+apiStatus.getCode()+")");
-      this.apiStatus = apiStatus;
+    super(apiStatus.getMessage());
+    this.apiStatus = apiStatus;
   }
 
-  public ApiException(String apiStatus) {
-      super(apiStatus);
+  public ApiException(ApiStatus apiStatus, Throwable e) {
+      super(apiStatus.getMessage(), e);
+      this.apiStatus = apiStatus;
   }
 }
+
+
+

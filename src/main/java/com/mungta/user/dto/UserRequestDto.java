@@ -1,5 +1,9 @@
 package com.mungta.user.dto;
 
+import java.io.Serializable;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mungta.user.AbstractEvent;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.Status;
@@ -7,21 +11,18 @@ import com.mungta.user.model.UserType;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 
-import lombok.Getter;
-
-
-@Getter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto extends AbstractEvent{
+public class UserRequestDto extends AbstractEvent implements Serializable {
 
   private String userId;
   private String userPassword;
   private String userMailAddress;
   private String userName;
-  //photo - think
   private String userFileName;
   private String userFileOriName;
   private String userFileUrl;
@@ -35,10 +36,10 @@ public class UserDto extends AbstractEvent{
   private Long   penaltyCount;
   private Status status;
   private UserType userType;
-
+  private MultipartFile profileImg;
 
   // Entity -> Dto
-  public UserDto(final UserEntity user){
+  public UserRequestDto(final UserEntity user){
     this.userId          = user.getUserId();
     this.userPassword    = user.getUserPassword();
     this.userMailAddress = user.getUserMailAddress();
@@ -58,25 +59,23 @@ public class UserDto extends AbstractEvent{
     this.status          = user.getStatus();
   }
   // Dto -> Entity
-  public static UserEntity toEntity(final UserDto userDto){
+  public static UserEntity toEntity(final UserRequestDto userRequestDto){
     return UserEntity.builder()
-               .userId(userDto.getUserId())
-               .userPassword(userDto.getUserPassword())
-               .userMailAddress(userDto.getUserMailAddress())
-               .userName(userDto.getUserName())
-               .userFileName(userDto.getUserFileName())
-               .userFileOriName(userDto.getUserFileOriName())
-               //.userFileUrl(userDto.getUserFileUrl())
-               .userFileSize(userDto.getUserFileSize())
-               .userTeamName(userDto.getUserTeamName())
-               .userGender(userDto.getUserGender())
-               .driverYn(userDto.getDriverYn())
-               .settlementUrl(userDto.getSettlementUrl())
-               .carType(userDto.getCarType())
-               .carNumber(userDto.getCarNumber())
-               .penaltyCount(userDto.getPenaltyCount())
-               .status(userDto.getStatus())
-               .userType(userDto.getUserType())
+               .userId(userRequestDto.getUserId())
+               .userPassword(userRequestDto.getUserPassword())
+               .userMailAddress(userRequestDto.getUserMailAddress())
+               .userName(userRequestDto.getUserName())
+               //.userFileUrl(userRequestDto.getUserFileUrl())
+               .userFileSize(userRequestDto.getUserFileSize())
+               .userTeamName(userRequestDto.getUserTeamName())
+               .userGender(userRequestDto.getUserGender())
+               .driverYn(userRequestDto.getDriverYn())
+               .settlementUrl(userRequestDto.getSettlementUrl())
+               .carType(userRequestDto.getCarType())
+               .carNumber(userRequestDto.getCarNumber())
+               .penaltyCount(userRequestDto.getPenaltyCount())
+               .status(userRequestDto.getStatus())
+               .userType(userRequestDto.getUserType())
                .build();
   }
 }

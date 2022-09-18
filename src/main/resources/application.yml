@@ -21,10 +21,11 @@ spring:
 #      ddl-auto: update
     properties:
       hibernate:
+        # hbm2ddl.auto: create
         format_sql: true
         temp:
           use_jdbc_metadata_defaults: false
-#    generate-ddl: true
+    # generate-ddl: true
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL8InnoDBDialect
 #  jpa:
@@ -40,8 +41,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: mungtakor@gmail.com
-    password: duoghcjeathseiik
+    username: -
+    password: -
     properties:
       mail:
         smtp:

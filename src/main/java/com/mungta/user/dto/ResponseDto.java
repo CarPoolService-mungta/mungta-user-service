@@ -1,18 +1,24 @@
 package com.mungta.user.dto;
 
-import java.util.List;
-import lombok.NoArgsConstructor;
+import com.mungta.user.api.ApiStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class ResponseDto<T>  {
+public class ResponseDto {
+    private final Integer errorCode;
+    private final String message;
 
-  private String error;
-  private List<T> data;
+    private ResponseDto(ApiStatus apiStatus) {
+        this.errorCode = apiStatus.getCode();
+        this.message   = apiStatus.getMessage();
+    }
+
+    public static ResponseDto of(ApiStatus apiStatus) {
+        return new ResponseDto(apiStatus);
+    }
 
 }

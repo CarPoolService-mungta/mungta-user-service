@@ -4,9 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.mungta.user.dto.AuthenticationDto;
 import com.mungta.user.model.AuthenticationEntity;
@@ -28,6 +33,7 @@ public class AuthenticationService {
 
 
 	//이메일 인증번호 발송
+	@Async
 	@Transactional
   public void sendAuthNumber (final String email) {
 
@@ -99,5 +105,24 @@ public class AuthenticationService {
     sb.append(inputString);
     return sb.toString();
 	}
+	//이메일 형식 체크
+	public static boolean isEmail(String email){
+    boolean validation = false;
+		log.debug("################ StringUtils.hasText(email)   " + StringUtils.hasText(email));
+    if( !StringUtils.hasText(email)){
+        return false;
+    }
+
+    String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+    Pattern p = Pattern.compile(regex);
+    Matcher m = p.matcher(email);
+    if(m.matches()) {
+        validation = true;
+    }
+		log.debug("################ validation   " + validation);
+
+    return validation;
+	}
+
 }
 

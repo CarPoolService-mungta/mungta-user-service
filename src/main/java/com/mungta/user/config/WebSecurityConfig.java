@@ -27,9 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.antMatcher("/").authorizeRequests().anyRequest().permitAll();
-				//.authorizeRequests().antMatchers("/").permitAll();
-				//.authorizeRequests().antMatchers("/","/users/**","/swagger-ui/**", "/v3/api-docs/**").permitAll()
-				//.anyRequest().authenticated();
+
 				//http.addFilterAfter(jwtAuthenticationFilter,CorsFilter.class);
 	}
 	@Bean

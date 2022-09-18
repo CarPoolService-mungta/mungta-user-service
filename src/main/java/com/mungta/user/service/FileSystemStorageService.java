@@ -8,9 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Blob;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +16,9 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.mungta.user.dto.FileInfo;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -54,18 +54,22 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public String store(final String userId, final MultipartFile file) {
+    public FileInfo store(final String userId, final MultipartFile file) {
+
+        String oldFileName ="";
         String fileName = "";
-        byte[] bytes;
+        String fileExtension ="";
 
         try {
             if (file.isEmpty()) {
                 throw new Exception("ERROR : File is empty.");
             }
             // 파일명 생성
+            oldFileName = file.getOriginalFilename();
+            fileExtension = oldFileName.substring( oldFileName.lastIndexOf(".")+1);
             fileName = UUID.randomUUID().toString() +"_"+
                        userId+"."+
-                       file.getOriginalFilename().substring( file.getOriginalFilename().lastIndexOf(".")+1);
+                       fileExtension;
             // 파일명 체크 (동일파일시 error)
             File filecheck = new File(uploadPath + "\\" +fileName);
             if(filecheck.exists()) {
@@ -80,31 +84,14 @@ public class FileSystemStorageService implements StorageService {
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, root.resolve(fileName),StandardCopyOption.REPLACE_EXISTING);
             }
-/*
-            try {
-                Map<String, Object> param = new HashMap<String, Object>();
-                bytes =file.getBytes();
-                try {
-                    Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
-                    param.put("userPhoto",blob);
-                    param.put("userFileName",fileName);
-                    param.put("userFileSize",blob.length());
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            } catch(IOException e2){
-                e2.printStackTrace();
-            }
-*/
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
-        return fileName;
+        return FileInfo.builder().userFileName(fileName).userFileOriName(oldFileName).userFileSize(0).userFileUrl(uploadPath).fileExtension(fileExtension).build();
     }
 
     @Override
     public Stream<Path> loadAll() {
-        log.debug("here 3");
         return null;
     }
 

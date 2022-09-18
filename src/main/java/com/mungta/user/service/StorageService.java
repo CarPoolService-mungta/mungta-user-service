@@ -5,13 +5,15 @@ import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mungta.user.dto.FileInfo;
+
 public interface StorageService {
 
     void initDir();
 
     void cleanDir();
 
-    String store(String userId,MultipartFile file);
+    FileInfo store(String userId,MultipartFile file);
 
     Stream<Path> loadAll();
 

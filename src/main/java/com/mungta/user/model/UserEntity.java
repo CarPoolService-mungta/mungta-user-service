@@ -29,13 +29,15 @@ public  class UserEntity extends BaseEntity {
     @Column(nullable = false)
 	private String userName;
 
+    @Lob
     private byte[] userPhoto;
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String userFileName;
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String userFileOriName;
 
     private long   userFileSize;
+    private String fileExtension;
     private String userTeamName;
 	private String userGender;
 
@@ -53,25 +55,6 @@ public  class UserEntity extends BaseEntity {
 
     @Builder.Default
     private UserType userType = UserType.CUSTOMER;
-
-
-    public static UserEntity of(UserEntity user) {
-      return UserEntity.builder()
-                       .userId(user.getUserId())
-                       .userPassword(user.getUserPassword())
-                       .userMailAddress(user.getUserMailAddress())
-                       .userName(user.getUserName())
-                       .userPhoto(user.getUserPhoto())
-                       .userTeamName(user.getUserTeamName())
-                       .userGender(user.getUserGender())
-                       .driverYn(user.getDriverYn())
-                       .settlementUrl(user.getSettlementUrl())
-                       .carType(user.getCarType())
-                       .carNumber(user.getCarNumber())
-                       .penaltyCount(user.getPenaltyCount())
-                       .status(user.getStatus())
-                       .userType(user.getUserType())
-                       .build();
-      }
+    
 }
 
