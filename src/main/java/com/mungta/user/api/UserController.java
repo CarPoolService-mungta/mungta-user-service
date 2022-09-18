@@ -2,6 +2,8 @@ package com.mungta.user.api;
 
 import com.mungta.user.dto.*;
 import com.mungta.user.model.UserEntity;
+import com.mungta.user.dto.AuthenticationDto;
+import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
 import java.util.ArrayList;
@@ -66,9 +68,9 @@ public class UserController {
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been created"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
-  @PostMapping("/auth/signup")
+  @PostMapping("/auth/signup/test")
   public  ResponseEntity<?> registerUser(@RequestBody final UserDto userDto){
-    log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userDto));
+
     UserEntity user = UserDto.toEntity(userDto);
     userService.createUser(user);
     return ResponseEntity.ok().build();
@@ -78,8 +80,9 @@ public class UserController {
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been created"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
-  @PostMapping("/auth/signup/test")
+  @PostMapping("/auth/signup")
   public  ResponseEntity<String> registerUserWithPhoto(@ModelAttribute UserRequestDto userRequestDto){
+    log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userRequestDto));
     String fileName ="";
     UserEntity user = UserRequestDto.toEntity(userRequestDto);
     fileName =  userService.createUserWithPhoto(user,userRequestDto.getProfileImg());
@@ -132,14 +135,6 @@ public class UserController {
     log.debug("################ UserController authenticate : "+ToStringBuilder.reflectionToString(userLoginDto));
     Token issuedToken = userService.getByCredentials(userLoginDto.getUserId(),
                                                      userLoginDto.getUserPassword());
-//    if(issuedToken != null) {
-//      return ResponseEntity.ok().body(issuedToken);
-//    } else {
-//      return ResponseEntity.badRequest()
-//                           .body(ResponseDto.builder().errorCode(ApiStatus.LOGIN_FAILED.getCode())
-//                                                      .message(ApiStatus.LOGIN_FAILED.getMessage())
-//                                                      .build());
-//    }
     return ResponseEntity.ok().body(issuedToken);
   }
   //로그인
@@ -201,10 +196,10 @@ public class UserController {
   @Operation(summary = "사용자전체조회(사용자선택가능)", description = "사용자전체조회")
   @GetMapping
   @ResponseBody
-  public ResponseEntity<List<UserDto>> getUserList(@RequestParam List<String> userIds){
-    List<UserDto> response = new ArrayList<>();
+  public ResponseEntity<List<UserResponseDto>> getUserList(@RequestParam List<String> userIds){
+    List<UserResponseDto> response = new ArrayList<>();
     for (String userId : userIds) {
-      response.add(userService.getUser(userId));
+      response.add(userService.getUserPhoto(userId));
     }
     return ResponseEntity.ok(response);
   }
