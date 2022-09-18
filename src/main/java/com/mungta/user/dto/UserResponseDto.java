@@ -1,5 +1,6 @@
 package com.mungta.user.dto;
 
+import com.mungta.user.model.IsYN;
 import lombok.NoArgsConstructor;
 
 import com.mungta.user.model.Status;
@@ -26,7 +27,7 @@ public class UserResponseDto {
   private long   userFileSize;
   private String userTeamName;
   private String userGender;
-  private String driverYn;
+  private IsYN driverYn;
   private String settlementUrl;
   private String carType;
   private String carNumber;
