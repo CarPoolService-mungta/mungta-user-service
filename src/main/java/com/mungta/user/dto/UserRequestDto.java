@@ -5,7 +5,6 @@ import java.io.Serializable;
 import com.mungta.user.model.IsYN;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mungta.user.AbstractEvent;
 import com.mungta.user.model.UserEntity;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import lombok.Data;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequestDto extends AbstractEvent implements Serializable {
+public class UserRequestDto  implements Serializable {
 
   private String userId;
   private String userPassword;

@@ -1,6 +1,5 @@
 package com.mungta.user.dto;
 
-import com.mungta.user.AbstractEvent;
 import com.mungta.user.model.IsYN;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.Status;
@@ -16,7 +15,7 @@ import lombok.Getter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto extends AbstractEvent{
+public class UserDto{
 
   private String userId;
   private String userPassword;

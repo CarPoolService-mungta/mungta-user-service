@@ -15,7 +15,7 @@ public class SwaggerConfig {
   public GroupedOpenApi publicApi() {
       return GroupedOpenApi.builder()
               .group("user")
-              .pathsToMatch("/api/user/**")
+              .pathsToMatch("/api/user/**","/kafka/test/**")
               .build();
   }
 
