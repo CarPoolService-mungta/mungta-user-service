@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   profiles:
-    activate: local
+    on-profile: dev
   datasource:
     jdbc-url: jdbc:mysql://mungta-user-db.mysql.database.azure.com:3306/user_dev?serverTimezone=Asia/Seoul&validationQuery="select 1"
     username: mungta
@@ -36,7 +36,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: kafka.kafka.svc.cluster.local:9092
         bindings:
           producer-out-0:
             producer:
