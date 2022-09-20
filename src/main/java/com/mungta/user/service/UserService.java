@@ -47,10 +47,10 @@ public class UserService {
 
 	//사용자정보 조회
 	@Transactional
-	public UserDto getUser (final String userId) {
+	public UserResponseDto getUser (final String userId) {
 		UserEntity results = userRepository.findByUserId(userId)
 	                     	.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
-		return new UserDto(results);
+		return new UserResponseDto(results);
   }
 	//사용자정보 조회(w 사진)
 	@Transactional
