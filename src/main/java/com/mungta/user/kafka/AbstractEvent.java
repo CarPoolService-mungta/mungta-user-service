@@ -25,16 +25,6 @@ public class AbstractEvent {
   @JsonProperty("accusedMemberId")
   String userId;
 
-  public String toJson(){
-    ObjectMapper objectMapper = new ObjectMapper();
-    String json = null;
-    try {
-        json = objectMapper.writeValueAsString(this);
-    } catch (JsonProcessingException e) {
-        throw new RuntimeException("JSON format exception", e);
-    }
-
-    return json;
-  }
-
+//   @JsonProperty("accusedMemberId")
+//   String userId;
 }

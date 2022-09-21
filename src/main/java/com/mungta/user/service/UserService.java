@@ -1,10 +1,13 @@
 package com.mungta.user.service;
 
 import com.mungta.user.dto.*;
+import com.mungta.user.kafka.KafkaProducer;
 import com.mungta.user.model.Status;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.UserRepository;
 import com.mungta.user.model.UserType;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mungta.user.api.ApiException;
 import com.mungta.user.api.ApiStatus;
 
@@ -44,7 +47,12 @@ public class UserService {
 	@Autowired
   private final StorageService storageService;
 
+	private final KafkaProducer producer;
 
+	// @Autowired
+	// UserService(KafkaProducer producer) {
+	// 		this.producer = producer;
+	// }
 	//사용자정보 조회
 	@Transactional
 	public UserResponseDto getUser (final String userId) {
@@ -188,11 +196,12 @@ public class UserService {
 
 	//사용자 패널티 부과
 	@Transactional
-	public UserEntity givePenaltyUser (final String userId){
-
-		UserEntity user = userRepository.findByUserId(userId)
-		                  .orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+	public UserEntity givePenaltyUser (final String userId, final String payload){
+		UserEntity user = new UserEntity();
 		try{
+			user = userRepository.findByUserId(userId)
+												.orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+
 			// 패널티 횟수에 따라서 사용자 상태 변경
 			if(user.getPenaltyCount() < 3){
 				user.setPenaltyCount(user.getPenaltyCount()+1);
@@ -204,8 +213,10 @@ public class UserService {
 			userRepository.save(user);
 		} catch(Exception e){
 			log.error("error accusing user",user.getUserId(),e);
+			producer.send(payload,"FAIL");
 			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
 		}
+		producer.send(payload,"OK");
 		return null;
 	}
 

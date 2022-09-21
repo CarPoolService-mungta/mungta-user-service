@@ -23,7 +23,7 @@ public class SampleController {
     @PostMapping(value = "/message")
     public String sendMessage(@RequestParam("message") String message) {
       log.debug("com in here = " + message);
-        this.producer.send(message);
+        this.producer.send(message,"");
         return "success";
     }
 }
