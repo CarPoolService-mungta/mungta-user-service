@@ -89,15 +89,28 @@ public class UserController {
     return ResponseEntity.ok(fileName);
   }
 
-  @Operation(summary = "사용자 수정", description = "사용자 정보를 수정한다.")
+  @Operation(summary = "사용자 수정(사진)", description = "사용자 정보를 수정한다.")
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been updated"),
     @ApiResponse(responseCode = "404", description = "Not found"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PutMapping(value="/{userId}")
-  public  ResponseEntity<?> updateUser(@RequestBody final UserDto userDto){
+  public  ResponseEntity<?> updateUser(@ModelAttribute final UserRequestDto userRequestDto){
+    log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userRequestDto));
+    UserEntity user = UserRequestDto.toEntity(userRequestDto);
+    userService.updateUser(user,userRequestDto.getProfileImg());
+    return ResponseEntity.ok().build();
+  }
+  @Operation(summary = "사용자 수정", description = "사용자 정보를 수정한다.")
+  @ApiResponses({
+    @ApiResponse(responseCode = "204", description = "User information has been updated"),
+    @ApiResponse(responseCode = "404", description = "Not found"),
+    @ApiResponse(responseCode = "500", description = "Internal server error")})
+  @PutMapping(value="info/{userId}")
+  public  ResponseEntity<?> updateWoPhotoUser(@RequestBody final UserDto userDto){
+    log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userDto));
     UserEntity user = UserDto.toEntity(userDto);
-    userService.updateUser(user);
+    userService.updateWoPhotoUser(user);
     return ResponseEntity.ok().build();
   }
 

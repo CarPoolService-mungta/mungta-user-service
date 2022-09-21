@@ -94,7 +94,7 @@ public class UserService {
 			user.setUserPhoto(IOUtils.toByteArray(profileImg.getInputStream()));
 			user.setUserFileName(fileInfo.getUserFileName());
 			user.setUserFileOriName(fileInfo.getUserFileOriName());
-			user.setUserFileSize(fileInfo.getUserFileSize());
+			user.setUserFileSize(profileImg.getSize());
 			user.setFileExtension(fileInfo.getFileExtension());
 
 			//사용자정보 저장
@@ -110,14 +110,30 @@ public class UserService {
 
 	//사용자정보 변경
 	@Transactional
-	public UserEntity updateUser (@Valid final UserEntity user) {
+	public UserEntity updateUser (@Valid final UserEntity user, MultipartFile profileImg) {
 
 		UserEntity userUp = userRepository.findByUserId(user.getUserId())
 		                  .orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
 		try{
-			if(!matchesPassword(user.getUserPassword(),userUp.getUserPassword())){
-				String enPw = encodePassword(user.getUserPassword());
-				user.setUserPassword(enPw);
+			if(user.getUserPassword().isEmpty()){
+				user.setUserPassword(userUp.getUserPassword());
+			}else if(!matchesPassword(user.getUserPassword(),userUp.getUserPassword())){
+					String enPw = encodePassword(user.getUserPassword());
+					user.setUserPassword(enPw);
+			}
+			if(profileImg.isEmpty()){
+				user.setUserPhoto(userUp.getUserPhoto());
+				user.setUserFileName(userUp.getUserFileName());
+				user.setUserFileOriName(userUp.getUserFileOriName());
+				user.setUserFileSize(userUp.getUserFileSize());
+				user.setFileExtension(userUp.getFileExtension());
+			}else{
+			FileInfo fileInfo = storageService.store(user.getUserId(),profileImg);
+			user.setUserPhoto(IOUtils.toByteArray(profileImg.getInputStream()));
+			user.setUserFileName(fileInfo.getUserFileName());
+			user.setUserFileOriName(fileInfo.getUserFileOriName());
+			user.setUserFileSize(profileImg.getSize());
+			user.setFileExtension(fileInfo.getFileExtension());
 			}
 			userRepository.save(user);
 		} catch(Exception e){
@@ -126,7 +142,31 @@ public class UserService {
 		}
 		return null;
 	}
+	//사용자정보 변경
+	@Transactional
+	public UserEntity updateWoPhotoUser (@Valid final UserEntity user) {
 
+		UserEntity userUp = userRepository.findByUserId(user.getUserId())
+		                  .orElseThrow(()-> new ApiException(ApiStatus.NOT_EXIST_INFORMATION));
+		try{
+			if(!user.getUserPassword().isEmpty() && !matchesPassword(user.getUserPassword(),userUp.getUserPassword())){
+					String enPw = encodePassword(user.getUserPassword());
+					userUp.setUserPassword(enPw);
+			}
+			userUp.setUserName(userUp.getUserName());
+			userUp.setUserTeamName(userUp.getUserTeamName());
+			userUp.setUserGender(userUp.getUserGender());
+			userUp.setDriverYn(userUp.getDriverYn());
+			userUp.setSettlementUrl(userUp.getSettlementUrl());
+			userUp.setCarType(userUp.getCarType());
+			userUp.setCarNumber(userUp.getCarNumber());
+			userRepository.save(userUp);
+		} catch(Exception e){
+			log.error("error updating user",user.getUserId(),e);
+			throw new ApiException(ApiStatus.UNEXPECTED_ERROR);
+		}
+		return null;
+	}
 	//사용자정보삭제
 	@Transactional
 	public UserEntity deleteUser (final String userId) {

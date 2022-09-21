@@ -55,7 +55,7 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public FileInfo store(final String userId, final MultipartFile file) {
-
+        
         String oldFileName ="";
         String fileName = "";
         String fileExtension ="";
@@ -76,14 +76,14 @@ public class FileSystemStorageService implements StorageService {
                 //filecheck.delete();
                 throw new Exception("ERROR : File already existed.");
             }
-            // 파일 업로드
-            Path root = Paths.get(uploadPath);
-            if (!Files.exists(root)) {
-                initDir();
-            }
-            try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, root.resolve(fileName),StandardCopyOption.REPLACE_EXISTING);
-            }
+            // // 파일 업로드
+            // Path root = Paths.get(uploadPath);
+            // if (!Files.exists(root)) {
+            //     initDir();
+            // }
+            // try (InputStream inputStream = file.getInputStream()) {
+            //     Files.copy(inputStream, root.resolve(fileName),StandardCopyOption.REPLACE_EXISTING);
+            // }
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
