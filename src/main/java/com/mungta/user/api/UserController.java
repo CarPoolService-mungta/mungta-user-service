@@ -107,9 +107,9 @@ public class UserController {
     @ApiResponse(responseCode = "404", description = "Not found"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
   @DeleteMapping(value="/{userId}")
-  public  ResponseEntity<?> deleteUser(@RequestBody final UserDto userDto){
-      UserEntity user = UserDto.toEntity(userDto);
-      userService.deleteUser(user);
+  public  ResponseEntity<?> deleteUser(@PathVariable String userId){
+
+      userService.deleteUser(userId);
       return ResponseEntity.ok().build(); //ResponseEntity.noContent().build();
   }
 

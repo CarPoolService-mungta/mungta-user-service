@@ -129,12 +129,14 @@ public class UserService {
 
 	//사용자정보삭제
 	@Transactional
-	public UserEntity deleteUser (final UserEntity user) {
+	public UserEntity deleteUser (final String userId) {
 
-		if(!userRepository.existsByUserId(user.getUserId())) {
-			log.warn("No UserId", user.getUserId());
+		if(!userRepository.existsByUserId(userId)) {
+			log.warn("No UserId", userId);
 			throw new ApiException(ApiStatus.NOT_EXIST_INFORMATION);
 		}
+		UserEntity user = new UserEntity();
+		user.setUserId(userId);
 		try{
 			userRepository.delete(user);
 		} catch(Exception e){
