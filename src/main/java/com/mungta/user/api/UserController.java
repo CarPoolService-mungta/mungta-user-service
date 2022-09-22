@@ -133,8 +133,8 @@ public class UserController {
     @ApiResponse(responseCode = "404", description = "Not found"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PutMapping(value="/penalty/{userId}")
-  public  ResponseEntity<?> givePenaltyUser(@PathVariable String userId){
-    userService.givePenaltyUser(userId);
+  public  ResponseEntity<?> givePenaltyUser(@PathVariable String userId, @RequestParam String partyId){
+    userService.givePenaltyUser(userId,partyId);
     return ResponseEntity.noContent().build();
   }
 
