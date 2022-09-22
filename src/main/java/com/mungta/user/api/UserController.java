@@ -64,7 +64,7 @@ public class UserController {
     return ResponseEntity.ok(params);
   }
 
-  @Operation(summary = "사용자 등록", description = "사용자를 등록한다.(Sign up)")
+  @Operation(summary = "사용자 등록 (w/o pic)", description = "사용자를 등록한다.(Sign up)")
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been created"),
     @ApiResponse(responseCode = "500", description = "Internal server error")})
@@ -89,7 +89,7 @@ public class UserController {
     return ResponseEntity.ok(fileName);
   }
 
-  @Operation(summary = "사용자 수정(사진)", description = "사용자 정보를 수정한다.")
+  @Operation(summary = "사용자 수정", description = "사용자 정보를 수정한다.")
   @ApiResponses({
     @ApiResponse(responseCode = "204", description = "User information has been updated"),
     @ApiResponse(responseCode = "404", description = "Not found"),
@@ -101,11 +101,8 @@ public class UserController {
     userService.updateUser(user,userRequestDto.getProfileImg());
     return ResponseEntity.ok().build();
   }
-  @Operation(summary = "사용자 수정", description = "사용자 정보를 수정한다.")
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "User information has been updated"),
-    @ApiResponse(responseCode = "404", description = "Not found"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
+
+  @Operation(summary = "사용자 기본정보 수정")
   @PutMapping(value="info/{userId}")
   public  ResponseEntity<?> updateWoPhotoUser(@RequestBody final UserDto userDto){
     log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userDto));
@@ -150,7 +147,7 @@ public class UserController {
                                                      userLoginDto.getUserPassword());
     return ResponseEntity.ok().body(issuedToken);
   }
-  //로그인
+
   @Operation(summary = "리프레시", description = "토큰 리프레시")
   @ApiResponses(value = {
           @ApiResponse(responseCode  = "200", description  = "login OK"),
