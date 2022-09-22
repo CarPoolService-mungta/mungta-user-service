@@ -24,22 +24,13 @@ public class KafkaProducer {
     private final StreamBridge streamBridge;
 
     @Async
-    public void send(String payload, String prcsResult){
+    public void send(AbstractEvent payload){
       log.debug("Kafka Producer send Message = " + payload);
 
-      if(prcsResult.equals("OK")||prcsResult.equals("FAIL")){
-        String str = payload.substring( 0,payload.lastIndexOf("}"));
-        payload  = str + ", prcsYn='" + prcsResult + '\'' +
-                         '}';
-      }
-
-
-     // paneltysucceed, 실패하면 paneltyfailed
-
-        streamBridge.send("producer-out-0", MessageBuilder
-                .withPayload(payload)
-                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .build());
+      streamBridge.send("producer-out-0", MessageBuilder
+              .withPayload(payload)
+              .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+              .build());
     }
 
 

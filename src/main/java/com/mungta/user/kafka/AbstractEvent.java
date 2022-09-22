@@ -1,30 +1,19 @@
 package com.mungta.user.kafka;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class AbstractEvent {
 
-  @JsonProperty("eventType")
-  String eventType;
+    protected final String eventType;
+    protected final String timestamp;
 
-  @JsonProperty("timestamp")
-  String timestamp;
+    public AbstractEvent() {
+        this.eventType = this.getClass().getSimpleName();
+        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 
-  @JsonProperty("accusedMemberId")
-  String userId;
-
-//   @JsonProperty("accusedMemberId")
-//   String userId;
 }
