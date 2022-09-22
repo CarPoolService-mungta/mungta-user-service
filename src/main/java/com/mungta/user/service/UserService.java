@@ -163,13 +163,13 @@ public class UserService {
 					String enPw = encodePassword(user.getUserPassword());
 					userUp.setUserPassword(enPw);
 			}
-			userUp.setUserName(userUp.getUserName());
-			userUp.setUserTeamName(userUp.getUserTeamName());
-			userUp.setUserGender(userUp.getUserGender());
-			userUp.setDriverYn(userUp.getDriverYn());
-			userUp.setSettlementUrl(userUp.getSettlementUrl());
-			userUp.setCarType(userUp.getCarType());
-			userUp.setCarNumber(userUp.getCarNumber());
+			userUp.setUserName(user.getUserName());
+			userUp.setUserTeamName(user.getUserTeamName());
+			userUp.setUserGender(user.getUserGender());
+			userUp.setDriverYn(user.getDriverYn());
+			userUp.setSettlementUrl(user.getSettlementUrl());
+			userUp.setCarType(user.getCarType());
+			userUp.setCarNumber(user.getCarNumber());
 			userRepository.save(userUp);
 		} catch(Exception e){
 			log.error("error updating user",user.getUserId(),e);

@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    @Value("${spring.servlet.multipart.location}")
+    // @Value("${spring.servlet.multipart.location}")
     private String uploadPath;
 
     @Override
@@ -55,7 +55,7 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public FileInfo store(final String userId, final MultipartFile file) {
-        
+
         String oldFileName ="";
         String fileName = "";
         String fileExtension ="";
@@ -71,11 +71,11 @@ public class FileSystemStorageService implements StorageService {
                        userId+"."+
                        fileExtension;
             // 파일명 체크 (동일파일시 error)
-            File filecheck = new File(uploadPath + "\\" +fileName);
-            if(filecheck.exists()) {
-                //filecheck.delete();
-                throw new Exception("ERROR : File already existed.");
-            }
+            // File filecheck = new File(uploadPath + "\\" +fileName);
+            // if(filecheck.exists()) {
+            //     //filecheck.delete();
+            //     throw new Exception("ERROR : File already existed.");
+            // }
             // // 파일 업로드
             // Path root = Paths.get(uploadPath);
             // if (!Files.exists(root)) {
