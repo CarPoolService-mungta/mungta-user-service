@@ -4,8 +4,6 @@ import com.mungta.user.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -20,12 +18,7 @@ public class KafkaConsumer {
 
   @Autowired
   private UserService userService;
-
-  @KafkaListener(topics = "mungta", groupId ="com.mungta")
-  public void consume(String message) throws IOException {
-    log.debug("Kafka Consumed message = " + message);
-  }
-
+/*
   @KafkaListener(topics = "accusation-topic", groupId ="com.example")
   public void AccusationCompleted(@Payload String payload) throws JsonMappingException, JsonProcessingException{
     log.debug("Kafka Accusation Consumed message = " + payload);
@@ -36,4 +29,5 @@ public class KafkaConsumer {
       userService.givePenaltyUser(abstractEvent.getAccusedMemberId(),abstractEvent.getPartyId());
     }
   }
+  */
 }

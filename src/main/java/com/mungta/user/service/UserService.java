@@ -8,8 +8,6 @@ import com.mungta.user.model.Status;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.UserRepository;
 import com.mungta.user.model.UserType;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mungta.user.api.ApiException;
 import com.mungta.user.api.ApiStatus;
 
@@ -22,7 +20,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -51,10 +48,6 @@ public class UserService {
 
 	private final KafkaProducer producer;
 
-	// @Autowired
-	// UserService(KafkaProducer producer) {
-	// 		this.producer = producer;
-	// }
 	//사용자정보 조회
 	@Transactional
 	public UserResponseDto getUser (final String userId) {
