@@ -6,10 +6,8 @@ import com.mungta.user.dto.AuthenticationDto;
 import com.mungta.user.dto.Token;
 import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 import javax.validation.Valid;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -60,7 +58,7 @@ public class UserController {
     UserResponseDto userResponseDto = userService.getUserPhoto(userId);
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("fileExtension", userResponseDto.getFileExtension());
-    params.put("userPhoto"    , (new String(Base64.encodeBase64(userResponseDto.getUserPhoto()))));
+    params.put("userPhoto"    , Objects.isNull(userResponseDto.getUserPhoto())?null:(new String(Base64.encodeBase64(userResponseDto.getUserPhoto()))));
     return ResponseEntity.ok(params);
   }
 
