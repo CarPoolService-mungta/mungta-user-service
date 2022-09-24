@@ -42,9 +42,6 @@ public class UserController {
 
   @Operation(summary = "사용자 상세 정보 조회", description  = "사용자ID를 통해 사용자 정보를 조회한다.")
   @Parameter(name = "userId", description  = "사용자ID",in = ParameterIn.PATH)
-  @ApiResponses({
-    @ApiResponse(responseCode = "200", description = "User information has been searched",content = @Content(schema = @Schema(implementation = UserDto.class))),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
   @GetMapping("/{userId}")
   @ResponseBody
   public ResponseEntity<?>getUser(@PathVariable String userId) {
@@ -63,9 +60,6 @@ public class UserController {
   }
 
   @Operation(summary = "사용자 등록 (w/o pic)", description = "사용자를 등록한다.(Sign up)")
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "User information has been created"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PostMapping("/auth/signup/test")
   public  ResponseEntity<?> registerUser(@RequestBody final UserDto userDto){
 
@@ -75,9 +69,6 @@ public class UserController {
   }
 
   @Operation(summary = "사용자 등록한다.(with pic)", description = "사용자를 등록한다.(Sign up)")
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "User information has been created"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PostMapping("/auth/signup")
   public  ResponseEntity<String> registerUserWithPhoto(@ModelAttribute UserRequestDto userRequestDto){
     log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userRequestDto));
@@ -88,10 +79,6 @@ public class UserController {
   }
 
   @Operation(summary = "사용자 수정", description = "사용자 정보를 수정한다.")
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "User information has been updated"),
-    @ApiResponse(responseCode = "404", description = "Not found"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PutMapping(value="/{userId}")
   public  ResponseEntity<?> updateUser(@ModelAttribute final UserRequestDto userRequestDto){
     log.debug("################ UserController INPUT : "+ToStringBuilder.reflectionToString(userRequestDto));
@@ -110,10 +97,6 @@ public class UserController {
   }
 
   @Operation(summary = "사용자 삭제", description = "사용자 정보를 삭제한다.")
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "User Deleted OK"),
-    @ApiResponse(responseCode = "404", description = "Not found"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
   @DeleteMapping(value="/{userId}")
   public  ResponseEntity<?> deleteUser(@PathVariable String userId){
 
@@ -123,21 +106,13 @@ public class UserController {
 
   @Operation(summary = "사용자 패널티 부여", description = "사용자 패널티를 부여한다.")
   @Parameter(name = "userId", description  = "사용자ID",in = ParameterIn.PATH)
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "Penalty grant is complete."),
-    @ApiResponse(responseCode = "404", description = "Not found"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PutMapping(value="/penalty/{userId}")
-  public  ResponseEntity<?> givePenaltyUser(@PathVariable String userId, @RequestParam String partyId){
-    userService.givePenaltyUser(userId,partyId);
+  public  ResponseEntity<?> givePenaltyUser(@PathVariable String userId, @RequestParam String accusationId){
+    userService.givePenaltyUser(userId,accusationId);
     return ResponseEntity.noContent().build();
   }
 
   @Operation(summary = "로그인", description = "로그인 한다.")
-  @ApiResponses(value = {
-    @ApiResponse(responseCode  = "200", description  = "login OK"),
-    @ApiResponse(responseCode  = "400", description  = "Bad Request"),
-    @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @PostMapping("/auth/signin")
   public ResponseEntity<?> authenticate(@RequestBody UserLoginDto userLoginDto) {
     log.debug("################ UserController authenticate : "+ToStringBuilder.reflectionToString(userLoginDto));
@@ -157,10 +132,6 @@ public class UserController {
   }
 
   @Operation(summary = "메일 인증 발송", description = "메일 인증을 진행한다.")
-  @ApiResponses(value = {
-    @ApiResponse(responseCode  = "200", description  = "send email OK"),
-    @ApiResponse(responseCode  = "404", description  = "Not found"),
-    @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @PostMapping("/auth/mail")
   public ResponseEntity<?> sendEmailAuthNumber(@RequestBody @Valid AuthenticationDto authDto) {
     authenticationService.sendAuthNumber(authDto.getUserMailAddress());
@@ -168,10 +139,6 @@ public class UserController {
   }
 
   @Operation(summary = "메일 인증 확인", description = "메일 인증번호를 확인한다.")
-  @ApiResponses(value = {
-    @ApiResponse(responseCode  = "200", description  = "verification number check OK"),
-    @ApiResponse(responseCode  = "404", description  = "Not found"),
-    @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @GetMapping(value="/auth/confirm")
   public ResponseEntity<?> checkAuthNumber (AuthenticationDto authDto) {
 
@@ -180,10 +147,6 @@ public class UserController {
   }
 
   @Operation(summary = "사용자를 관리자로 변경", description = "사용자유형을 관리자로 수정한다.")
-  @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "Becoming an administrator is complete."),
-    @ApiResponse(responseCode = "404", description = "Not found"),
-    @ApiResponse(responseCode = "500", description = "Internal server error")})
   @PutMapping(value="/admin/{userId}")
   public ResponseEntity<?>updateAdminRole(@PathVariable String userId){
     userService.chageUserType(userId);
@@ -191,10 +154,6 @@ public class UserController {
   }
 
   @Operation(summary = "사용자 정보 전체 조회", description  = "전체 사용자 정보를 조회한다.")
-  @ApiResponses(value = {
-    @ApiResponse(responseCode  = "200", description  = "User information has been searched"),
-    @ApiResponse(responseCode  = "404", description  = "Not found"),
-    @ApiResponse(responseCode  = "500", description  = "Internal server error")})
   @GetMapping("/admin")
   public ResponseEntity<?>getUserListAdmin(UserDto userDto) {
     List<UserDto> response =  userService.findAll();

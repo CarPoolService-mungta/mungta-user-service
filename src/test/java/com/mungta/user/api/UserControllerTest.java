@@ -3,7 +3,10 @@ package com.mungta.user.api;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mungta.user.dto.Token;
 import com.mungta.user.dto.UserDto;
+import com.mungta.user.dto.UserLoginDto;
+import com.mungta.user.dto.UserRequestDto;
 import com.mungta.user.dto.UserResponseDto;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.service.AuthenticationService;
@@ -53,6 +56,8 @@ public class UserControllerTest {
     private PasswordEncoder passwordEncoder;
 
     private UserEntity user;
+
+    private Token token;
 
     private String userPasswordEncoding;
 
@@ -117,7 +122,6 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.penaltyCount").value(PENALTY_COUNT))
                 .andExpect(jsonPath("$.status").value(USER_STATUS.toString()))
                 .andExpect(jsonPath("$.userType").value(USER_TYPE.toString()));
-
     }
 
 //     @DisplayName("사용자 사진 조회 API")
@@ -132,7 +136,7 @@ public class UserControllerTest {
 //         );
 
 //         resultActions.andExpect(status().isOk())
-//                 .andExpect(jsonPath("$.fileExtension").value(FILE_EXTENSION))
+//                 // .andExpect(jsonPath("$.fileExtension").value(FILE_EXTENSION))
 //                 .andExpect(jsonPath("$.userPhoto").value(USER_PHOTO));
 //     }
 
@@ -155,10 +159,12 @@ public class UserControllerTest {
         resultActions.andExpect(status().isOk());
     }
 
+
 //     @DisplayName("사용자 등록한다.(with pic) API")
 //     @Test
 //     void registerUserWithPhoto() throws Exception{
-//         doReturn(USER_FILE_NAME)
+
+//         doReturn("ok")
 //                 .when(userService).createUserWithPhoto(user, any());
 
 
@@ -167,10 +173,94 @@ public class UserControllerTest {
 //                         .accept(MediaType.APPLICATION_JSON)
 //                         .contentType(MediaType.APPLICATION_JSON)
 //                         .content(new ObjectMapper().writeValueAsString(
-//                                 new UserDto(user)
+//                                 new UserRequestDto(user)
 //                         ))
 //         );
 
 //         resultActions.andExpect(status().isOk());
 //     }
+
+@DisplayName("사용자 수정")
+@Test
+void updateWoPhotoUser() throws Exception{
+    doReturn(user)
+            .when(userService).updateWoPhotoUser(user);
+
+    ResultActions resultActions = mockMvc.perform(
+                           put("/api/user/"+USER_ID)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(
+                           new UserDto(user)
+                    ))
+    );
+
+    resultActions.andExpect(status().isOk());
+}
+
+@DisplayName("사용자 탈퇴")
+@Test
+void deleteUser() throws Exception{
+    doReturn(null)
+            .when(userService).deleteUser(USER_ID);
+
+    ResultActions resultActions = mockMvc.perform(
+                                  delete("/api/user/"+USER_ID)
+                                 .accept(MediaType.APPLICATION_JSON)
+                                .content(new ObjectMapper().writeValueAsString(
+                                new UserDto(user)
+                    ))
+    );
+    resultActions.andExpect(status().isOk());
+}
+
+
+
+@DisplayName("사용자 패널티 부여")
+@Test
+void givePenaltyUser() throws Exception{
+    doReturn(user)
+            .when(userService).givePenaltyUser(USER_ID,"TEST");
+
+    ResultActions resultActions = mockMvc.perform(
+                           put("/api/user/penalty/"+USER_ID)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .param("accusationId", "TEST")
+
+    );
+
+    resultActions.andExpect(status().isNoContent());
+}
+
+
+
+@DisplayName("로그인 API")
+@Test
+void authenticate() throws Exception{
+    doReturn(token)
+            .when(userService).getByCredentials(USER_ID,USER_PASSWORD);
+
+
+    ResultActions resultActions = mockMvc.perform(
+            post("/api/user/auth/signin")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(new ObjectMapper().writeValueAsString(new UserLoginDto(user)))
+    );
+
+    resultActions.andExpect(status().isOk());
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
