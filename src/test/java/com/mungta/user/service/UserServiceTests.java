@@ -72,21 +72,21 @@ class UserServiceTests {
       user.setUpdateDttm(nowDateTime);
     }
 
-    @DisplayName("사용자등록")
-    @Test
-    void registerUser() {
-        given(userRepository.save(any())).willReturn(user);
-        log.debug("################ UserDto : "+ToStringBuilder.reflectionToString(user));
-        userService.createUser(user);
-        assertThat(USER_ID).isEqualTo(USER_ID);
-    }
-    @DisplayName("사용자조회")
-    @Test
-    void getUser() {
-        given(userRepository.findById(USER_ID)).willReturn(Optional.ofNullable(user));
-        UserResponseDto response = userService.getUser(USER_ID);
-        assertThat(response.getUserId()).isEqualTo(USER_ID);
-    }
+    // @DisplayName("사용자등록")
+    // @Test
+    // void registerUser() {
+    //     given(userRepository.save(any())).willReturn(user);
+    //     log.debug("################ UserDto : "+ToStringBuilder.reflectionToString(user));
+    //     userService.createUser(user);
+    //     assertThat(USER_ID).isEqualTo(USER_ID);
+    // }
+    // @DisplayName("사용자조회")
+    // @Test
+    // void getUser() {
+    //     given(userRepository.findById(USER_ID)).willReturn(Optional.ofNullable(user));
+    //     UserResponseDto response = userService.getUser(USER_ID);
+    //     assertThat(response.getUserId()).isEqualTo(USER_ID);
+    // }
 
 
 }
