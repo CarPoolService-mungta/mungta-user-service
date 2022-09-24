@@ -21,6 +21,6 @@ public class AbstractEvent {
   @JsonProperty("accusedMemberId")
   String accusedMemberId;
 
-  @JsonProperty("partyId")
-  String partyId;
+  @JsonProperty("accusationId")
+  String accusationId;
 }

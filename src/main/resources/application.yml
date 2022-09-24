@@ -50,10 +50,10 @@ spring:
                   deserializer: org.apache.kafka.common.serialization.StringDeserializer
       bindings:
         producer-out-0:
-          destination: mungta
+          destination: user-topic
           contentType: application/json
         consumer-in-0:
-          destination: mungta
+          destination: accusation-topic
   mail:
     host: smtp.gmail.com
     port: 587
