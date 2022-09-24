@@ -255,21 +255,21 @@ void authenticate() throws Exception{
     resultActions.andExpect(status().isOk());
 }
 
-// @DisplayName("리프레시")
-// @Test
-// void tokenRefresh() throws Exception{
-//     doReturn(resultStr)
-//             .when(userService).tokenRefresh(USER_ID);
+@DisplayName("리프레시")
+@Test
+void tokenRefresh() throws Exception{
+    doReturn("ok")
+            .when(userService).tokenRefresh(USER_ID);
 
-//     ResultActions resultActions = mockMvc.perform(
-//                            put("/api/user/penalty/"+USER_ID)
-//                         .accept(MediaType.APPLICATION_JSON)
-//                         .header("userId", USER_ID)
+    ResultActions resultActions = mockMvc.perform(
+                           put("/api/user/penalty/"+USER_ID)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("userId", USER_ID)
 
-//     );
+    );
 
-//     resultActions.andExpect(status().isOk());
-// }
+    resultActions.andExpect(status().isOk());
+}
 
 
 
@@ -289,24 +289,24 @@ void sendEmailAuthNumber() throws Exception{
     resultActions.andExpect(status().isOk());
 }
 
-// @DisplayName("메일 인증 확인")
-// @Test
-// void checkAuthNumber() throws Exception{
-//     doReturn(new AuthenticationDto(auth))
-//             .when(authenticationService).checkAuthNumber(auth);
+@DisplayName("메일 인증 확인")
+@Test
+void checkAuthNumber() throws Exception{
+    doReturn(new AuthenticationDto(auth))
+            .when(authenticationService).checkAuthNumber(auth);
 
-//     ResultActions resultActions = mockMvc.perform(
-//             get("/api/confirm")
-//                     .accept(MediaType.APPLICATION_JSON)
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
-//     );
+    ResultActions resultActions = mockMvc.perform(
+            get("/api/confirm")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
+    );
 
-//     resultActions.andExpect(status().isOk())
-//             .andExpect(jsonPath("$.userMailAddress").value(AUTH_USER_MAIL_ADDRESS));
+    resultActions.andExpect(status().isOk())
+            .andExpect(jsonPath("$.userMailAddress").value(AUTH_USER_MAIL_ADDRESS));
 
 
-// }
+}
 
 
 
