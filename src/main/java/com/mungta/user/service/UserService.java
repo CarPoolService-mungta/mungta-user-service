@@ -209,6 +209,7 @@ public class UserService {
 		} catch(Exception e){
 			log.error("error accusing user",user.getUserId(),e);
 			producer.send( new PeneltyFailed(userId,partyId));
+			return null;
 		}
 		producer.send( new PeneltySucceed(userId,partyId));
 		return null;

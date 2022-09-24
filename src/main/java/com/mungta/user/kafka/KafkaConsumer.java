@@ -22,11 +22,15 @@ public class KafkaConsumer {
   @KafkaListener(topics = "accusation-topic", groupId ="com.example")
   public void AccusationCompleted(@Payload String payload) throws JsonMappingException, JsonProcessingException{
     log.debug("Kafka Accusation Consumed message = " + payload);
-    ObjectMapper objectMapper = new ObjectMapper();
+    var objectMapper = new ObjectMapper();
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    AbstractEvent abstractEvent = objectMapper.readValue(payload, AbstractEvent.class);
+    var abstractEvent = objectMapper.readValue(payload, AbstractEvent.class);
     if(abstractEvent.getEventType().equals(new Object(){}.getClass().getEnclosingMethod().getName())){
       userService.givePenaltyUser(abstractEvent.getAccusedMemberId(),abstractEvent.getPartyId());
     }
   }
 }
+
+
+
+
