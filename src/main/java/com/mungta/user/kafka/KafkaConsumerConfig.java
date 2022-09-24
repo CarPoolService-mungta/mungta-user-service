@@ -34,7 +34,7 @@ public class KafkaConsumerConfig {
     @Bean
     public Map<String, Object> consumerConfigs() {
 
-      log.debug("Kafka bootstrapServers = " + bootstrapServers);
+      log.debug("Kafka bootstrap  Servers = " + bootstrapServers);
 
         Map<String, Object> props = new HashMap<>();
         // list of host:port pairs used for establishing the initial connections to the Kafka cluster
