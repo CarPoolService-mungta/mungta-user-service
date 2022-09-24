@@ -43,7 +43,7 @@ spring:
               configuration:
                 key:
                   serializer: org.apache.kafka.common.serialization.StringSerializer
-          consumer-in-0:
+          producer-in-0:
             consumer:
               configuration:
                 key:
@@ -52,8 +52,8 @@ spring:
         producer-out-0:
           destination: mungta
           contentType: application/json
-        consumer-in-0:
-          destination: mungta
+        producer-in-0:
+          destination: accusation-topic
   mail:
     host: smtp.gmail.com
     port: 587
