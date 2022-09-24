@@ -8,7 +8,6 @@ import com.mungta.user.dto.FileInfo;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    // @Value("${spring.servlet.multipart.location}")
     private String uploadPath;
 
 

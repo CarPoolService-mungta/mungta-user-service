@@ -21,7 +21,6 @@ public class UserDto{
   private String userPassword;
   private String userMailAddress;
   private String userName;
-  //photo - think
   private String userFileName;
   private String userFileOriName;
   private String userFileUrl;
@@ -45,7 +44,6 @@ public class UserDto{
     this.userName        = user.getUserName();
     this.userFileName    = user.getUserFileName ();
     this.userFileOriName = user.getUserFileOriName();
-    //this.userFileUrl   = user.getUserFileUrl();
     this.userFileSize    = user.getUserFileSize();
     this.userTeamName    = user.getUserTeamName();
     this.userGender      = user.getUserGender();
@@ -66,7 +64,6 @@ public class UserDto{
                .userName(userDto.getUserName())
                .userFileName(userDto.getUserFileName())
                .userFileOriName(userDto.getUserFileOriName())
-               //.userFileUrl(userDto.getUserFileUrl())
                .userFileSize(userDto.getUserFileSize())
                .userTeamName(userDto.getUserTeamName())
                .userGender(userDto.getUserGender())

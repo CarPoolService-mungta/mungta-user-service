@@ -10,25 +10,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-//import org.springframework.web.filter.CorsFilter;
-//import com.mungta.user.auth.JwtAuthenticationFilter;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	//@Autowired
-	//private JwtAuthenticationFilter jwtAuthenticationFilter;
-
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable()
-				.formLogin().disable()
+		http.formLogin().disable()
 				.httpBasic().disable()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.antMatcher("/").authorizeRequests().anyRequest().permitAll();
-
-				//http.addFilterAfter(jwtAuthenticationFilter,CorsFilter.class);
 	}
 	@Bean
 	AuthenticationManager authenticationManager(AuthenticationManagerBuilder auth) {

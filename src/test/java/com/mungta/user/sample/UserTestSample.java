@@ -1,7 +1,5 @@
 package com.mungta.user.sample;
 
-import org.springframework.mock.web.MockMultipartFile;
-
 import com.mungta.user.dto.UserDto;
 import com.mungta.user.model.IsYN;
 import com.mungta.user.model.Status;

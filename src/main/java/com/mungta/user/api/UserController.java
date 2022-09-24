@@ -8,7 +8,6 @@ import com.mungta.user.service.UserService;
 import com.mungta.user.service.AuthenticationService;
 
 import java.util.*;
-
 import javax.validation.Valid;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -23,9 +22,6 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-
 
 @Slf4j
 @Tag(name="사용자관리API", description = "사용자관리서비스")
@@ -44,7 +40,7 @@ public class UserController {
   @Parameter(name = "userId", description  = "사용자ID",in = ParameterIn.PATH)
   @GetMapping("/{userId}")
   @ResponseBody
-  public ResponseEntity<?>getUser(@PathVariable String userId) {
+  public ResponseEntity<UserResponseDto>getUser(@PathVariable String userId) {
     UserResponseDto response = userService.getUser(userId);
     return  ResponseEntity.ok(response);
   }
@@ -101,7 +97,7 @@ public class UserController {
   public  ResponseEntity<?> deleteUser(@PathVariable String userId){
 
       userService.deleteUser(userId);
-      return ResponseEntity.ok().build(); //ResponseEntity.noContent().build();
+      return ResponseEntity.ok().build();
   }
 
   @Operation(summary = "사용자 패널티 부여", description = "사용자 패널티를 부여한다.")
@@ -140,7 +136,7 @@ public class UserController {
 
   @Operation(summary = "메일 인증 확인", description = "메일 인증번호를 확인한다.")
   @GetMapping(value="/auth/confirm")
-  public ResponseEntity<?> checkAuthNumber (AuthenticationDto authDto) {
+  public ResponseEntity<AuthenticationDto> checkAuthNumber (AuthenticationDto authDto) {
 
     AuthenticationDto response = authenticationService.checkAuthNumber(AuthenticationDto.toEntity(authDto));
     return  ResponseEntity.ok(response);
@@ -155,7 +151,7 @@ public class UserController {
 
   @Operation(summary = "사용자 정보 전체 조회", description  = "전체 사용자 정보를 조회한다.")
   @GetMapping("/admin")
-  public ResponseEntity<?>getUserListAdmin(UserDto userDto) {
+  public ResponseEntity<List<UserDto>>getUserListAdmin(UserDto userDto) {
     List<UserDto> response =  userService.findAll();
     return ResponseEntity.ok(response);
   }

@@ -3,14 +3,18 @@ package com.mungta.user.api;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.mungta.user.dto.Token;
 import com.mungta.user.dto.UserDto;
 import com.mungta.user.dto.UserLoginDto;
 import com.mungta.user.dto.UserRequestDto;
 import com.mungta.user.dto.UserResponseDto;
+import com.mungta.user.dto.AuthenticationDto;
+import com.mungta.user.model.AuthenticationEntity;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.service.AuthenticationService;
 import com.mungta.user.service.UserService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +29,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -56,6 +59,8 @@ public class UserControllerTest {
     private PasswordEncoder passwordEncoder;
 
     private UserEntity user;
+
+    private AuthenticationEntity auth;
 
     private Token token;
 
@@ -152,7 +157,7 @@ public class UserControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(
-                               new UserDto(user)
+                                USER_REQUEST
                         ))
         );
 
@@ -190,7 +195,7 @@ void updateWoPhotoUser() throws Exception{
                            put("/api/user/"+USER_ID)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(
-                           new UserDto(user)
+                                USER_REQUEST
                     ))
     );
 
@@ -207,7 +212,7 @@ void deleteUser() throws Exception{
                                   delete("/api/user/"+USER_ID)
                                  .accept(MediaType.APPLICATION_JSON)
                                 .content(new ObjectMapper().writeValueAsString(
-                                new UserDto(user)
+                                        USER_REQUEST
                     ))
     );
     resultActions.andExpect(status().isOk());
@@ -250,14 +255,58 @@ void authenticate() throws Exception{
     resultActions.andExpect(status().isOk());
 }
 
+// @DisplayName("리프레시")
+// @Test
+// void tokenRefresh() throws Exception{
+//     doReturn(resultStr)
+//             .when(userService).tokenRefresh(USER_ID);
+
+//     ResultActions resultActions = mockMvc.perform(
+//                            put("/api/user/penalty/"+USER_ID)
+//                         .accept(MediaType.APPLICATION_JSON)
+//                         .header("userId", USER_ID)
+
+//     );
+
+//     resultActions.andExpect(status().isOk());
+// }
 
 
 
+@DisplayName("메일인증발송 API")
+@Test
+void sendEmailAuthNumber() throws Exception{
+        doNothing()
+            .when(authenticationService).sendAuthNumber(AUTH_USER_MAIL_ADDRESS);
+
+    ResultActions resultActions = mockMvc.perform(
+            post("/api/user/auth/mail")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
+    );
+
+    resultActions.andExpect(status().isOk());
+}
+
+// @DisplayName("메일 인증 확인")
+// @Test
+// void checkAuthNumber() throws Exception{
+//     doReturn(new AuthenticationDto(auth))
+//             .when(authenticationService).checkAuthNumber(auth);
+
+//     ResultActions resultActions = mockMvc.perform(
+//             get("/api/confirm")
+//                     .accept(MediaType.APPLICATION_JSON)
+//                     .contentType(MediaType.APPLICATION_JSON)
+//                     .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
+//     );
+
+//     resultActions.andExpect(status().isOk())
+//             .andExpect(jsonPath("$.userMailAddress").value(AUTH_USER_MAIL_ADDRESS));
 
 
-
-
-
+// }
 
 
 

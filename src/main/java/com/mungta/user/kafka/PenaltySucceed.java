@@ -8,9 +8,6 @@ import lombok.Getter;
 @Getter
 public class PenaltySucceed extends AbstractEvent {
 
-  // private final String accusedMemberId;
-  // private final String partyId;
-
   public PenaltySucceed(String accusedMemberId, String accusationId) {
     super();
     this.eventType = this.getClass().getSimpleName();

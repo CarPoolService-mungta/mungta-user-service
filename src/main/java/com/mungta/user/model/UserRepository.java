@@ -15,16 +15,4 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
    Boolean existsByUserId(String userId);
 	Boolean existsByUserMailAddress(String userMailAddress);
 
-   // @Query("select m from UserEntity m where m.userId = :userId")
-   // UserEntity findUserPhotoByUserId(@Param("userId") String userId);
-
-   // @Query("select m.userName from UserEntity m")
-   // List<String> findUsernameList();
-
-   // @Query("select new me.kyeongho.dto.MemberDto(m.id, m.username, t.name) from Member m join m.team t")
-   // List<UserDto> findMemberDto();
-
-   // @Query(value = "SELECT * FROM UserEntity WHERE USERNAME = ?0",
-   //       nativeQuery = true)
-   // UserEntity findByUsername(String userName);
 }
