@@ -161,7 +161,7 @@
 									</limits>
 									<excludes>
 										<exclude>com/mungta/user/config/*</exclude>
-										<exclude>com/mungta/user/dto/*</exclude>
+										<exclude>com/mungta/user/service/*</exclude>
 										<exclude>com/mungta/user/kafka/*</exclude>
 									</excludes>
 								</rule>
