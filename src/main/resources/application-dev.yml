@@ -53,7 +53,7 @@ spring:
           destination: mungta
           contentType: application/json
         consumer-in-0:
-          destination: mungta
+          destination: accusation-topic
   mail:
     host: smtp.gmail.com
     port: 587
