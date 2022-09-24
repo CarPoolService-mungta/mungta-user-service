@@ -32,11 +32,14 @@ spring:
 #      hibernate:
 #        show_sql: true
 #        format_sql: true
+  kafka:
+    bootstrap-servers:
+      - kafka.kafka.svc.cluster.local:9092
   cloud:
     stream:
       kafka:
         binder:
-          brokers: kafka
+          brokers: kafka.kafka.svc.cluster.local:9092
         bindings:
           producer-out-0:
             producer:
