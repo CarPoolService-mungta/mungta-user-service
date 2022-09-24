@@ -204,7 +204,7 @@ public class UserService {
 			}else{
 				user.setStatus(Status.BANNED);
 			}
-			// 패널티 정보 업데이트
+			// 패널티 정보  업데이트
 			userRepository.save(user);
 		} catch(Exception e){
 			log.error("error accusing user",user.getUserId(),e);
