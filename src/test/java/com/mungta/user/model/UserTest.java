@@ -20,11 +20,13 @@ public class UserTest {
     .userFileSize(USER_FILE_SIZE)
     .userTeamName(USER_TEAM_NAME)
     .userGender(USER_GENDER)
-    // .driverYn(isYes)
+    .driverYn(IsYN.Y)
     .settlementUrl(SETTLEMENT_URL)
     .carType(CAR_TYPE)
     .carNumber(CAR_NUMBER)
     .penaltyCount(0L)
+    .status(Status.ACTIVATED)
+    .userType(UserType.CUSTOMER)
     .build();
    userEntity.setUpdateDttm(LocalDateTime.now());
   }

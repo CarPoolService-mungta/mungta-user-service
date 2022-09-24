@@ -159,13 +159,12 @@
 											<minimum>0.80</minimum>
 										</limit>
 									</limits>
-									<!-- <excludes>
-										<exclude>com/mungta/accusation/*Application.class</exclude>
-										<exclude>com/mungta/accusation/config/*</exclude>
-										<exclude>com/mungta/accusation/handler/*</exclude>
-										<exclude>com/mungta/accusation/client/*</exclude>
-										<exclude>com/mungta/accusation/messagequeue/*</exclude>
-									</excludes> -->
+									<excludes>
+										<!-- <exclude>com/mungta/user/*Application.class</exclude> -->
+										<exclude>com/mungta/user/config/*</exclude>
+										<exclude>com/mungta/user/dto/*</exclude>
+										<exclude>com/mungta/user/kafka/*</exclude>
+									</excludes>
 								</rule>
 							</rules>
 						</configuration>

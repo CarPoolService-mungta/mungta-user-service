@@ -42,11 +42,13 @@ public class UserTestSample {
                             .userFileSize(USER_FILE_SIZE)
                             .userTeamName(USER_TEAM_NAME)
                             .userGender(USER_GENDER)
-                            // .driverYn(isYes)
+                            .driverYn(DRIVER_YN)
                             .settlementUrl(SETTLEMENT_URL)
                             .carType(CAR_TYPE)
                             .carNumber(CAR_NUMBER)
                             .penaltyCount(0L)
+                            .status(USER_STATUS)
+                            .userType(USER_TYPE)
                             .build();
     }
 
