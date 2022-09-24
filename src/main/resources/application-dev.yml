@@ -43,16 +43,16 @@ spring:
               configuration:
                 key:
                   serializer: org.apache.kafka.common.serialization.StringSerializer
-          producer-in-0:
+          consumer-in-0:
             consumer:
               configuration:
                 key:
                   deserializer: org.apache.kafka.common.serialization.StringDeserializer
       bindings:
         producer-out-0:
-          destination: mungta
+          destination: user-topic
           contentType: application/json
-        producer-in-0:
+        consumer-in-0:
           destination: accusation-topic
   mail:
     host: smtp.gmail.com

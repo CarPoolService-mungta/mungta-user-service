@@ -6,26 +6,26 @@ import java.time.format.DateTimeFormatter;
 import lombok.Getter;
 
 @Getter
-public class PeneltyFailed extends AbstractEvent {
+public class PenaltyFailed extends AbstractEvent {
 
   // private final String accusedMemberId;
   // private final String partyId;
 
-  public PeneltyFailed(String accusedMemberId, String partyId) {
+  public PenaltyFailed(String accusedMemberId, String accusationId) {
       super();
       this.eventType = this.getClass().getSimpleName();
       this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
       this.accusedMemberId = accusedMemberId;
-      this.partyId = partyId;
+      this.accusationId = accusationId;
   }
 
   @Override
   public String toString() {
-      return "PeneltyFailed{" +
+      return "PenaltyFailed{" +
               "eventType='" + eventType + '\'' +
               ", timestamp='" + timestamp + '\'' +
               ", accusedMemberId='" + accusedMemberId + '\'' +
-              ", partyId='" + partyId + '\'' +
+              ", accusationId='" + accusationId + '\'' +
               '}';
   }
 }

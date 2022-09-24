@@ -2,8 +2,8 @@ package com.mungta.user.service;
 
 import com.mungta.user.dto.*;
 import com.mungta.user.kafka.KafkaProducer;
-import com.mungta.user.kafka.PeneltyFailed;
-import com.mungta.user.kafka.PeneltySucceed;
+import com.mungta.user.kafka.PenaltyFailed;
+import com.mungta.user.kafka.PenaltySucceed;
 import com.mungta.user.model.Status;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.model.UserRepository;
@@ -191,7 +191,7 @@ public class UserService {
 
 	//사용자 패널티 부과
 	@Transactional
-	public UserEntity givePenaltyUser (final String userId, final String partyId){
+	public UserEntity givePenaltyUser (final String userId, final String accusationId){
 		UserEntity user = new UserEntity();
 		try{
 			user = userRepository.findByUserId(userId)
@@ -208,10 +208,10 @@ public class UserService {
 			userRepository.save(user);
 		} catch(Exception e){
 			log.error("error accusing user",user.getUserId(),e);
-			producer.send( new PeneltyFailed(userId,partyId));
+			producer.send( new PenaltyFailed(userId,accusationId));
 			return null;
 		}
-		producer.send( new PeneltySucceed(userId,partyId));
+		producer.send( new PenaltySucceed(userId,accusationId));
 		return null;
 	}
 

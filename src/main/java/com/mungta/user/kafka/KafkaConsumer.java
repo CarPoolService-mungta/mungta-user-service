@@ -26,7 +26,7 @@ public class KafkaConsumer {
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     var abstractEvent = objectMapper.readValue(payload, AbstractEvent.class);
     if(abstractEvent.getEventType().equals(new Object(){}.getClass().getEnclosingMethod().getName())){
-      userService.givePenaltyUser(abstractEvent.getAccusedMemberId(),abstractEvent.getPartyId());
+      userService.givePenaltyUser(abstractEvent.getAccusedMemberId(),abstractEvent.getAccusationId());
     }
   }
 }
