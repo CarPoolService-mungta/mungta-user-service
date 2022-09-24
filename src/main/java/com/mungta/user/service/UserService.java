@@ -262,7 +262,7 @@ public class UserService {
 
 	//비밀번호 암호화
 	private String encodePassword (final String pwdBf){
-		if(pwdBf == ""){
+		if((pwdBf != null) && (pwdBf == "")){
 			throw new ApiException(ApiStatus.REQUIRED_INFORMATION);
 		}
 		String pwdAf = passwordEncoder.encode(pwdBf);

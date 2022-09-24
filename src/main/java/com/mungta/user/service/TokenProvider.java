@@ -14,8 +14,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class TokenProvider {
 
-	private static final long ACCESS_TOKEN_EXPIRE_TIME  = 1000 * 60 * 30;            // 0.5 hr
-	private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;   // 7 days
+	private static final long ACCESS_TOKEN_EXPIRE_TIME  = 1000L * 60 * 30;            // 0.5 hr
+	private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000L * 60 * 60 * 24 * 7;   // 7 days
 
 	private static final String secretKey = "MungTa03Service";
 	String encodedKey  = Base64.getEncoder().encodeToString(secretKey.getBytes());

@@ -64,7 +64,7 @@ public  class UserEntity extends BaseEntity {
 
     public DriverInfoRequest getDriverInfo(){
         if(!driverYn.isYes()){
-            new ApiException(ApiStatus.NOT_DRIVER);
+            throw new ApiException(ApiStatus.NOT_DRIVER);
         }
         return DriverInfoRequest.of(settlementUrl,carType,carNumber);
     }

@@ -26,27 +26,27 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void initDir() {
-        try {
-            Files.createDirectories(Paths.get(uploadPath));
-        } catch (IOException e) {
-            throw new RuntimeException("Could not create upload folder!");
-        }
+        // try {
+        //     Files.createDirectories(Paths.get(uploadPath));
+        // } catch (IOException e) {
+        //     throw new RuntimeException("Could not create upload folder!");
+        // }
     }
     @Override
     public void cleanDir() {
-        try {
-            Files.list(Paths.get(uploadPath)).forEach(file->{
-                if(!Files.isDirectory(file)) {
-                    try {
-                        Files.delete(file);
-                    }catch(IOException err) {
-                        log.error("Could not delete file :  ",err);
-                    }
-                }
-            });
-        }catch(IOException e) {
-            log.error("Could not list directory : ",uploadPath,e);
-        }
+        // try {
+        //     Files.list(Paths.get(uploadPath)).forEach(file->{
+        //         if(!Files.isDirectory(file)) {
+        //             try {
+        //                 Files.delete(file);
+        //             }catch(IOException err) {
+        //                 log.error("Could not delete file :  ",err);
+        //             }
+        //         }
+        //     });
+        // }catch(IOException e) {
+        //     log.error("Could not list directory : ",uploadPath,e);
+        // }
     }
 
     @Override
@@ -61,8 +61,14 @@ public class FileSystemStorageService implements StorageService {
                 throw new Exception("ERROR : File is empty.");
             }
             // 파일명 생성
+
             oldFileName = file.getOriginalFilename();
-            fileExtension = oldFileName.substring( oldFileName.lastIndexOf(".")+1);
+
+            try {
+                fileExtension = oldFileName.substring( oldFileName.lastIndexOf(".")+1);
+            } catch (Exception e) {
+                throw new RuntimeException("Could not find extension. Error: " + e.getMessage());
+            }
             fileName = UUID.randomUUID().toString() +"_"+
                        userId+"."+
                        fileExtension;
@@ -115,7 +121,7 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void deleteAll() {
-        FileSystemUtils.deleteRecursively(Paths.get(uploadPath).toFile());
+        // FileSystemUtils.deleteRecursively(Paths.get(uploadPath).toFile());
     }
 
 }

@@ -18,7 +18,7 @@ public class KafkaConsumer {
 
   @Autowired
   private UserService userService;
-/*
+
   @KafkaListener(topics = "accusation-topic", groupId ="com.example")
   public void AccusationCompleted(@Payload String payload) throws JsonMappingException, JsonProcessingException{
     log.debug("Kafka Accusation Consumed message = " + payload);
@@ -29,5 +29,4 @@ public class KafkaConsumer {
       userService.givePenaltyUser(abstractEvent.getAccusedMemberId(),abstractEvent.getPartyId());
     }
   }
-  */
 }
