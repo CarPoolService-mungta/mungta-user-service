@@ -159,11 +159,11 @@
 											<minimum>0.80</minimum>
 										</limit>
 									</limits>
-									<excludes>
+									<!-- <excludes>
 										<exclude>com/mungta/user/config/*</exclude>
 										<exclude>com/mungta/user/service/*</exclude>
 										<exclude>com/mungta/user/kafka/*</exclude>
-									</excludes>
+									</excludes> -->
 								</rule>
 							</rules>
 						</configuration>
