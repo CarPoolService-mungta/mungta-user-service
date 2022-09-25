@@ -13,6 +13,7 @@ public enum  ApiStatus  {
     LOGIN_FAILED          (HttpStatus.INTERNAL_SERVER_ERROR, -304  , "로그인실패하였습니다."),
     EMAIL_ERROR          (HttpStatus.INTERNAL_SERVER_ERROR , -305  , "이메일발송이 실패했습니다."),
     NOT_EXIST_INFORMATION (HttpStatus.INTERNAL_SERVER_ERROR, -306  , "사용자가 존재하지 않습니다."  ),
+    EMAIL_NOT_SK_ERROR          (HttpStatus.INTERNAL_SERVER_ERROR , -308  , "이메일형식이 올바르지 않습니다."),
     UNEXPECTED_PASSWORD  (HttpStatus.INTERNAL_SERVER_ERROR, -320  , "잘못된 비밀번호입니다."),
     NOT_DRIVER (HttpStatus.INTERNAL_SERVER_ERROR, -330  , "운전자로 등록되어 있지 않습니다."  ),;
 

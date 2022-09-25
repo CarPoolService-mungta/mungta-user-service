@@ -9,10 +9,11 @@ import java.util.regex.Pattern;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.mungta.user.api.ApiException;
+import com.mungta.user.api.ApiStatus;
 import com.mungta.user.dto.AuthenticationDto;
 import com.mungta.user.model.AuthenticationEntity;
 import com.mungta.user.model.AuthenticationRepository;
@@ -33,9 +34,13 @@ public class AuthenticationService {
 
 
 	//이메일 인증번호 발송
-	@Async
+
 	@Transactional
-  public void sendAuthNumber (final String email) {
+  public void sendAuthNumber (final String email) throws ApiException {
+
+		if(!isEmail(email)){
+			throw new ApiException(ApiStatus.EMAIL_NOT_SK_ERROR);
+		}
 
 		//기존 이메일 인증 발송 정보 check
 		if(authenticationRepository.existsByUserMailAddress(email)) {
@@ -83,8 +88,10 @@ public class AuthenticationService {
 		log.debug("################ checkAuthNumber now-time   " + nowTime);
 		log.debug("################ checkAuthNumber limit-time " + results.getLimitTime());
 		log.debug("################ checkAuthNumber 비교       " + nowTime.compareTo(results.getLimitTime()));
+
 		//인증번호 & 유효시간 check
 		if(auth.getAuthNumber().equals(authDto.getAuthNumber()) && nowTime.compareTo(results.getLimitTime()) <= 0){
+			log.debug("##1111111");
 			authDto.setPossibleYn("Y");
 		}else{
 			authDto.setPossibleYn("N");
@@ -116,9 +123,10 @@ public class AuthenticationService {
     String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
     Pattern p = Pattern.compile(regex);
     Matcher m = p.matcher(email);
-    if(m.matches()) {
+    if(m.matches() && email.toLowerCase().indexOf("@sk.") > 0) {
         validation = true;
     }
+
 		log.debug("################ validation   " + validation);
 
     return validation;
