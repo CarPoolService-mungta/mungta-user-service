@@ -76,6 +76,7 @@ public class UserController {
   @Operation(summary = "사용자 수정", description = "사용자 정보를 수정한다.")
   @PutMapping(value="/{userId}")
   public  ResponseEntity<?> updateUser(@ModelAttribute final UserRequestDto userRequestDto){
+
     UserEntity user = UserRequestDto.toEntity(userRequestDto);
     userService.updateUser(user,userRequestDto.getProfileImg());
     return ResponseEntity.ok().build();
@@ -84,6 +85,7 @@ public class UserController {
   @Operation(summary = "사용자 기본정보 수정")
   @PutMapping(value="info/{userId}")
   public  ResponseEntity<?> updateWoPhotoUser(@RequestBody final UserDto userDto){
+
     UserEntity user = UserDto.toEntity(userDto);
     userService.updateWoPhotoUser(user);
     return ResponseEntity.ok().build();

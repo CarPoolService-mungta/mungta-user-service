@@ -5,12 +5,8 @@ package com.mungta.user.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.mungta.user.dto.Token;
-import com.mungta.user.dto.UserDto;
 import com.mungta.user.dto.UserLoginDto;
-import com.mungta.user.dto.UserRequestDto;
 import com.mungta.user.dto.UserResponseDto;
-import com.mungta.user.dto.AuthenticationDto;
-import com.mungta.user.model.AuthenticationEntity;
 import com.mungta.user.model.UserEntity;
 import com.mungta.user.service.AuthenticationService;
 import com.mungta.user.service.UserService;
@@ -36,6 +32,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+
 import static com.mungta.user.sample.AuthenticationTestSample.*;
 import static com.mungta.user.sample.UserTestSample.*;
 
@@ -59,8 +57,6 @@ public class UserControllerTest {
     private PasswordEncoder passwordEncoder;
 
     private UserEntity user;
-
-    private AuthenticationEntity auth;
 
     private Token token;
 
@@ -106,6 +102,7 @@ public class UserControllerTest {
 
         ResultActions resultActions = mockMvc.perform(
                 get("/api/user/"+USER_ID)
+                        .header("userId", USER_ID)
                         .accept(MediaType.APPLICATION_JSON)
         );
 
@@ -129,21 +126,6 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.userType").value(USER_TYPE.toString()));
     }
 
-//     @DisplayName("사용자 사진 조회 API")
-//     @Test
-//     void preView() throws Exception{
-//         doReturn(new UserResponseDto(user))
-//                 .when(userService).getUserPhoto(USER_ID);
-
-//         ResultActions resultActions = mockMvc.perform(
-//                 get("/api/user/auth/downloadFile/"+USER_ID)
-//                         .accept(MediaType.APPLICATION_JSON)
-//         );
-
-//         resultActions.andExpect(status().isOk())
-//                 // .andExpect(jsonPath("$.fileExtension").value(FILE_EXTENSION))
-//                 .andExpect(jsonPath("$.userPhoto").value(USER_PHOTO));
-//     }
 
     @DisplayName("사용자 등록 (w/o pic) API")
     @Test
@@ -163,27 +145,6 @@ public class UserControllerTest {
 
         resultActions.andExpect(status().isOk());
     }
-
-
-//     @DisplayName("사용자 등록한다.(with pic) API")
-//     @Test
-//     void registerUserWithPhoto() throws Exception{
-
-//         doReturn("ok")
-//                 .when(userService).createUserWithPhoto(user, any());
-
-
-//         ResultActions resultActions = mockMvc.perform(
-//                 post("/api/user/auth/signup")
-//                         .accept(MediaType.APPLICATION_JSON)
-//                         .contentType(MediaType.APPLICATION_JSON)
-//                         .content(new ObjectMapper().writeValueAsString(
-//                                 new UserRequestDto(user)
-//                         ))
-//         );
-
-//         resultActions.andExpect(status().isOk());
-//     }
 
 @DisplayName("사용자 수정")
 @Test
@@ -255,23 +216,6 @@ void authenticate() throws Exception{
     resultActions.andExpect(status().isOk());
 }
 
-// @DisplayName("리프레시")
-// @Test
-// void tokenRefresh() throws Exception{
-//     doReturn("ok")
-//             .when(userService).tokenRefresh(USER_ID);
-
-//     ResultActions resultActions = mockMvc.perform(
-//                            put("/api/user/penalty/"+USER_ID)
-//                         .accept(MediaType.APPLICATION_JSON)
-//                         .header("userId", USER_ID)
-
-//     );
-
-//     resultActions.andExpect(status().isOk());
-// }
-
-
 
 @DisplayName("메일인증발송 API")
 @Test
@@ -288,28 +232,5 @@ void sendEmailAuthNumber() throws Exception{
 
     resultActions.andExpect(status().isOk());
 }
-
-// @DisplayName("메일 인증 확인")
-// @Test
-// void checkAuthNumber() throws Exception{
-//     doReturn(new AuthenticationDto(auth))
-//             .when(authenticationService).checkAuthNumber(auth);
-
-//     ResultActions resultActions = mockMvc.perform(
-//             get("/api/confirm")
-//                     .accept(MediaType.APPLICATION_JSON)
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
-//     );
-
-//     resultActions.andExpect(status().isOk())
-//             .andExpect(jsonPath("$.userMailAddress").value(AUTH_USER_MAIL_ADDRESS));}
-
-
-
-
-
-
-
 
 }
