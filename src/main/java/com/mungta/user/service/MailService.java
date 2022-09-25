@@ -30,14 +30,14 @@ public class MailService {
 			message.setSentDate(Calendar.getInstance().getTime());
 			javaMailSender.send(message);
 
-			} catch (MailParseException e) {
-				e.printStackTrace();
-			} catch (MailAuthenticationException e) {
-				e.printStackTrace();
-			} catch (MailSendException e) {
-				e.printStackTrace();
-			} catch (MailException e) {
-				e.printStackTrace();
+			} catch (MailParseException e1) {
+				e1.printStackTrace();
+			} catch (MailAuthenticationException e2) {
+				e2.printStackTrace();
+			} catch (MailSendException e3) {
+				e3.printStackTrace();
+			} catch (MailException e4) {
+				e4.printStackTrace();
 			}
 	}
 }
