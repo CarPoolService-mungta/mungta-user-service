@@ -1,5 +1,7 @@
 package com.mungta.user.service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -17,6 +19,7 @@ import com.mungta.user.api.ApiStatus;
 import com.mungta.user.dto.AuthenticationDto;
 import com.mungta.user.model.AuthenticationEntity;
 import com.mungta.user.model.AuthenticationRepository;
+import com.mungta.user.model.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,16 +33,23 @@ public class AuthenticationService {
 	private final AuthenticationRepository authenticationRepository;
 
 	@Autowired
+	private final UserRepository userRepository;
+
+	@Autowired
   private final MailService mailService;
+
+	private Random rand;
 
 
 	//이메일 인증번호 발송
-
 	@Transactional
   public void sendAuthNumber (final String email) throws ApiException {
 
 		if(!isEmail(email)){
 			throw new ApiException(ApiStatus.EMAIL_NOT_SK_ERROR);
+		}
+		if(userRepository.existsByUserMailAddress(email)){
+			throw new ApiException(ApiStatus.DUPLICATED_INFORMATION);
 		}
 
 		//기존 이메일 인증 발송 정보 check
@@ -52,27 +62,30 @@ public class AuthenticationService {
 		}
 		//인증정보 생성
 		AuthenticationEntity auth = new AuthenticationEntity();
+		String varCode ;
+		try {
+			//인증번호 GET
+			rand = SecureRandom.getInstanceStrong();
+			varCode = padLeftZeros(String.valueOf(rand.nextInt(9999999)), 7);
+			//인증번호 Limit 시간설정(120sec)
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+			cal.add(Calendar.SECOND, 300);
+			String efDate = dateFormat.format(cal.getTime());
 
-		//인증번호 GET
-		Random rand = new Random(System.currentTimeMillis());
-		String varCode = padLeftZeros(String.valueOf(rand.nextInt(9999999)), 7);
+			//인증정보 SET
+			auth.setUserMailAddress(email);
+			auth.setAuthNumber(varCode);
+			auth.setLimitTime(efDate);
+			authenticationRepository.save(auth);
 
-		//인증번호 Limit 시간설정(120sec)
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-		cal.add(Calendar.SECOND, 300);
-		String efDate = dateFormat.format(cal.getTime());
-
-		//인증정보 SET
-		auth.setUserMailAddress(email);
-		auth.setAuthNumber(varCode);
-		auth.setLimitTime(efDate);
-		authenticationRepository.save(auth);
-
-		// 이메일 발송
-		String subject ="[MungtaCarpool] Verification code for signup";
-		String text    ="Thank you for joining us. please use this verification code: "+ varCode;
-		mailService.mailSend(email,subject,text);
+			// 이메일 발송
+			String subject ="[MungtaCarpool] Verification code for signup";
+			String text    ="Thank you for joining us. please use this verification code: "+ varCode;
+			mailService.mailSend(email,subject,text);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 	}
 
 
@@ -91,7 +104,7 @@ public class AuthenticationService {
 
 		//인증번호 & 유효시간 check
 		if(auth.getAuthNumber().equals(authDto.getAuthNumber()) && nowTime.compareTo(results.getLimitTime()) <= 0){
-			log.debug("##1111111");
+
 			authDto.setPossibleYn("Y");
 		}else{
 			authDto.setPossibleYn("N");

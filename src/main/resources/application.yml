@@ -5,9 +5,9 @@ spring:
   profiles:
     activate: local
   datasource:
-    jdbc-url: jdbc:mysql://mungta-user-db.mysql.database.azure.com:3306/user_dev?serverTimezone=Asia/Seoul&validationQuery="select 1"
-    username: mungta
-    password: andxk12#$
+    jdbc-url: jdbc:mysql://${DB_HOST}:3306/user_dev?serverTimezone=Asia/Seoul&validationQuery="select 1"
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       auto-commit: false

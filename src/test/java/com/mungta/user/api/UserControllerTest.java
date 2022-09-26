@@ -132,8 +132,6 @@ public class UserControllerTest {
     void registerUser() throws Exception{
         doReturn(user)
                 .when(userService).createUser(user);
-
-
         ResultActions resultActions = mockMvc.perform(
                 post("/api/user/auth/signup/test")
                         .accept(MediaType.APPLICATION_JSON)
@@ -151,7 +149,6 @@ public class UserControllerTest {
 void updateWoPhotoUser() throws Exception{
     doReturn(user)
             .when(userService).updateWoPhotoUser(user);
-
     ResultActions resultActions = mockMvc.perform(
                            put("/api/user/"+USER_ID)
                         .accept(MediaType.APPLICATION_JSON)
@@ -168,7 +165,6 @@ void updateWoPhotoUser() throws Exception{
 void deleteUser() throws Exception{
     doReturn(null)
             .when(userService).deleteUser(USER_ID);
-
     ResultActions resultActions = mockMvc.perform(
                                   delete("/api/user/"+USER_ID)
                                  .accept(MediaType.APPLICATION_JSON)
@@ -181,21 +177,20 @@ void deleteUser() throws Exception{
 
 
 
-@DisplayName("사용자 패널티 부여")
-@Test
-void givePenaltyUser() throws Exception{
-    doReturn(user)
-            .when(userService).givePenaltyUser(USER_ID,"TEST");
+// @DisplayName("사용자 패널티 부여")
+// @Test
+// void givePenaltyUser() throws Exception{
+//     doReturn(user)
+//             .when(userService).givePenaltyUser(USER_ID,"TEST");
+//     ResultActions resultActions = mockMvc.perform(
+//                            put("/api/user/penalty/"+USER_ID)
+//                         .accept(MediaType.APPLICATION_JSON)
+//                         .param("accusationId", "TEST")
 
-    ResultActions resultActions = mockMvc.perform(
-                           put("/api/user/penalty/"+USER_ID)
-                        .accept(MediaType.APPLICATION_JSON)
-                        .param("accusationId", "TEST")
+//     );
 
-    );
-
-    resultActions.andExpect(status().isNoContent());
-}
+//     resultActions.andExpect(status().isNoContent());
+// }
 
 
 
@@ -204,8 +199,6 @@ void givePenaltyUser() throws Exception{
 void authenticate() throws Exception{
     doReturn(token)
             .when(userService).getByCredentials(USER_ID,USER_PASSWORD);
-
-
     ResultActions resultActions = mockMvc.perform(
             post("/api/user/auth/signin")
                     .accept(MediaType.APPLICATION_JSON)
@@ -229,7 +222,6 @@ void sendEmailAuthNumber() throws Exception{
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
     );
-
     resultActions.andExpect(status().isOk());
 }
 

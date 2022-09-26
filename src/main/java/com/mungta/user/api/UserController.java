@@ -46,7 +46,7 @@ public class UserController {
   }
 
   @Operation(summary = "사용자 사진 조회", description = "사용자 사진을 조회한다.")
-  @GetMapping(value="/auth/downloadFile/{userId}")
+  @GetMapping(value="/auth/download-file/{userId}")
   private  ResponseEntity<Map<String, Object>> preView (@PathVariable String userId)  {
     UserResponseDto userResponseDto = userService.getUserPhoto(userId);
     Map<String, Object> params = new HashMap<String, Object>();
