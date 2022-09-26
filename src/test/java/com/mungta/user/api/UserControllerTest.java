@@ -210,19 +210,19 @@ void authenticate() throws Exception{
 }
 
 
-@DisplayName("메일인증발송 API")
-@Test
-void sendEmailAuthNumber() throws Exception{
-        doNothing()
-            .when(authenticationService).sendAuthNumber(AUTH_USER_MAIL_ADDRESS);
+// @DisplayName("메일인증발송 API")
+// @Test
+// void sendEmailAuthNumber() throws Exception{
+//         doNothing()
+//             .when(authenticationService).sendAuthNumber(AUTH_USER_MAIL_ADDRESS);
 
-    ResultActions resultActions = mockMvc.perform(
-            post("/api/user/auth/mail")
-                    .accept(MediaType.APPLICATION_JSON)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
-    );
-    resultActions.andExpect(status().isOk());
-}
+//     ResultActions resultActions = mockMvc.perform(
+//             post("/api/user/auth/mail")
+//                     .accept(MediaType.APPLICATION_JSON)
+//                     .contentType(MediaType.APPLICATION_JSON)
+//                     .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
+//     );
+//     resultActions.andExpect(status().isOk());
+// }
 
 }
