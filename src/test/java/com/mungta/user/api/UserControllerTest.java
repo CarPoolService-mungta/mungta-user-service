@@ -93,7 +93,22 @@ public class UserControllerTest {
                 .userType(USER_TYPE)
                 .build();
     }
+    @DisplayName("사용자 등록 (w/o pic) API")
+    @Test
+    void registerUser() throws Exception{
+        doReturn(user)
+                .when(userService).createUser(user);
+        ResultActions resultActions = mockMvc.perform(
+                post("/api/user/auth/signup/test")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(
+                                USER_REQUEST
+                        ))
+        );
 
+        resultActions.andExpect(status().isOk());
+    }
     @DisplayName("사용자 상세 정보 조회 API")
     @Test
     void getUser() throws Exception{
@@ -127,22 +142,7 @@ public class UserControllerTest {
     }
 
 
-    @DisplayName("사용자 등록 (w/o pic) API")
-    @Test
-    void registerUser() throws Exception{
-        doReturn(user)
-                .when(userService).createUser(user);
-        ResultActions resultActions = mockMvc.perform(
-                post("/api/user/auth/signup/test")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(
-                                USER_REQUEST
-                        ))
-        );
 
-        resultActions.andExpect(status().isOk());
-    }
 
 // @DisplayName("사용자 수정")
 // @Test
