@@ -18,25 +18,25 @@ pipeline {
             sh './mvnw compile'
         }
     }
-//    stage('Unit Test') {
-//        steps {
-//            sh './mvnw test'
-//        }
-//        post {
-//            always {
-//             //    junit 'target/surefire-reports/*.xml'
-//                junit skipPublishingChecks: true, testResults: 'target/surefire-reports/*.xml'
-//                step([ $class: 'JacocoPublisher' ])
-//            }
-//        }
-//    }
-//    stage('Static Code Analysis') {
-//        steps {
-//            configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
-//                sh './mvnw sonar:sonar -s $MAVEN_SETTINGS'
-//            }
-//        }
-//    }
+   stage('Unit Test') {
+       steps {
+           sh './mvnw test'
+       }
+       post {
+           always {
+            //    junit 'target/surefire-reports/*.xml'
+               junit skipPublishingChecks: true, testResults: 'target/surefire-reports/*.xml'
+               step([ $class: 'JacocoPublisher' ])
+           }
+       }
+   }
+   stage('Static Code Analysis') {
+       steps {
+           configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+               sh './mvnw sonar:sonar -s $MAVEN_SETTINGS'
+           }
+       }
+   }
     stage('Package') {
         steps {
             sh './mvnw package -DskipTests'
