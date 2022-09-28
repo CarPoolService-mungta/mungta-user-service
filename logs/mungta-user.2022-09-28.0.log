@@ -1,0 +1,868 @@
+[2022-09-28 19:43:19.030] [main] INFO com.mungta.user.UserApplication@logStarting(55) - Starting UserApplication using Java 11.0.16 on DESKTOP-L822JMB with PID 141952 (C:\Users\User\workspace-spring\mungta-user-service\target\classes started by User in C:\Users\User\workspace-spring\mungta-user-service)
+[2022-09-28 19:43:19.030] [background-preinit] INFO o.h.validator.internal.util.Version@<clinit>(21) - HV000001: Hibernate Validator 6.2.3.Final
+[2022-09-28 19:43:19.033] [main] INFO com.mungta.user.UserApplication@logStartupProfileInfo(640) - No active profile set, falling back to 1 default profile: "default"
+[2022-09-28 19:43:19.827] [main] INFO o.s.d.r.c.RepositoryConfigurationDelegate@registerRepositoriesIn(132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2022-09-28 19:43:19.914] [main] INFO o.s.d.r.c.RepositoryConfigurationDelegate@registerRepositoriesIn(201) - Finished Spring Data repository scanning in 78 ms. Found 2 JPA repository interfaces.
+[2022-09-28 19:43:20.441] [main] INFO o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor@info(292) - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[2022-09-28 19:43:20.452] [main] INFO o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor@info(292) - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[2022-09-28 19:43:20.775] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$$EnhancerBySpringCGLIB$$72a993a5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:43:20.787] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'bindersHealthContributor' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$BindersHealthContributor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:43:20.790] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'bindersHealthIndicatorListener' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$BindersHealthIndicatorListener] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:43:20.802] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:43:20.811] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:43:22.057] [main] INFO o.s.b.w.e.tomcat.TomcatWebServer@initialize(108) - Tomcat initialized with port(s): 8081 (http)
+[2022-09-28 19:43:22.068] [main] INFO o.a.coyote.http11.Http11NioProtocol@log(173) - Initializing ProtocolHandler ["http-nio-8081"]
+[2022-09-28 19:43:22.069] [main] INFO o.a.catalina.core.StandardService@log(173) - Starting service [Tomcat]
+[2022-09-28 19:43:22.069] [main] INFO o.a.catalina.core.StandardEngine@log(173) - Starting Servlet engine: [Apache Tomcat/9.0.60]
+[2022-09-28 19:43:22.268] [main] INFO o.a.c.c.C.[Tomcat].[localhost].[/]@log(173) - Initializing Spring embedded WebApplicationContext
+[2022-09-28 19:43:22.269] [main] INFO o.s.b.w.s.c.ServletWebServerApplicationContext@prepareWebApplicationContext(290) - Root WebApplicationContext: initialization completed in 3179 ms
+[2022-09-28 19:43:22.712] [main] INFO o.h.jpa.internal.util.LogHelper@logPersistenceUnitInformation(31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2022-09-28 19:43:22.758] [main] INFO org.hibernate.Version@logVersion(44) - HHH000412: Hibernate ORM core version 5.6.7.Final
+[2022-09-28 19:43:22.883] [main] INFO o.h.annotations.common.Version@<clinit>(56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2022-09-28 19:43:23.053] [main] INFO org.hibernate.dialect.Dialect@<init>(175) - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+[2022-09-28 19:43:23.634] [main] INFO o.h.e.t.j.p.i.JtaPlatformInitiator@initiateService(52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2022-09-28 19:43:23.645] [main] INFO o.s.o.j.LocalContainerEntityManagerFactoryBean@buildNativeEntityManagerFactory(437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2022-09-28 19:43:24.204] [main] WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration@openEntityManagerInViewInterceptor(219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2022-09-28 19:43:24.975] [main] INFO o.s.s.web.DefaultSecurityFilterChain@<init>(52) - Will not secure Ant [pattern='/']
+[2022-09-28 19:43:26.262] [main] INFO o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry@compose(271) - Looking up function '' with acceptedOutputTypes: []
+[2022-09-28 19:43:26.690] [main] INFO o.s.b.a.e.web.EndpointLinksResolver@<init>(58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[2022-09-28 19:43:26.913] [main] INFO o.s.i.endpoint.EventDrivenConsumer@info(174) - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[2022-09-28 19:43:26.914] [main] INFO o.s.i.c.PublishSubscribeChannel@info(174) - Channel 'application.errorChannel' has 1 subscriber(s).
+[2022-09-28 19:43:26.914] [main] INFO o.s.i.endpoint.EventDrivenConsumer@info(292) - started bean '_org.springframework.integration.errorLogger'
+[2022-09-28 19:43:26.948] [main] INFO o.a.k.c.consumer.ConsumerConfig@logAll(376) - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-com.example-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = com.example
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+[2022-09-28 19:43:27.070] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(119) - Kafka version: 3.0.1
+[2022-09-28 19:43:27.071] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(120) - Kafka commitId: 8e30984f43e64d8b
+[2022-09-28 19:43:27.071] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(121) - Kafka startTimeMs: 1664361807068
+[2022-09-28 19:43:27.085] [main] INFO o.a.k.clients.consumer.KafkaConsumer@subscribe(966) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Subscribed to topic(s): accusation-topic
+[2022-09-28 19:43:27.095] [main] INFO o.a.coyote.http11.Http11NioProtocol@log(173) - Starting ProtocolHandler ["http-nio-8081"]
+[2022-09-28 19:43:27.115] [main] INFO o.s.b.w.e.tomcat.TomcatWebServer@start(220) - Tomcat started on port(s): 8081 (http) with context path ''
+[2022-09-28 19:43:27.131] [main] INFO com.mungta.user.UserApplication@logStarted(61) - Started UserApplication in 8.662 seconds (JVM running for 9.146)
+[2022-09-28 19:43:27.139] [main] INFO com.mungta.user.UserApplication@main(21) - ################ UserApplication Start !!!!!!!!!
+[2022-09-28 19:43:27.379] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO org.apache.kafka.clients.Metadata@updateLatestMetadata(401) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Resetting the last seen epoch of partition accusation-topic-0 to 0 since the associated topicId changed from null to FMYjv0lhTxWZa4Qnb7dV4w
+[2022-09-28 19:43:27.382] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO org.apache.kafka.clients.Metadata@update(287) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Cluster ID: JDqruOhmQNyh-qpTNkeJKQ
+[2022-09-28 19:43:27.384] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@onSuccess(849) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Discovered group coordinator 127.0.0.1:9092 (id: 2147482646 rack: null)
+[2022-09-28 19:43:27.387] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@sendJoinGroupRequest(535) - [Consumer clientId=consumer-com.example-1, groupId=com.example] (Re-)joining group
+[2022-09-28 19:43:27.415] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@requestRejoin(988) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Request joining group due to: need to re-join with the given member-id
+[2022-09-28 19:43:27.416] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@sendJoinGroupRequest(535) - [Consumer clientId=consumer-com.example-1, groupId=com.example] (Re-)joining group
+[2022-09-28 19:43:27.430] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@handle(591) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Successfully joined group with generation Generation{generationId=137, memberId='consumer-com.example-1-238f0f9c-4af0-41bb-bc1d-bc47021ea8a8', protocol='range'}
+[2022-09-28 19:43:27.433] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@performAssignment(652) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Finished assignment for group at generation 137: {consumer-com.example-1-238f0f9c-4af0-41bb-bc1d-bc47021ea8a8=Assignment(partitions=[accusation-topic-0])}
+[2022-09-28 19:43:27.475] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@handle(757) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Successfully synced group in generation Generation{generationId=137, memberId='consumer-com.example-1-238f0f9c-4af0-41bb-bc1d-bc47021ea8a8', protocol='range'}
+[2022-09-28 19:43:27.476] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokeOnAssignment(279) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Notifying assignor about the new Assignment(partitions=[accusation-topic-0])
+[2022-09-28 19:43:27.479] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokePartitionsAssigned(291) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Adding newly assigned partitions: accusation-topic-0
+[2022-09-28 19:43:27.499] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@refreshCommittedOffsetsIfNeeded(844) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Setting offset for partition accusation-topic-0 to the committed offset FetchPosition{offset=33, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[127.0.0.1:9092 (id: 1001 rack: null)], epoch=0}}
+[2022-09-28 19:43:27.501] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.s.k.l.KafkaMessageListenerContainer@info(292) - com.example: partitions assigned: [accusation-topic-0]
+[2022-09-28 19:43:53.277] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@markCoordinatorUnknown(912) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Group coordinator 127.0.0.1:9092 (id: 2147482646 rack: null) is unavailable or invalid due to cause: coordinator unavailable.isDisconnected: true. Rediscovery will be attempted.
+[2022-09-28 19:43:53.282] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.clients.FetchSessionHandler@handleError(481) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Error sending fetch request (sessionId=747257885, epoch=51) to node 1001:
+org.apache.kafka.common.errors.DisconnectException: null
+[2022-09-28 19:43:56.126] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokePartitionsRevoked(310) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Revoke previously assigned partitions accusation-topic-0
+[2022-09-28 19:43:56.127] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.s.k.l.KafkaMessageListenerContainer@info(292) - com.example: partitions revoked: [accusation-topic-0]
+[2022-09-28 19:43:56.128] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@resetStateAndGeneration(966) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Resetting generation due to: consumer pro-actively leaving the group
+[2022-09-28 19:43:56.129] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@requestRejoin(988) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Request joining group due to: consumer pro-actively leaving the group
+[2022-09-28 19:43:56.129] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.clients.consumer.KafkaConsumer@unsubscribe(1075) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Unsubscribed all topics or patterns and assigned partitions
+[2022-09-28 19:43:56.132] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@resetStateAndGeneration(966) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Resetting generation due to: consumer pro-actively leaving the group
+[2022-09-28 19:43:56.133] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@requestRejoin(988) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Request joining group due to: consumer pro-actively leaving the group
+[2022-09-28 19:43:56.134] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.metrics.Metrics@close(659) - Metrics scheduler closed
+[2022-09-28 19:43:56.134] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.metrics.Metrics@close(663) - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2022-09-28 19:43:56.135] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.metrics.Metrics@close(669) - Metrics reporters closed
+[2022-09-28 19:43:56.138] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.utils.AppInfoParser@unregisterAppInfo(83) - App info kafka.consumer for consumer-com.example-1 unregistered
+[2022-09-28 19:43:56.139] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.s.k.l.KafkaMessageListenerContainer@info(292) - com.example: Consumer stopped
+[2022-09-28 19:43:56.142] [SpringApplicationShutdownHook] INFO o.s.i.endpoint.EventDrivenConsumer@info(174) - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[2022-09-28 19:43:56.142] [SpringApplicationShutdownHook] INFO o.s.i.c.PublishSubscribeChannel@info(174) - Channel 'application.errorChannel' has 0 subscriber(s).
+[2022-09-28 19:43:56.142] [SpringApplicationShutdownHook] INFO o.s.i.endpoint.EventDrivenConsumer@info(292) - stopped bean '_org.springframework.integration.errorLogger'
+[2022-09-28 19:43:56.155] [SpringApplicationShutdownHook] INFO o.s.o.j.LocalContainerEntityManagerFactoryBean@destroy(651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2022-09-28 19:44:25.714] [background-preinit] INFO o.h.validator.internal.util.Version@<clinit>(21) - HV000001: Hibernate Validator 6.2.3.Final
+[2022-09-28 19:44:25.714] [main] INFO com.mungta.user.UserApplication@logStarting(55) - Starting UserApplication using Java 11.0.16 on DESKTOP-L822JMB with PID 232628 (C:\Users\User\workspace-spring\mungta-user-service\target\classes started by User in C:\Users\User\workspace-spring\mungta-user-service)
+[2022-09-28 19:44:25.717] [main] INFO com.mungta.user.UserApplication@logStartupProfileInfo(640) - No active profile set, falling back to 1 default profile: "default"
+[2022-09-28 19:44:26.476] [main] INFO o.s.d.r.c.RepositoryConfigurationDelegate@registerRepositoriesIn(132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2022-09-28 19:44:26.561] [main] INFO o.s.d.r.c.RepositoryConfigurationDelegate@registerRepositoriesIn(201) - Finished Spring Data repository scanning in 76 ms. Found 2 JPA repository interfaces.
+[2022-09-28 19:44:27.050] [main] INFO o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor@info(292) - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[2022-09-28 19:44:27.060] [main] INFO o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor@info(292) - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[2022-09-28 19:44:27.357] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$$EnhancerBySpringCGLIB$$63c9eef8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:44:27.370] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'bindersHealthContributor' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$BindersHealthContributor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:44:27.373] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'bindersHealthIndicatorListener' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$BindersHealthIndicatorListener] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:44:27.384] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:44:27.390] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:44:28.574] [main] INFO o.s.b.w.e.tomcat.TomcatWebServer@initialize(108) - Tomcat initialized with port(s): 8081 (http)
+[2022-09-28 19:44:28.584] [main] INFO o.a.coyote.http11.Http11NioProtocol@log(173) - Initializing ProtocolHandler ["http-nio-8081"]
+[2022-09-28 19:44:28.585] [main] INFO o.a.catalina.core.StandardService@log(173) - Starting service [Tomcat]
+[2022-09-28 19:44:28.585] [main] INFO o.a.catalina.core.StandardEngine@log(173) - Starting Servlet engine: [Apache Tomcat/9.0.60]
+[2022-09-28 19:44:28.747] [main] INFO o.a.c.c.C.[Tomcat].[localhost].[/]@log(173) - Initializing Spring embedded WebApplicationContext
+[2022-09-28 19:44:28.748] [main] INFO o.s.b.w.s.c.ServletWebServerApplicationContext@prepareWebApplicationContext(290) - Root WebApplicationContext: initialization completed in 2977 ms
+[2022-09-28 19:44:29.185] [main] INFO o.h.jpa.internal.util.LogHelper@logPersistenceUnitInformation(31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2022-09-28 19:44:29.234] [main] INFO org.hibernate.Version@logVersion(44) - HHH000412: Hibernate ORM core version 5.6.7.Final
+[2022-09-28 19:44:29.379] [main] INFO o.h.annotations.common.Version@<clinit>(56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2022-09-28 19:44:29.563] [main] INFO org.hibernate.dialect.Dialect@<init>(175) - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+[2022-09-28 19:44:30.116] [main] INFO o.h.e.t.j.p.i.JtaPlatformInitiator@initiateService(52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2022-09-28 19:44:30.126] [main] INFO o.s.o.j.LocalContainerEntityManagerFactoryBean@buildNativeEntityManagerFactory(437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2022-09-28 19:44:30.659] [main] WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration@openEntityManagerInViewInterceptor(219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2022-09-28 19:44:31.399] [main] INFO o.s.s.web.DefaultSecurityFilterChain@<init>(52) - Will not secure Ant [pattern='/']
+[2022-09-28 19:44:32.612] [main] INFO o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry@compose(271) - Looking up function '' with acceptedOutputTypes: []
+[2022-09-28 19:44:33.005] [main] INFO o.s.b.a.e.web.EndpointLinksResolver@<init>(58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[2022-09-28 19:44:33.227] [main] INFO o.s.i.endpoint.EventDrivenConsumer@info(174) - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[2022-09-28 19:44:33.228] [main] INFO o.s.i.c.PublishSubscribeChannel@info(174) - Channel 'application.errorChannel' has 1 subscriber(s).
+[2022-09-28 19:44:33.229] [main] INFO o.s.i.endpoint.EventDrivenConsumer@info(292) - started bean '_org.springframework.integration.errorLogger'
+[2022-09-28 19:44:33.260] [main] INFO o.a.k.c.consumer.ConsumerConfig@logAll(376) - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-com.example-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = com.example
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+[2022-09-28 19:44:33.372] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(119) - Kafka version: 3.0.1
+[2022-09-28 19:44:33.373] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(120) - Kafka commitId: 8e30984f43e64d8b
+[2022-09-28 19:44:33.373] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(121) - Kafka startTimeMs: 1664361873370
+[2022-09-28 19:44:33.387] [main] INFO o.a.k.clients.consumer.KafkaConsumer@subscribe(966) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Subscribed to topic(s): accusation-topic
+[2022-09-28 19:44:33.396] [main] INFO o.a.coyote.http11.Http11NioProtocol@log(173) - Starting ProtocolHandler ["http-nio-8081"]
+[2022-09-28 19:44:33.426] [main] INFO o.s.b.w.e.tomcat.TomcatWebServer@start(220) - Tomcat started on port(s): 8081 (http) with context path ''
+[2022-09-28 19:44:33.442] [main] INFO com.mungta.user.UserApplication@logStarted(61) - Started UserApplication in 8.258 seconds (JVM running for 8.767)
+[2022-09-28 19:44:33.448] [main] INFO com.mungta.user.UserApplication@main(21) - ################ UserApplication Start !!!!!!!!!
+[2022-09-28 19:44:33.675] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO org.apache.kafka.clients.Metadata@updateLatestMetadata(401) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Resetting the last seen epoch of partition accusation-topic-0 to 0 since the associated topicId changed from null to FMYjv0lhTxWZa4Qnb7dV4w
+[2022-09-28 19:44:33.677] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO org.apache.kafka.clients.Metadata@update(287) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Cluster ID: JDqruOhmQNyh-qpTNkeJKQ
+[2022-09-28 19:44:33.679] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@onSuccess(849) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Discovered group coordinator 127.0.0.1:9092 (id: 2147482646 rack: null)
+[2022-09-28 19:44:33.682] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@sendJoinGroupRequest(535) - [Consumer clientId=consumer-com.example-1, groupId=com.example] (Re-)joining group
+[2022-09-28 19:44:33.708] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@requestRejoin(988) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Request joining group due to: need to re-join with the given member-id
+[2022-09-28 19:44:33.709] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@sendJoinGroupRequest(535) - [Consumer clientId=consumer-com.example-1, groupId=com.example] (Re-)joining group
+[2022-09-28 19:45:01.922] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@handle(591) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Successfully joined group with generation Generation{generationId=138, memberId='consumer-com.example-1-9e3cdf81-3343-4600-ae9c-d698c92b705c', protocol='range'}
+[2022-09-28 19:45:01.925] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@performAssignment(652) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Finished assignment for group at generation 138: {consumer-com.example-1-9e3cdf81-3343-4600-ae9c-d698c92b705c=Assignment(partitions=[accusation-topic-0])}
+[2022-09-28 19:45:01.969] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@handle(757) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Successfully synced group in generation Generation{generationId=138, memberId='consumer-com.example-1-9e3cdf81-3343-4600-ae9c-d698c92b705c', protocol='range'}
+[2022-09-28 19:45:01.970] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokeOnAssignment(279) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Notifying assignor about the new Assignment(partitions=[accusation-topic-0])
+[2022-09-28 19:45:01.973] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokePartitionsAssigned(291) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Adding newly assigned partitions: accusation-topic-0
+[2022-09-28 19:45:01.991] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@refreshCommittedOffsetsIfNeeded(844) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Setting offset for partition accusation-topic-0 to the committed offset FetchPosition{offset=33, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[127.0.0.1:9092 (id: 1001 rack: null)], epoch=0}}
+[2022-09-28 19:45:01.993] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.s.k.l.KafkaMessageListenerContainer@info(292) - com.example: partitions assigned: [accusation-topic-0]
+[2022-09-28 19:47:48.727] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokePartitionsRevoked(310) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Revoke previously assigned partitions accusation-topic-0
+[2022-09-28 19:47:48.728] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.s.k.l.KafkaMessageListenerContainer@info(292) - com.example: partitions revoked: [accusation-topic-0]
+[2022-09-28 19:47:48.728] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@maybeLeaveGroup(1048) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Member consumer-com.example-1-9e3cdf81-3343-4600-ae9c-d698c92b705c sending LeaveGroup request to coordinator 127.0.0.1:9092 (id: 2147482646 rack: null) due to the consumer unsubscribed from all topics
+[2022-09-28 19:47:48.730] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@resetStateAndGeneration(966) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Resetting generation due to: consumer pro-actively leaving the group
+[2022-09-28 19:47:48.731] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@requestRejoin(988) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Request joining group due to: consumer pro-actively leaving the group
+[2022-09-28 19:47:48.731] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.clients.consumer.KafkaConsumer@unsubscribe(1075) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Unsubscribed all topics or patterns and assigned partitions
+[2022-09-28 19:47:48.734] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@resetStateAndGeneration(966) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Resetting generation due to: consumer pro-actively leaving the group
+[2022-09-28 19:47:48.734] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@requestRejoin(988) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Request joining group due to: consumer pro-actively leaving the group
+[2022-09-28 19:47:48.745] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.metrics.Metrics@close(659) - Metrics scheduler closed
+[2022-09-28 19:47:48.746] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.metrics.Metrics@close(663) - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2022-09-28 19:47:48.746] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.metrics.Metrics@close(669) - Metrics reporters closed
+[2022-09-28 19:47:48.751] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.kafka.common.utils.AppInfoParser@unregisterAppInfo(83) - App info kafka.consumer for consumer-com.example-1 unregistered
+[2022-09-28 19:47:48.752] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.s.k.l.KafkaMessageListenerContainer@info(292) - com.example: Consumer stopped
+[2022-09-28 19:47:48.754] [SpringApplicationShutdownHook] INFO o.s.i.endpoint.EventDrivenConsumer@info(174) - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[2022-09-28 19:47:48.756] [SpringApplicationShutdownHook] INFO o.s.i.c.PublishSubscribeChannel@info(174) - Channel 'application.errorChannel' has 0 subscriber(s).
+[2022-09-28 19:47:48.756] [SpringApplicationShutdownHook] INFO o.s.i.endpoint.EventDrivenConsumer@info(292) - stopped bean '_org.springframework.integration.errorLogger'
+[2022-09-28 19:47:48.770] [SpringApplicationShutdownHook] INFO o.s.o.j.LocalContainerEntityManagerFactoryBean@destroy(651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2022-09-28 19:48:09.627] [background-preinit] INFO o.h.validator.internal.util.Version@<clinit>(21) - HV000001: Hibernate Validator 6.2.3.Final
+[2022-09-28 19:48:09.627] [main] INFO com.mungta.user.UserApplication@logStarting(55) - Starting UserApplication using Java 11.0.16 on DESKTOP-L822JMB with PID 131428 (C:\Users\User\workspace-spring\mungta-user-service\target\classes started by User in C:\Users\User\workspace-spring\mungta-user-service)
+[2022-09-28 19:48:09.632] [main] INFO com.mungta.user.UserApplication@logStartupProfileInfo(640) - No active profile set, falling back to 1 default profile: "default"
+[2022-09-28 19:48:10.389] [main] INFO o.s.d.r.c.RepositoryConfigurationDelegate@registerRepositoriesIn(132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2022-09-28 19:48:10.476] [main] INFO o.s.d.r.c.RepositoryConfigurationDelegate@registerRepositoriesIn(201) - Finished Spring Data repository scanning in 77 ms. Found 2 JPA repository interfaces.
+[2022-09-28 19:48:10.971] [main] INFO o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor@info(292) - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[2022-09-28 19:48:10.982] [main] INFO o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor@info(292) - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[2022-09-28 19:48:11.287] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$$EnhancerBySpringCGLIB$$1de61846] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:48:11.299] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'bindersHealthContributor' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$BindersHealthContributor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:48:11.302] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'bindersHealthIndicatorListener' of type [org.springframework.cloud.stream.config.BindersHealthIndicatorAutoConfiguration$BindersHealthIndicatorListener] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:48:11.314] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:48:11.320] [main] INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker@postProcessAfterInitialization(376) - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2022-09-28 19:48:12.513] [main] INFO o.s.b.w.e.tomcat.TomcatWebServer@initialize(108) - Tomcat initialized with port(s): 8081 (http)
+[2022-09-28 19:48:12.524] [main] INFO o.a.coyote.http11.Http11NioProtocol@log(173) - Initializing ProtocolHandler ["http-nio-8081"]
+[2022-09-28 19:48:12.525] [main] INFO o.a.catalina.core.StandardService@log(173) - Starting service [Tomcat]
+[2022-09-28 19:48:12.527] [main] INFO o.a.catalina.core.StandardEngine@log(173) - Starting Servlet engine: [Apache Tomcat/9.0.60]
+[2022-09-28 19:48:12.693] [main] INFO o.a.c.c.C.[Tomcat].[localhost].[/]@log(173) - Initializing Spring embedded WebApplicationContext
+[2022-09-28 19:48:12.693] [main] INFO o.s.b.w.s.c.ServletWebServerApplicationContext@prepareWebApplicationContext(290) - Root WebApplicationContext: initialization completed in 3011 ms
+[2022-09-28 19:48:13.129] [main] INFO o.h.jpa.internal.util.LogHelper@logPersistenceUnitInformation(31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2022-09-28 19:48:13.178] [main] INFO org.hibernate.Version@logVersion(44) - HHH000412: Hibernate ORM core version 5.6.7.Final
+[2022-09-28 19:48:13.307] [main] INFO o.h.annotations.common.Version@<clinit>(56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2022-09-28 19:48:13.474] [main] INFO org.hibernate.dialect.Dialect@<init>(175) - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+[2022-09-28 19:48:14.037] [main] INFO o.h.e.t.j.p.i.JtaPlatformInitiator@initiateService(52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2022-09-28 19:48:14.048] [main] INFO o.s.o.j.LocalContainerEntityManagerFactoryBean@buildNativeEntityManagerFactory(437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2022-09-28 19:48:14.560] [main] WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration@openEntityManagerInViewInterceptor(219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2022-09-28 19:48:15.300] [main] INFO o.s.s.web.DefaultSecurityFilterChain@<init>(52) - Will not secure Ant [pattern='/']
+[2022-09-28 19:48:16.528] [main] INFO o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry@compose(271) - Looking up function '' with acceptedOutputTypes: []
+[2022-09-28 19:48:16.917] [main] INFO o.s.b.a.e.web.EndpointLinksResolver@<init>(58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[2022-09-28 19:48:17.128] [main] INFO o.s.i.endpoint.EventDrivenConsumer@info(174) - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[2022-09-28 19:48:17.129] [main] INFO o.s.i.c.PublishSubscribeChannel@info(174) - Channel 'application.errorChannel' has 1 subscriber(s).
+[2022-09-28 19:48:17.129] [main] INFO o.s.i.endpoint.EventDrivenConsumer@info(292) - started bean '_org.springframework.integration.errorLogger'
+[2022-09-28 19:48:17.161] [main] INFO o.a.k.c.consumer.ConsumerConfig@logAll(376) - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-com.example-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = com.example
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+[2022-09-28 19:48:17.272] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(119) - Kafka version: 3.0.1
+[2022-09-28 19:48:17.273] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(120) - Kafka commitId: 8e30984f43e64d8b
+[2022-09-28 19:48:17.273] [main] INFO o.a.kafka.common.utils.AppInfoParser@<init>(121) - Kafka startTimeMs: 1664362097270
+[2022-09-28 19:48:17.287] [main] INFO o.a.k.clients.consumer.KafkaConsumer@subscribe(966) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Subscribed to topic(s): accusation-topic
+[2022-09-28 19:48:17.296] [main] INFO o.a.coyote.http11.Http11NioProtocol@log(173) - Starting ProtocolHandler ["http-nio-8081"]
+[2022-09-28 19:48:17.310] [main] INFO o.s.b.w.e.tomcat.TomcatWebServer@start(220) - Tomcat started on port(s): 8081 (http) with context path ''
+[2022-09-28 19:48:17.325] [main] INFO com.mungta.user.UserApplication@logStarted(61) - Started UserApplication in 8.23 seconds (JVM running for 8.715)
+[2022-09-28 19:48:17.333] [main] INFO com.mungta.user.UserApplication@main(21) - ################ UserApplication Start !!!!!!!!!
+[2022-09-28 19:48:17.545] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO org.apache.kafka.clients.Metadata@updateLatestMetadata(401) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Resetting the last seen epoch of partition accusation-topic-0 to 0 since the associated topicId changed from null to FMYjv0lhTxWZa4Qnb7dV4w
+[2022-09-28 19:48:17.548] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO org.apache.kafka.clients.Metadata@update(287) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Cluster ID: JDqruOhmQNyh-qpTNkeJKQ
+[2022-09-28 19:48:17.550] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@onSuccess(849) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Discovered group coordinator 127.0.0.1:9092 (id: 2147482646 rack: null)
+[2022-09-28 19:48:17.553] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@sendJoinGroupRequest(535) - [Consumer clientId=consumer-com.example-1, groupId=com.example] (Re-)joining group
+[2022-09-28 19:48:17.571] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@requestRejoin(988) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Request joining group due to: need to re-join with the given member-id
+[2022-09-28 19:48:17.572] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@sendJoinGroupRequest(535) - [Consumer clientId=consumer-com.example-1, groupId=com.example] (Re-)joining group
+[2022-09-28 19:48:17.579] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@handle(591) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Successfully joined group with generation Generation{generationId=140, memberId='consumer-com.example-1-c284ae56-11cb-4050-8d6e-e95bec0ebdf6', protocol='range'}
+[2022-09-28 19:48:17.582] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@performAssignment(652) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Finished assignment for group at generation 140: {consumer-com.example-1-c284ae56-11cb-4050-8d6e-e95bec0ebdf6=Assignment(partitions=[accusation-topic-0])}
+[2022-09-28 19:48:17.592] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@handle(757) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Successfully synced group in generation Generation{generationId=140, memberId='consumer-com.example-1-c284ae56-11cb-4050-8d6e-e95bec0ebdf6', protocol='range'}
+[2022-09-28 19:48:17.594] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokeOnAssignment(279) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Notifying assignor about the new Assignment(partitions=[accusation-topic-0])
+[2022-09-28 19:48:17.596] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@invokePartitionsAssigned(291) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Adding newly assigned partitions: accusation-topic-0
+[2022-09-28 19:48:17.612] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.a.k.c.c.i.ConsumerCoordinator@refreshCommittedOffsetsIfNeeded(844) - [Consumer clientId=consumer-com.example-1, groupId=com.example] Setting offset for partition accusation-topic-0 to the committed offset FetchPosition{offset=33, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[127.0.0.1:9092 (id: 1001 rack: null)], epoch=0}}
+[2022-09-28 19:48:17.613] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO o.s.k.l.KafkaMessageListenerContainer@info(292) - com.example: partitions assigned: [accusation-topic-0]
+[2022-09-28 19:49:10.490] [main] INFO c.mungta.user.api.UserControllerTest@logStarting(55) - Starting UserControllerTest using Java 11.0.16 on DESKTOP-L822JMB with PID 204608 (started by User in C:\Users\User\workspace-spring\mungta-user-service)
+[2022-09-28 19:49:10.493] [main] INFO c.mungta.user.api.UserControllerTest@logStartupProfileInfo(640) - No active profile set, falling back to 1 default profile: "default"
+[2022-09-28 19:49:10.496] [background-preinit] INFO o.h.validator.internal.util.Version@<clinit>(21) - HV000001: Hibernate Validator 6.2.3.Final
+[2022-09-28 19:49:13.933] [main] INFO o.s.s.web.DefaultSecurityFilterChain@<init>(52) - Will not secure Ant [pattern='/']
+[2022-09-28 19:49:15.939] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:15.940] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:15.942] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:49:15.993] [main] INFO c.mungta.user.api.UserControllerTest@logStarted(61) - Started UserControllerTest in 6.237 seconds (JVM running for 7.583)
+[2022-09-28 19:49:16.039] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:16.039] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:16.040] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:49:22.477] [main] INFO c.mungta.user.api.UserControllerTest@logStarting(55) - Starting UserControllerTest using Java 11.0.16 on DESKTOP-L822JMB with PID 81200 (started by User in C:\Users\User\workspace-spring\mungta-user-service)
+[2022-09-28 19:49:22.479] [main] INFO c.mungta.user.api.UserControllerTest@logStartupProfileInfo(640) - No active profile set, falling back to 1 default profile: "default"
+[2022-09-28 19:49:22.481] [background-preinit] INFO o.h.validator.internal.util.Version@<clinit>(21) - HV000001: Hibernate Validator 6.2.3.Final
+[2022-09-28 19:49:26.189] [main] INFO o.s.s.web.DefaultSecurityFilterChain@<init>(52) - Will not secure Ant [pattern='/']
+[2022-09-28 19:49:28.310] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:28.311] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:28.314] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 2 ms
+[2022-09-28 19:49:28.367] [main] INFO c.mungta.user.api.UserControllerTest@logStarted(61) - Started UserControllerTest in 6.607 seconds (JVM running for 7.947)
+[2022-09-28 19:49:28.410] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:28.411] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:28.411] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 0 ms
+[2022-09-28 19:49:51.392] [main] INFO c.mungta.user.api.UserControllerTest@logStarting(55) - Starting UserControllerTest using Java 11.0.16 on DESKTOP-L822JMB with PID 168848 (started by User in C:\Users\User\workspace-spring\mungta-user-service)
+[2022-09-28 19:49:51.394] [main] INFO c.mungta.user.api.UserControllerTest@logStartupProfileInfo(640) - No active profile set, falling back to 1 default profile: "default"
+[2022-09-28 19:49:51.396] [background-preinit] INFO o.h.validator.internal.util.Version@<clinit>(21) - HV000001: Hibernate Validator 6.2.3.Final
+[2022-09-28 19:49:54.897] [main] INFO o.s.s.web.DefaultSecurityFilterChain@<init>(52) - Will not secure Ant [pattern='/']
+[2022-09-28 19:49:56.741] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:56.742] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:56.744] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:49:56.791] [main] INFO c.mungta.user.api.UserControllerTest@logStarted(61) - Started UserControllerTest in 6.102 seconds (JVM running for 7.441)
+[2022-09-28 19:49:56.834] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:56.834] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:56.835] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:49:57.205] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:57.206] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:57.207] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 0 ms
+[2022-09-28 19:49:57.300] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:57.301] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:57.302] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:49:57.445] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:57.445] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:57.446] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:49:57.525] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:57.526] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:57.526] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 0 ms
+[2022-09-28 19:49:57.717] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:57.718] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:57.719] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:49:57.809] [main] INFO o.s.b.t.m.w.SpringBootMockServletContext@log(455) - Initializing Spring TestDispatcherServlet ''
+[2022-09-28 19:49:57.809] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(525) - Initializing Servlet ''
+[2022-09-28 19:49:57.810] [main] INFO o.s.t.w.s.TestDispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:50:13.260] [http-nio-8081-exec-1] INFO o.a.c.c.C.[Tomcat].[localhost].[/]@log(173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2022-09-28 19:50:13.260] [http-nio-8081-exec-1] INFO o.s.web.servlet.DispatcherServlet@initServletBean(525) - Initializing Servlet 'dispatcherServlet'
+[2022-09-28 19:50:13.262] [http-nio-8081-exec-1] INFO o.s.web.servlet.DispatcherServlet@initServletBean(547) - Completed initialization in 1 ms
+[2022-09-28 19:50:13.742] [http-nio-8081-exec-2] INFO o.s.api.AbstractOpenApiResource@getOpenApi(347) - Init duration for springdoc-openapi is: 327 ms
+[2022-09-28 19:50:18.884] [http-nio-8081-exec-3] INFO com.zaxxer.hikari.HikariDataSource@getConnection(110) - HikariPool-1 - Starting...
+[2022-09-28 19:50:19.975] [http-nio-8081-exec-3] ERROR com.zaxxer.hikari.pool.HikariPool@throwPoolInitializationException(594) - HikariPool-1 - Exception during pool initialization.
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:38)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:108)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:138)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.begin(LogicalConnectionManagedImpl.java:284)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.begin(JdbcResourceLocalTransactionCoordinatorImpl.java:246)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.begin(TransactionImpl.java:83)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.beginTransaction(HibernateJpaDialect.java:164)
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:421)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:400)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:373)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:595)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:382)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.mungta.user.service.UserService$$EnhancerBySpringCGLIB$$2849caf7.findAll(<generated>)
+	at com.mungta.user.api.UserController.getUserListAdmin(UserController.java:153)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:204)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)
+	... 90 common frames omitted
+Caused by: java.net.UnknownHostException: 알려진 호스트가 없습니다 (${DB_HOST})
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1529)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1519)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1378)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1306)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:130)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 93 common frames omitted
+[2022-09-28 19:50:19.989] [http-nio-8081-exec-3] WARN o.h.e.jdbc.spi.SqlExceptionHelper@logExceptions(137) - SQL Error: 0, SQLState: 08S01
+[2022-09-28 19:50:19.990] [http-nio-8081-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper@logExceptions(142) - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+[2022-09-28 19:50:22.882] [http-nio-8081-exec-4] INFO com.zaxxer.hikari.HikariDataSource@getConnection(110) - HikariPool-1 - Starting...
+[2022-09-28 19:50:23.895] [http-nio-8081-exec-4] ERROR com.zaxxer.hikari.pool.HikariPool@throwPoolInitializationException(594) - HikariPool-1 - Exception during pool initialization.
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:38)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:108)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:138)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.begin(LogicalConnectionManagedImpl.java:284)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.begin(JdbcResourceLocalTransactionCoordinatorImpl.java:246)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.begin(TransactionImpl.java:83)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.beginTransaction(HibernateJpaDialect.java:164)
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:421)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:400)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:373)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:595)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:382)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.mungta.user.service.UserService$$EnhancerBySpringCGLIB$$2849caf7.findAll(<generated>)
+	at com.mungta.user.api.UserController.getUserListAdmin(UserController.java:153)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:204)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)
+	... 90 common frames omitted
+Caused by: java.net.UnknownHostException: ${DB_HOST}
+	at java.base/java.net.InetAddress$CachedAddresses.get(InetAddress.java:797)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1519)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1378)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1306)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:130)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 93 common frames omitted
+[2022-09-28 19:50:23.907] [http-nio-8081-exec-4] WARN o.h.e.jdbc.spi.SqlExceptionHelper@logExceptions(137) - SQL Error: 0, SQLState: 08S01
+[2022-09-28 19:50:23.908] [http-nio-8081-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper@logExceptions(142) - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+[2022-09-28 19:51:51.596] [http-nio-8081-exec-5] INFO com.zaxxer.hikari.HikariDataSource@getConnection(110) - HikariPool-1 - Starting...
+[2022-09-28 19:51:52.606] [http-nio-8081-exec-5] ERROR com.zaxxer.hikari.pool.HikariPool@throwPoolInitializationException(594) - HikariPool-1 - Exception during pool initialization.
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:38)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:108)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:138)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.begin(LogicalConnectionManagedImpl.java:284)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.begin(JdbcResourceLocalTransactionCoordinatorImpl.java:246)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.begin(TransactionImpl.java:83)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.beginTransaction(HibernateJpaDialect.java:164)
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:421)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:400)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:373)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:595)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:382)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.mungta.user.service.UserService$$EnhancerBySpringCGLIB$$2849caf7.getUser(<generated>)
+	at com.mungta.user.api.UserController.getUser(UserController.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:204)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)
+	... 90 common frames omitted
+Caused by: java.net.UnknownHostException: 알려진 호스트가 없습니다 (${DB_HOST})
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1529)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1519)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1378)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1306)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:130)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 93 common frames omitted
+[2022-09-28 19:51:52.619] [http-nio-8081-exec-5] WARN o.h.e.jdbc.spi.SqlExceptionHelper@logExceptions(137) - SQL Error: 0, SQLState: 08S01
+[2022-09-28 19:51:52.620] [http-nio-8081-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper@logExceptions(142) - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.

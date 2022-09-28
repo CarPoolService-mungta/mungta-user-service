@@ -73,22 +73,6 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
       # location: ${user.dir}/img
-
-logging:
-  # file:
-  #   name: ${user.dir}/log/test.log
-  #   max-history: 7
-  #   max-size: 10MB
-  level:
-    root: warn
-    com.mungta.user: debug
-    com.mungta.user.api: debug
-    com.mungta.user.auth: debug
-    com.mungta.user.config: info
-    com.mungta.user.domain: info
-    com.mungta.user.dto: info
-    com.mungta.user.kafka: debug
-
 management:
   endpoint:
     health:
@@ -99,3 +83,26 @@ management:
       enabled: true
     readinessState:
       enabled: true
+logging:
+  config: classpath:logging/logback-mungta.xml
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
+# logging:
+  # file:
+  #   name: ${user.dir}/log/test.log
+  #   max-history: 7
+  #   max-size: 10MB
+  # level:
+  #   root: warn
+  #   com.mungta.user: debug
+  #   com.mungta.user.api: debug
+  #   com.mungta.user.auth: debug
+  #   com.mungta.user.config: info
+  #   com.mungta.user.domain: info
+  #   com.mungta.user.dto: info
+  #   com.mungta.user.kafka: debug

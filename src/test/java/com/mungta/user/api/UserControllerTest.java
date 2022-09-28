@@ -144,85 +144,85 @@ public class UserControllerTest {
 
 
 
-// @DisplayName("사용자 수정")
-// @Test
-// void updateWoPhotoUser() throws Exception{
-//     doReturn(user)
-//             .when(userService).updateWoPhotoUser(user);
-//     ResultActions resultActions = mockMvc.perform(
-//                            put("/api/user/"+USER_ID)
-//                         .accept(MediaType.APPLICATION_JSON)
-//                         .content(new ObjectMapper().writeValueAsString(
-//                                 USER_REQUEST
-//                     ))
-//     );
+@DisplayName("사용자 수정")
+@Test
+void updateWoPhotoUser() throws Exception{
+    doReturn(user)
+            .when(userService).updateWoPhotoUser(user);
+    ResultActions resultActions = mockMvc.perform(
+                           put("/api/user/"+USER_ID)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(
+                                USER_REQUEST
+                    ))
+    );
 
-//     resultActions.andExpect(status().isOk());
-// }
+    resultActions.andExpect(status().isOk());
+}
 
-// @DisplayName("사용자 탈퇴")
-// @Test
-// void deleteUser() throws Exception{
-//     doReturn(null)
-//             .when(userService).deleteUser(USER_ID);
-//     ResultActions resultActions = mockMvc.perform(
-//                                   delete("/api/user/"+USER_ID)
-//                                  .accept(MediaType.APPLICATION_JSON)
-//                                 .content(new ObjectMapper().writeValueAsString(
-//                                         USER_REQUEST
-//                     ))
-//     );
-//     resultActions.andExpect(status().isOk());
-// }
-
-
-
-// @DisplayName("사용자 패널티 부여")
-// @Test
-// void givePenaltyUser() throws Exception{
-//     doReturn(user)
-//             .when(userService).givePenaltyUser(USER_ID,"TEST");
-//     ResultActions resultActions = mockMvc.perform(
-//                            put("/api/user/penalty/"+USER_ID)
-//                         .accept(MediaType.APPLICATION_JSON)
-//                         .param("accusationId", "TEST")
-
-//     );
-
-//     resultActions.andExpect(status().isNoContent());
-// }
+@DisplayName("사용자 탈퇴")
+@Test
+void deleteUser() throws Exception{
+    doReturn(null)
+            .when(userService).deleteUser(USER_ID);
+    ResultActions resultActions = mockMvc.perform(
+                                  delete("/api/user/"+USER_ID)
+                                 .accept(MediaType.APPLICATION_JSON)
+                                .content(new ObjectMapper().writeValueAsString(
+                                        USER_REQUEST
+                    ))
+    );
+    resultActions.andExpect(status().isOk());
+}
 
 
 
-// @DisplayName("로그인 API")
-// @Test
-// void authenticate() throws Exception{
-//     doReturn(token)
-//             .when(userService).getByCredentials(USER_ID,USER_PASSWORD);
-//     ResultActions resultActions = mockMvc.perform(
-//             post("/api/user/auth/signin")
-//                     .accept(MediaType.APPLICATION_JSON)
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(new ObjectMapper().writeValueAsString(new UserLoginDto(user)))
-//     );
+@DisplayName("사용자 패널티 부여")
+@Test
+void givePenaltyUser() throws Exception{
+    doReturn(user)
+            .when(userService).givePenaltyUser(USER_ID,"TEST");
+    ResultActions resultActions = mockMvc.perform(
+                           put("/api/user/penalty/"+USER_ID)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .param("accusationId", "TEST")
 
-//     resultActions.andExpect(status().isOk());
-// }
+    );
+
+    resultActions.andExpect(status().isNoContent());
+}
 
 
-// @DisplayName("메일인증발송 API")
-// @Test
-// void sendEmailAuthNumber() throws Exception{
-//         doNothing()
-//             .when(authenticationService).sendAuthNumber(AUTH_USER_MAIL_ADDRESS);
 
-//     ResultActions resultActions = mockMvc.perform(
-//             post("/api/user/auth/mail")
-//                     .accept(MediaType.APPLICATION_JSON)
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
-//     );
-//     resultActions.andExpect(status().isOk());
-// }
+@DisplayName("로그인 API")
+@Test
+void authenticate() throws Exception{
+    doReturn(token)
+            .when(userService).getByCredentials(USER_ID,USER_PASSWORD);
+    ResultActions resultActions = mockMvc.perform(
+            post("/api/user/auth/signin")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(new ObjectMapper().writeValueAsString(new UserLoginDto(user)))
+    );
+
+    resultActions.andExpect(status().isOk());
+}
+
+
+@DisplayName("메일인증발송 API")
+@Test
+void sendEmailAuthNumber() throws Exception{
+        doNothing()
+            .when(authenticationService).sendAuthNumber(AUTH_USER_MAIL_ADDRESS);
+
+    ResultActions resultActions = mockMvc.perform(
+            post("/api/user/auth/mail")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(new ObjectMapper().writeValueAsString(AUTH_REQUEST))
+    );
+    resultActions.andExpect(status().isOk());
+}
 
 }
