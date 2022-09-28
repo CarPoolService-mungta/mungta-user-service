@@ -25,8 +25,9 @@ public class UserTestSample {
     public static final Long PENALTY_COUNT =0L;
     public static final Status USER_STATUS = Status.ACTIVATED;
     public static final UserType USER_TYPE = UserType.CUSTOMER;
-    public static final String STR = "photo";
-    public static final byte[] USER_PHOTO = STR.getBytes();
+   // public static final String STR = "photo";
+    public static final byte[] USER_PHOTO = null ;
+    //STR.getBytes();
     // {0x48, 0x65, (byte)0x6C, (byte)0x6C, (byte)0x6f,
 	// 	0x20, 0x57, (byte)0x6f, 0x72, (byte)0x6c, 0x64};
 
